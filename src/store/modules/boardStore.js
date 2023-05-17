@@ -50,7 +50,8 @@ const boardStore = {
         console.log(error);
       })
     },
-    deleteBoard: (boardId) => {
+    deleteBoard: ({ boardId }) => {
+      console.log("삭제할 id", boardId);
       deleteBoard(boardId,
         ({ data }) => {
           let msg = "삭제 처리시 문제가 발생했습니다.";

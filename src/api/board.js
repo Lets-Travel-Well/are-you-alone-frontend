@@ -26,7 +26,7 @@ function modifyBoard(article, success, fail) {
 }
 
 function deleteBoard(boardId, success, fail) {
-  api.delete(`/post/${boardId}/delete`).then(success).catch(fail);
+  api.get(`/post/${boardId}/delete`).then(success).catch(fail);
 }
 
 export { listBoard, writeBoard, getBoard, modifyBoard, deleteBoard };

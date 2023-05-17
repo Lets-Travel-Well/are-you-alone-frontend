@@ -17,7 +17,9 @@ import { mapActions } from "vuex";
 export default {
   name: "BoardDelete",
   created() {
-    this.deleteBoard();
+    let boardId = this.$route.params.boardId;
+    console.log(boardId);
+    this.deleteBoard(boardId);
   },
   methods: {
     ...mapActions("boardStore", ["deleteBoard"]),

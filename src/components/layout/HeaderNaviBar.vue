@@ -27,11 +27,11 @@
                 ><b-icon icon="journal" font-scale="1.5"></b-icon> 게시판</router-link
               ></b-nav-item
             >
-            <b-nav-item href="#"
+            <!-- <b-nav-item href="#"
               ><router-link :to="{ name: 'with' }" class="link"
                 ><b-icon icon="people" font-scale="1.5"></b-icon> 동행 구하기</router-link
               ></b-nav-item
-            >
+            > -->
             <b-nav-item href="#"
               ><router-link :to="{ name: 'trip' }" class="link"
                 ><b-icon icon="signpost" font-scale="1.5"></b-icon> 여행지 보기</router-link
