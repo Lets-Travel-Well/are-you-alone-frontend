@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(boardStore, ["detailBoard"]),
+    ...mapActions(boardStore, ["detailBoard", "deleteBoard"]),
 
     listArticle() {
       this.$router.push({ name: "boardList" });

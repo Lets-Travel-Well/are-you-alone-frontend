@@ -55,7 +55,7 @@
 
 <script>
 import http from "@/api/http";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 
 const boardStrore = "boardStore";
 
@@ -64,16 +64,13 @@ export default {
   data() {
     return {
       board: {
-        id: 0,
         subject: "",
         content: "",
       },
       isUserid: false,
     };
   },
-  computed: {
-    ...mapState[(boardStrore, "board")],
-  },
+  computed: {},
   props: {
     type: { type: String },
   },
@@ -87,7 +84,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(boardStrore, ["detailBoard", "writeBoard", "modifyBoard"]),
+    ...mapActions(boardStrore, ["detailBoard", "createBoard", "modifyBoard"]),
 
     onSubmit(event) {
       event.preventDefault();
@@ -111,9 +108,16 @@ export default {
       this.board.content = "";
       this.$router.push({ name: "boardList" });
     },
+
     registBoard() {
-      this.writeBoard();
+      // const board = {
+      //   subject: this.board.subject,
+      //   content: this.board.content,
+      // };
+
+      this.createBoard(this.board);
     },
+
     modifyBoard() {
       http
         .put(`/board/${this.article.articleno}`, {

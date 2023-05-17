@@ -14,7 +14,7 @@ function listBoard(success, fail) {
 }
 
 function writeBoard(board, success, fail) {
-  api.post(`/post`, JSON.stringify(board)).then(success).catch(fail);
+  api.post(`/post/create`, JSON.stringify(board)).then(success).catch(fail);
 }
 
 function getBoard(boardId, success, fail) {
@@ -25,8 +25,8 @@ function modifyBoard(article, success, fail) {
   api.put(`/post`, JSON.stringify(article)).then(success).catch(fail);
 }
 
-function deleteBoard(articleno, success, fail) {
-  api.delete(`/post/${articleno}/delete`).then(success).catch(fail);
+function deleteBoard(boardId, success, fail) {
+  api.delete(`/post/${boardId}/delete`).then(success).catch(fail);
 }
 
 export { listBoard, writeBoard, getBoard, modifyBoard, deleteBoard };
