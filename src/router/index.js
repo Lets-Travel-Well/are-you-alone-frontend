@@ -1,29 +1,88 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import InstagramView from "../views/InstagramView.vue";
+import AttractionView from "../views/AttractionView.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/user",
+    name: "user",
+    component: () => import(/* webpackChunkName: "user" */ "@/views/MemberView.vue"),
+    children: [
+      {
+        path: "singin",
+        name: "signIn",
+        component: () => import(/* webpackChunkName: "user" */ "@/components/user/MemberLogin.vue"),
+      },
+      {
+        path: "singup",
+        name: "signUp",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/MemberRegister.vue"),
+      },
+    ],
+  },
+  {
+    path: "/board",
+    name: "board",
+    component: () => import(/* webpackChunkName: "board" */ "@/views/BoardView.vue"),
+    redirect: "/board",
+    children: [
+      {
+        path: "",
+        name: "boardList",
+        component: () => import(/* webpackChunkName: "board" */ "@/components/board/BoardList.vue"),
+      },
+      {
+        path: "write",
+        name: "boardRegister",
+        component: () =>
+          import(/* webpackChunkName: "board" */ "@/components/board/BoardRegister.vue"),
+      },
+      {
+        path: ":boardId",
+        name: "boardDetail",
+        component: () =>
+          import(/* webpackChunkName: "board" */ "@/components/board/BoardDetail.vue"),
+      },
+      {
+        path: "modify/:articleno",
+        name: "boardModify",
+        component: () =>
+          import(/* webpackChunkName: "board" */ "@/components/board/BoardModify.vue"),
+      },
+      {
+        path: "delete/:articleno",
+        name: "boardDelete",
+        component: () =>
+          import(/* webpackChunkName: "board" */ "@/components/board/BoardDelete.vue"),
+      },
+    ],
+  },
+  {
+    path: "/instagram",
+    name: "instagram",
+    component: InstagramView,
+  },
+  {
+    path: "/trip",
+    name: "trip",
+    component: AttractionView,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

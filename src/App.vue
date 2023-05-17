@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <navi-bar />
+    <div class="contents-wrapper">
+      <div style="height: 100px"></div>
+      <router-view />
+    </div>
+    <footer-bar></footer-bar>
   </div>
 </template>
 
+<script>
+import NaviBar from "@/components/layout/HeaderNaviBar.vue";
+import FooterBar from "./components/layout/FooterBar.vue";
+
+export default {
+  name: "App",
+  components: {
+    NaviBar,
+    FooterBar,
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
+a:hover {
+  text-decoration: none;
   font-weight: bold;
-  color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active {
+  color: #3aa4ca;
+}
+#app {
+  height: 100vh;
+  min-height: 100%;
+}
+.contents-wrapper {
+  min-height: 100%;
+  height: auto;
+  margin-bottom: 81px;
+}
+footer {
+  height: 81px;
+  position: relative;
+  transform: translateY(-100%);
 }
 </style>
