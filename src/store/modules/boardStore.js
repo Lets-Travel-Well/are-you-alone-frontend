@@ -1,4 +1,4 @@
-import {listBoard, getBoard, writeBoard, deleteBoard, modifyBoard} from "@/api/board.js";
+import {listBoard, getBoard, writeBoard, deleteBoard, modifyBoard, updateLike} from "@/api/board.js";
 import router from '@/router';
 
 const boardStore = {
@@ -9,6 +9,7 @@ const boardStore = {
       content: "",
       subject:""
     },
+    like: false,
     },
     getters: {},
   mutations: {
@@ -17,8 +18,6 @@ const boardStore = {
     },
     CLEAR_BOARD(state) {
       state.board = {
-        content: "",
-        subject:""
       }
     },
     CLEAR_BOARD_LIST(state) {
@@ -47,6 +46,9 @@ const boardStore = {
     //     return board;
     //   });
     // },
+    UPDATE_LIKE(state, like) {
+      state.like = like;
+    }
     },
   actions: {
     createBoard: ({commit},board) => {
@@ -60,6 +62,7 @@ const boardStore = {
         console.log(error);
       })
     },
+
     deleteBoard: ({commit},boardId ) => {
       console.log("삭제할 id", boardId);
       deleteBoard(boardId,
@@ -72,13 +75,13 @@ const boardStore = {
             msg = "삭제가 완료되었습니다.";
           }
           alert(msg);
-          // 현재 route를 /list로 변경.
           router.push({ name: "boardList" });
         },
       (error) => {
         console.log(error);
       })
     },
+
     updateBoard: ({ commit }, boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
         commit("UPDATE_BOARD", boardItem);
@@ -88,13 +91,13 @@ const boardStore = {
           msg = "수정이 완료되었습니다.";
         }
         alert(msg);
-        // 현재 route를 /list로 변경.
         router.push({ name: "boardList" });
       },
       (error) => {
         console.log(error);
       })
     },
+
     getBoardList:({ commit })=> {
       listBoard(({ data }) => {
         commit("CLEAR_BOARD_LIST");
@@ -104,11 +107,23 @@ const boardStore = {
         console.log(error);
       })
     },
+
     detailBoard: ({ commit }, boardId) => {
       getBoard(boardId, ({ data }) => {
         commit("SET_DETAIL_BOARD", data.response);
       },
-      (error) => {
+        (error) => {
+          console.log(error);
+        });
+      
+      // getLike(boardId, ({ data })=> {
+      //   commit("UPDATE_LIKE", data.success);
+      // })
+    },
+    changeLike: ({ commit }, boardId) => {
+      updateLike(boardId, ({ data }) => {
+        commit("UPDATE_LIKE", data.response)
+      }, (error) => {
         console.log(error);
       })
     }
