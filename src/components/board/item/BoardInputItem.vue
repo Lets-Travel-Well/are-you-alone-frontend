@@ -30,6 +30,7 @@
             type="text"
             required
             placeholder="제목 입력..."
+            ref="subject"
           ></b-form-input>
         </b-form-group>
 
@@ -38,8 +39,10 @@
             id="content"
             v-model="board.content"
             placeholder="내용 입력..."
+            required
             rows="10"
             max-rows="15"
+            ref="content"
           ></b-form-textarea>
         </b-form-group>
 
@@ -55,22 +58,20 @@
 
 <script>
 import http from "@/api/http";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
-const boardStrore = "boardStore";
+const boardStore = "boardStore";
 
 export default {
   name: "BoardInputItem",
   data() {
     return {
-      board: {
-        subject: "",
-        content: "",
-      },
       isUserid: false,
     };
   },
-  computed: {},
+  computed: {
+    ...mapState(boardStore, ["board"]),
+  },
   props: {
     type: { type: String },
   },
@@ -84,23 +85,31 @@ export default {
     }
   },
   methods: {
-    ...mapActions(boardStrore, ["detailBoard", "createBoard", "modifyBoard"]),
+    ...mapActions(boardStore, ["detailBoard", "createBoard", "modifyBoard"]),
 
     onSubmit(event) {
+      console.log(this.board.subject);
+      console.log(this.board.content);
+
       event.preventDefault();
-      let err = true;
-      let msg = "";
+      // let err = true;
+      // let msg = "";
       // !this.article.userid &&
       //   ((msg = "작성자 입력해주세요"), (err = false), this.$refs.userid.focus());
       // err &&
-      !this.board.subject &&
-        ((msg = "제목 입력해주세요"), (err = false), this.$refs.subject.focus());
-      err &&
-        !this.board.content &&
-        ((msg = "내용 입력해주세요"), (err = false), this.$refs.content.focus());
+      if (
+        this.board.subject &&
+        // ((msg = "제목을 입력해주세요"), (err = false), this.$refs.subject.focus());
 
-      if (!err) alert(msg);
-      else this.type === "register" ? this.registBoard() : this.modifyBoard();
+        // err &&
+        this.board.content
+      ) {
+        // ((msg = "내용을 입력해주세요"), (err = false), this.$refs.content.focus());
+
+        // if (!err) alert(msg);
+        // else
+        this.type === "register" ? this.registBoard() : this.modifyBoard();
+      }
     },
     onReset(event) {
       event.preventDefault();
@@ -110,11 +119,9 @@ export default {
     },
 
     registBoard() {
-      // const board = {
-      //   subject: this.board.subject,
-      //   content: this.board.content,
-      // };
-
+      console.log(this.board.subject);
+      console.log(this.board.content);
+      console.log(this.board);
       this.createBoard(this.board);
     },
 
@@ -135,6 +142,7 @@ export default {
           this.$router.push({ name: "boardList" });
         });
     },
+
     moveList() {
       this.$router.push({ name: "boardList" });
     },

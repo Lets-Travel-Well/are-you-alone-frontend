@@ -1,17 +1,27 @@
 // import {deleteBoard,getBoard,listBoard,modifyBoard,writeBoard} from "@/api/board.js";
 import {listBoard, getBoard, writeBoard, deleteBoard} from "@/api/board.js";
+import router from '@/router';
 
 const boardStore = {
     namespaced: true,
   state: {
     boards: [],
-    board: null,
+    board: {
+      content: "",
+      subject:""
+    },
     },
     getters: {},
   mutations: {
-    // CREATE_BOARD(state, boardItem) {
-    //   state.todos.push(boardItem);
-    // },
+    CREATE_BOARD(state, board) {
+      state.boards.push(board);
+    },
+    CLEAR_BOARD(state) {
+      state.board = {
+        content: "",
+        subject:""
+      }
+    },
     CLEAR_BOARD_LIST(state) {
       state.boards = [];
     },
@@ -40,11 +50,12 @@ const boardStore = {
     // },
     },
   actions: {
-    // destructuring 활용
-    createBoard: (board) => {
+    createBoard: ({commit},board) => {
       console.log("등록할 아이템", board);
       writeBoard(board, () => {
-        this.$router.push({ name: "boardList" });
+        commit("CREATE_BOARD");
+        commit("CLEAR_BOARD");
+        router.push({ name: "boardList" });
       },
       (error) => {
         console.log(error);
