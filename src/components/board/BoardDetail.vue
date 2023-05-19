@@ -63,17 +63,14 @@ export default {
     moveModifyArticle() {
       this.$router.replace({
         name: "boardModify",
-        params: { boardId: this.board.id },
+        params: { boardid: this.board.id },
       });
       //   this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
 
     deleteArticle() {
-      if (confirm("정말로 삭제?")) {
-        this.$router.replace({
-          name: "boardDelete",
-          params: { boardId: this.board.id },
-        });
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        this.deleteBoard(this.board.id);
       }
     },
   },

@@ -1,5 +1,4 @@
-// import {deleteBoard,getBoard,listBoard,modifyBoard,writeBoard} from "@/api/board.js";
-import {listBoard, getBoard, writeBoard, deleteBoard} from "@/api/board.js";
+import {listBoard, getBoard, writeBoard, deleteBoard, modifyBoard} from "@/api/board.js";
 import router from '@/router';
 
 const boardStore = {
@@ -33,10 +32,10 @@ const boardStore = {
     SET_DETAIL_BOARD(state, board) {
       state.board = board;
     },
-    // DELETE_BOARD(state, boardItem) {
-    //   const index = state.boards.indexOf(boardItem);
-    //   state.boards.splice(index, 1);
-    // },
+    DELETE_BOARD(state, boardItem) {
+      const index = state.boards.indexOf(boardItem);
+      state.boards.splice(index, 1);
+    },
     // UPDATE_CREATE_BOARD(state, boardItem) {
     //   state.todos = state.boards.map((board) => {
     //     if (board === boardItem) {
@@ -61,25 +60,41 @@ const boardStore = {
         console.log(error);
       })
     },
-    deleteBoard: ({ boardId }) => {
+    deleteBoard: ({commit},boardId ) => {
       console.log("삭제할 id", boardId);
       deleteBoard(boardId,
         ({ data }) => {
+          commit("CLEAR_BOARD");
+
           let msg = "삭제 처리시 문제가 발생했습니다.";
-          if (data === "success") {
+
+          if (data.success) {
             msg = "삭제가 완료되었습니다.";
           }
           alert(msg);
           // 현재 route를 /list로 변경.
-          this.$router.push({ name: "boardList" });
+          router.push({ name: "boardList" });
         },
       (error) => {
         console.log(error);
       })
     },
-    // updateBoard({ commit }, boardItem) {
-    //   commit("UPDATE_BOARD", boardItem);
-    // },
+    updateBoard: ({ commit }, boardItem) => {
+      modifyBoard(boardItem, ({ data }) => {
+        commit("UPDATE_BOARD", boardItem);
+
+        let msg = "수정 처리시 문제가 발생했습니다.";
+        if (data.success) {
+          msg = "수정이 완료되었습니다.";
+        }
+        alert(msg);
+        // 현재 route를 /list로 변경.
+        router.push({ name: "boardList" });
+      },
+      (error) => {
+        console.log(error);
+      })
+    },
     getBoardList:({ commit })=> {
       listBoard(({ data }) => {
         commit("CLEAR_BOARD_LIST");
