@@ -17,8 +17,6 @@ const boardStore = {
     },
     CLEAR_BOARD(state) {
       state.board = {
-        content: "",
-        subject:""
       }
     },
     CLEAR_BOARD_LIST(state) {
@@ -30,7 +28,8 @@ const boardStore = {
       });
     },
     SET_DETAIL_BOARD(state, board) {
-      state.board = board;
+      // 좋아요 값이 입력되는 경우 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      state.board = { ...board,like: false };
     },
     DELETE_BOARD(state, boardItem) {
       const index = state.boards.indexOf(boardItem);
@@ -60,6 +59,7 @@ const boardStore = {
         console.log(error);
       })
     },
+
     deleteBoard: ({commit},boardId ) => {
       console.log("삭제할 id", boardId);
       deleteBoard(boardId,
@@ -72,13 +72,13 @@ const boardStore = {
             msg = "삭제가 완료되었습니다.";
           }
           alert(msg);
-          // 현재 route를 /list로 변경.
           router.push({ name: "boardList" });
         },
       (error) => {
         console.log(error);
       })
     },
+
     updateBoard: ({ commit }, boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
         commit("UPDATE_BOARD", boardItem);
@@ -88,13 +88,13 @@ const boardStore = {
           msg = "수정이 완료되었습니다.";
         }
         alert(msg);
-        // 현재 route를 /list로 변경.
         router.push({ name: "boardList" });
       },
       (error) => {
         console.log(error);
       })
     },
+
     getBoardList:({ commit })=> {
       listBoard(({ data }) => {
         commit("CLEAR_BOARD_LIST");
@@ -104,6 +104,7 @@ const boardStore = {
         console.log(error);
       })
     },
+
     detailBoard: ({ commit }, boardId) => {
       getBoard(boardId, ({ data }) => {
         commit("SET_DETAIL_BOARD", data.response);
@@ -111,7 +112,11 @@ const boardStore = {
       (error) => {
         console.log(error);
       })
-    }
+    },
+
+    // updateLike: ({ commit }) => {
+      
+    // }
     },
   };
   export default boardStore;

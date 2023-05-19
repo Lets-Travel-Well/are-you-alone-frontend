@@ -20,7 +20,7 @@
       <b-col>
         <b-card
           :header-html="`<h3>${board.id}.
-          ${board.subject} [${board.hit}]</h3><div>${board.hit}</h6></div>`"
+          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.hit}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
@@ -30,6 +30,13 @@
           </b-card-body>
         </b-card>
       </b-col>
+    </b-row>
+    <b-row>
+      <b-col cols="11"></b-col>
+      <b-button class="bg-white" variant="white" @click="like">
+        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="board.like" />
+        <b-icon icon="heart" variant="danger" font-scale="2" v-else />
+      </b-button>
     </b-row>
   </b-container>
 </template>
@@ -72,6 +79,9 @@ export default {
       if (confirm("정말로 삭제하시겠습니까?")) {
         this.deleteBoard(this.board.id);
       }
+    },
+    like() {
+      this.board.like = !this.board.like;
     },
   },
   created() {
