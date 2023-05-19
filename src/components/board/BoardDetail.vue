@@ -38,16 +38,21 @@
         <b-icon icon="heart" variant="danger" font-scale="2" v-else />
       </b-button>
     </b-row>
+
+    <comment-input-item type="register"></comment-input-item>
   </b-container>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-
+import CommentInputItem from "../comment/item/CommentInputItem.vue";
 const boardStore = "boardStore";
 
 export default {
   name: "BoardDetail",
+  components: {
+    CommentInputItem,
+  },
   data() {
     return {};
   },

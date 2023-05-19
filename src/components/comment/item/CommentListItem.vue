@@ -12,11 +12,11 @@ export default {
   props: {
     board: Object,
   },
-  filters: {
-    dateFormat(regtime) {
-      return moment(new Date(regtime)).format("YY.MM.DD");
-    },
-  },
+  //   filters: {
+  //     dateFormat(regtime) {
+  //       return moment(new Date(regtime)).format("YY.MM.DD");
+  //     },
+  //   },
 };
 </script>
 
