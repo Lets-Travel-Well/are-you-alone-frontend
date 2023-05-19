@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import http from "@/api/http";
 import { mapActions, mapState } from "vuex";
 
 const boardStore = "boardStore";
@@ -80,17 +79,14 @@ export default {
       // http.get(`/board/${this.$route.params.articleno}`).then(({ data }) => {
       //   this.article = data;
       // });
-      this.detailBoard();
+      this.detailBoard(this.board.id);
       this.isUserid = true;
     }
   },
   methods: {
-    ...mapActions(boardStore, ["detailBoard", "createBoard", "modifyBoard"]),
+    ...mapActions(boardStore, ["detailBoard", "createBoard", "updateBoard"]),
 
     onSubmit(event) {
-      console.log(this.board.subject);
-      console.log(this.board.content);
-
       event.preventDefault();
       // let err = true;
       // let msg = "";
@@ -119,28 +115,11 @@ export default {
     },
 
     registBoard() {
-      console.log(this.board.subject);
-      console.log(this.board.content);
-      console.log(this.board);
       this.createBoard(this.board);
     },
 
     modifyBoard() {
-      http
-        .put(`/board/${this.article.articleno}`, {
-          userid: this.article.userid,
-          subject: this.article.subject,
-          content: this.article.content,
-        })
-        .then(({ data }) => {
-          let msg = "수정 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "수정이 완료되었습니다.";
-          }
-          alert(msg);
-          // 현재 route를 /list로 변경.
-          this.$router.push({ name: "boardList" });
-        });
+      this.updateBoard(this.board);
     },
 
     moveList() {

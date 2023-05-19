@@ -21,8 +21,8 @@ function getBoard(boardId, success, fail) {
   api.get(`/post/${boardId}`).then(success).catch(fail);
 }
 
-function modifyBoard(article, success, fail) {
-  api.put(`/post`, JSON.stringify(article)).then(success).catch(fail);
+function modifyBoard(board, success, fail) {
+  api.post(`/post/${board.id}/update`, JSON.stringify(board)).then(success).catch(fail);
 }
 
 function deleteBoard(boardId, success, fail) {

@@ -63,7 +63,7 @@ export default {
     moveModifyArticle() {
       this.$router.replace({
         name: "boardModify",
-        params: { boardId: this.board.id },
+        params: { boardid: this.board.id },
       });
       //   this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
