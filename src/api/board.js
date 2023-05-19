@@ -29,4 +29,8 @@ function deleteBoard(boardId, success, fail) {
   api.get(`/post/${boardId}/delete`).then(success).catch(fail);
 }
 
-export { listBoard, writeBoard, getBoard, modifyBoard, deleteBoard };
+function updateLike(boardId, success, fail) {
+  api.get(`post/${boardId}/like`).then(success).catch(fail);
+}
+
+export { listBoard, writeBoard, getBoard, modifyBoard, deleteBoard, updateLike };

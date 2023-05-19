@@ -33,8 +33,8 @@
     </b-row>
     <b-row>
       <b-col cols="11"></b-col>
-      <b-button class="bg-white" variant="white" @click="like">
-        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="board.like" />
+      <b-button class="bg-white" variant="white" @click="updateLike">
+        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="like" />
         <b-icon icon="heart" variant="danger" font-scale="2" v-else />
       </b-button>
     </b-row>
@@ -42,7 +42,6 @@
 </template>
 
 <script>
-// import moment from "moment";
 import { mapActions, mapState } from "vuex";
 
 const boardStore = "boardStore";
@@ -53,7 +52,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(boardStore, ["board"]),
+    ...mapState(boardStore, ["board", "like"]),
     message() {
       if (this.board.content) return this.board.content.split("\n").join("<br>");
       return "";
@@ -61,7 +60,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(boardStore, ["detailBoard", "deleteBoard"]),
+    ...mapActions(boardStore, ["detailBoard", "deleteBoard", "changeLike"]),
 
     listArticle() {
       this.$router.push({ name: "boardList" });
@@ -80,8 +79,8 @@ export default {
         this.deleteBoard(this.board.id);
       }
     },
-    like() {
-      this.board.like = !this.board.like;
+    updateLike() {
+      this.changeLike(this.board.id);
     },
   },
   created() {

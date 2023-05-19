@@ -1,4 +1,4 @@
-import {listBoard, getBoard, writeBoard, deleteBoard, modifyBoard} from "@/api/board.js";
+import {listBoard, getBoard, writeBoard, deleteBoard, modifyBoard, updateLike} from "@/api/board.js";
 import router from '@/router';
 
 const boardStore = {
@@ -9,6 +9,7 @@ const boardStore = {
       content: "",
       subject:""
     },
+    like: false,
     },
     getters: {},
   mutations: {
@@ -28,8 +29,7 @@ const boardStore = {
       });
     },
     SET_DETAIL_BOARD(state, board) {
-      // 좋아요 값이 입력되는 경우 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      state.board = { ...board,like: false };
+      state.board = board;
     },
     DELETE_BOARD(state, boardItem) {
       const index = state.boards.indexOf(boardItem);
@@ -46,6 +46,9 @@ const boardStore = {
     //     return board;
     //   });
     // },
+    UPDATE_LIKE(state, like) {
+      state.like = like;
+    }
     },
   actions: {
     createBoard: ({commit},board) => {
@@ -109,14 +112,21 @@ const boardStore = {
       getBoard(boardId, ({ data }) => {
         commit("SET_DETAIL_BOARD", data.response);
       },
-      (error) => {
+        (error) => {
+          console.log(error);
+        });
+      
+      // getLike(boardId, ({ data })=> {
+      //   commit("UPDATE_LIKE", data.success);
+      // })
+    },
+    changeLike: ({ commit }, boardId) => {
+      updateLike(boardId, ({ data }) => {
+        commit("UPDATE_LIKE", data.response)
+      }, (error) => {
         console.log(error);
       })
-    },
-
-    // updateLike: ({ commit }) => {
-      
-    // }
+    }
     },
   };
   export default boardStore;
