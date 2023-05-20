@@ -19,4 +19,8 @@ function removeComment(commentId, success, fail) {
 api.get(`/${commentId}/delete`).then(success).catch(fail);
 }
 
-export { writeComment, modifyComment, removeComment};
+function findAllComment(postId, success, fail) {
+  api.get(`post/${postId}`).then(success).catch(fail);
+}
+
+export { writeComment, modifyComment, removeComment, findAllComment};

@@ -1,5 +1,5 @@
 import { listBoard, getBoard, writeBoard, removeBoard, modifyBoard, updateLike } from "@/api/board.js";
-import { writeComment,removeComment } from '@/api/comment';
+import { writeComment,removeComment, findAllComment } from '@/api/comment';
 import router from '@/router';
 
 const boardStore = {
@@ -62,15 +62,6 @@ const boardStore = {
     },
     CLEAR_COMMENT(state) {
       state.comment.content = "";
-    },
-    DELETE_COMMENT(state, commentId) {
-      this.comments.forEach((comment,index) => {
-        if (comment.id == commentId) {
-          state.comments.splice(index, 1);
-          return;
-        }
-      });
-
     },
   },
   actions: {
@@ -153,32 +144,47 @@ const boardStore = {
     },
 //////////////////////////////////////////////////////////////////////////////
 
-    createComment: ({commit},comment) => {
+    createComment: ({commit}, comment) => {
       console.log("등록할 댓글", comment);
-      writeComment(comment, ({data}) => {
-        commit("UPDATE_COMMENT_LIST",data.response);
-        commit("CLEAR_COMMENT");
+      writeComment(comment, () => {
+        findAllComment(comment.postId, ({ data }) => {
+          commit("UPDATE_COMMENT_LIST", data.response);
+          commit("CLEAR_COMMENT");
+        },
+        (error) => {
+          console.log(error);
+        })
       },
       (error) => {
         console.log(error);
       })
     },
-    deleteComment: ({commit},commentId ) => {
-      console.log("삭제할 id", commentId);
-      removeComment(commentId,
+    deleteComment: ({commit},comment ) => {
+      console.log("삭제할 댓글", comment);
+      removeComment(comment.id,
         () => {
           commit("CLEAR_COMMENT");
-          commit("DELETE_COMMENT",commentId);
-          let msg = "삭제가 완료되었습니다.";
-          alert(msg);
-          router.push({ name: "boardList" });
+          findAllComment(comment.postId, ({ data }) => {
+            commit("UPDATE_COMMENT_LIST", data.response);
+            commit("CLEAR_COMMENT");
+          },
+          (error) => {
+            console.log(error);
+          })
         },
       (error) => {
         console.log(error);
       })
     },
-
-
+    getComments:({ commit }, postId)=> {
+      console.log("댓글을 불러올 postId", postId);
+      findAllComment(postId, ({ data }) => {
+        commit("UPDATE_COMMENT_LIST", data.response);
+      },
+      (error) => {
+        console.log(error);
+      })
+    }
     },
   };
   export default boardStore;

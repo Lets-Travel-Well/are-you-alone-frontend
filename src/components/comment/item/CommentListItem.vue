@@ -22,7 +22,7 @@ export default {
   methods: {
     ...mapActions(boardStore, ["deleteComment"]),
     removeComment() {
-      this.deleteComment(this.comment.id);
+      this.deleteComment(this.comment);
     },
   },
   filters: {
