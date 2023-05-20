@@ -40,11 +40,13 @@
     </b-row>
 
     <comment-input-item type="register"></comment-input-item>
+    <comment-list></comment-list>
   </b-container>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import CommentList from "../comment/CommentList.vue";
 import CommentInputItem from "../comment/item/CommentInputItem.vue";
 const boardStore = "boardStore";
 
@@ -52,6 +54,7 @@ export default {
   name: "BoardDetail",
   components: {
     CommentInputItem,
+    CommentList,
   },
   data() {
     return {};

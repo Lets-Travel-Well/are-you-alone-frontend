@@ -5,10 +5,8 @@ const boardStore = {
     namespaced: true,
   state: {
     boards: [],
-    board: {
-      content: "",
-      subject:""
-    },
+    board: null,
+    comments:null,
     like: false,
     },
     getters: {},
@@ -30,6 +28,7 @@ const boardStore = {
     },
     SET_DETAIL_BOARD(state, board) {
       state.board = board;
+      state.comments = board.commentList;
     },
     DELETE_BOARD(state, boardItem) {
       const index = state.boards.indexOf(boardItem);
