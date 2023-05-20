@@ -4,7 +4,7 @@
       <b-col>
         <b-form-input
           id="subject"
-          v-model="comment"
+          v-model="comment.content"
           type="text"
           required
           placeholder="댓글 작성"
@@ -38,17 +38,11 @@ export default {
       isUserid: false,
     };
   },
-  computed: {
-    ...mapState(boardStore, ["comment"]),
-  },
   props: {
     type: { type: String },
   },
-  created() {
-    if (this.type === "modify") {
-      // this.detailBoard(this.board.id);
-      this.isUserid = true;
-    }
+  computed: {
+    ...mapState(boardStore, ["comment"]),
   },
   methods: {
     ...mapActions(boardStore, ["createComment"]),
@@ -59,6 +53,12 @@ export default {
     onReset(event) {
       event.preventDefault();
     },
+  },
+  created() {
+    if (this.type === "modify") {
+      // this.detailBoard(this.board.id);
+      this.isUserid = true;
+    }
   },
 };
 </script>

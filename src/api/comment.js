@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:80/api/board-management/comment",
+    baseURL: "http://localhost:80/api/comment-management/comment",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },

@@ -11,7 +11,7 @@ const boardStore = {
     like: false,
 
     comments:[],
-    comment:"",
+    comment:null,
     
   },
   getters: {},
@@ -31,6 +31,7 @@ const boardStore = {
     SET_DETAIL_BOARD(state, board) {
       state.board = board;
       state.comments = board.commentList;
+      state.comment = {postId:board.id, content:""};
     },
     DELETE_BOARD(state, boardItem) {
       const index = state.boards.indexOf(boardItem);
@@ -50,7 +51,14 @@ const boardStore = {
     UPDATE_LIKE(state, like) {
       state.like = like;
     },
-
+    UPDATE_COMMENT_LIST(state, comment) {
+      let newComment = {
+        id: comment.postId,
+        content:comment.content
+      }
+      state.comments.push(newComment);
+      state.comment = {postId:state.board.id, content:""};
+    },
 
 //////////////////////////////////////////////////////////////
 
@@ -59,7 +67,7 @@ const boardStore = {
       state.comments.push(comment);
     },
     CLEAR_COMMENT(state) {
-        state.comment = "";
+        state.comment = null;
     },
   },
   actions: {
@@ -144,13 +152,10 @@ const boardStore = {
 
     createComment: ({commit},comment) => {
       console.log("등록할 댓글", comment);
-      let commentItem= {
-        postId: this.board.Id,
-        content : comment
-      };
-      writeComment(commentItem, () => {
+      writeComment(comment, () => {
+        commit("UPDATE_COMMENT_LIST",comment);
         commit("CLEAR_COMMENT");
-        router.push({ name: "boardlist" });
+        router.push({ name: "boardDetail" ,params:{boardId:comment.postId}});
       },
       (error) => {
         console.log(error);
