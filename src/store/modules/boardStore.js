@@ -51,13 +51,8 @@ const boardStore = {
     UPDATE_LIKE(state, like) {
       state.like = like;
     },
-    UPDATE_COMMENT_LIST(state, comment) {
-      let newComment = {
-        id: comment.postId,
-        content:comment.content
-      }
-      state.comments.push(newComment);
-      state.comment = {postId:state.board.id, content:""};
+    UPDATE_COMMENT_LIST(state, commentList) {
+      state.comments = commentList;
     },
 
 //////////////////////////////////////////////////////////////
@@ -67,7 +62,7 @@ const boardStore = {
       state.comments.push(comment);
     },
     CLEAR_COMMENT(state) {
-        state.comment = null;
+      state.comment.content = "";
     },
   },
   actions: {
@@ -132,6 +127,7 @@ const boardStore = {
     detailBoard: ({ commit }, boardId) => {
       getBoard(boardId, ({ data }) => {
         commit("SET_DETAIL_BOARD", data.response);
+        commit("CLEAR_COMMENT");
       },
         (error) => {
           console.log(error);
@@ -152,10 +148,9 @@ const boardStore = {
 
     createComment: ({commit},comment) => {
       console.log("등록할 댓글", comment);
-      writeComment(comment, () => {
-        commit("UPDATE_COMMENT_LIST",comment);
+      writeComment(comment, ({data}) => {
+        commit("UPDATE_COMMENT_LIST",data.response);
         commit("CLEAR_COMMENT");
-        router.push({ name: "boardDetail" ,params:{boardId:comment.postId}});
       },
       (error) => {
         console.log(error);
