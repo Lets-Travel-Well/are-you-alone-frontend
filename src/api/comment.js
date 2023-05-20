@@ -15,8 +15,8 @@ function modifyComment(comment, success, fail) {
 api.post(`/${comment.id}/update`, JSON.stringify(comment)).then(success).catch(fail);
 }
 
-function deleteComment(commentId, success, fail) {
-api.get(`/post/${commentId}/delete`).then(success).catch(fail);
+function removeComment(commentId, success, fail) {
+api.get(`/${commentId}/delete`).then(success).catch(fail);
 }
 
-export { writeComment, modifyComment, deleteComment};
+export { writeComment, modifyComment, removeComment};

@@ -1,5 +1,5 @@
-import { listBoard, getBoard, writeBoard, deleteBoard, modifyBoard, updateLike } from "@/api/board.js";
-import { writeComment } from '@/api/comment';
+import { listBoard, getBoard, writeBoard, removeBoard, modifyBoard, updateLike } from "@/api/board.js";
+import { writeComment,removeComment } from '@/api/comment';
 import router from '@/router';
 
 const boardStore = {
@@ -33,8 +33,8 @@ const boardStore = {
       state.comments = board.commentList;
       state.comment = {postId:board.id, content:""};
     },
-    DELETE_BOARD(state, boardItem) {
-      const index = state.boards.indexOf(boardItem);
+    DELETE_BOARD(state) {
+      const index = state.boards.indexOf(state.board);
       state.boards.splice(index, 1);
     },
     // UPDATE_CREATE_BOARD(state, boardItem) {
@@ -57,12 +57,20 @@ const boardStore = {
 
 //////////////////////////////////////////////////////////////
 
-
     CREATE_COMMENT(state, comment) {
       state.comments.push(comment);
     },
     CLEAR_COMMENT(state) {
       state.comment.content = "";
+    },
+    DELETE_COMMENT(state, commentId) {
+      this.comments.forEach((comment,index) => {
+        if (comment.id == commentId) {
+          state.comments.splice(index, 1);
+          return;
+        }
+      });
+
     },
   },
   actions: {
@@ -80,12 +88,11 @@ const boardStore = {
 
     deleteBoard: ({commit},boardId ) => {
       console.log("삭제할 id", boardId);
-      deleteBoard(boardId,
+      removeBoard(boardId,
         ({ data }) => {
           commit("CLEAR_BOARD");
-
+          commit("DELETE_BOARD");
           let msg = "삭제 처리시 문제가 발생했습니다.";
-
           if (data.success) {
             msg = "삭제가 완료되었습니다.";
           }
@@ -117,7 +124,7 @@ const boardStore = {
       listBoard(({ data }) => {
         commit("CLEAR_BOARD_LIST");
         commit("CLEAR_BOARD");
-        commit("SET_BOARD_LIST", data.response);
+        commit("SET_BOARD_LIST", data.response.content);
       },
       (error) => {
         console.log(error);
@@ -156,7 +163,20 @@ const boardStore = {
         console.log(error);
       })
     },
-
+    deleteComment: ({commit},commentId ) => {
+      console.log("삭제할 id", commentId);
+      removeComment(commentId,
+        () => {
+          commit("CLEAR_COMMENT");
+          commit("DELETE_COMMENT",commentId);
+          let msg = "삭제가 완료되었습니다.";
+          alert(msg);
+          router.push({ name: "boardList" });
+        },
+      (error) => {
+        console.log(error);
+      })
+    },
 
 
     },
