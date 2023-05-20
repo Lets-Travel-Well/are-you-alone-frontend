@@ -20,7 +20,7 @@
         <b-button type="submit" variant="primary" class="m-1" v-else>수정</b-button>
       </b-col>
       <b-col cols="1" class="p-0 m-0">
-        <b-button type="submit" variant="primary" class="m-1">초기화</b-button>
+        <b-button type="reset" variant="primary" class="m-1">초기화</b-button>
       </b-col>
     </b-row>
   </b-form>
@@ -52,6 +52,7 @@ export default {
     },
     onReset(event) {
       event.preventDefault();
+      this.comment.content = "";
     },
   },
   created() {
