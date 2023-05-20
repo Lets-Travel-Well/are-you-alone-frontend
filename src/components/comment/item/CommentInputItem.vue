@@ -8,7 +8,6 @@
           type="text"
           required
           placeholder="댓글 작성"
-          ref="subject"
         ></b-form-input>
       </b-col>
     </b-row>
@@ -28,9 +27,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
-const commentStore = "commentStore";
+const boardStore = "boardStore";
 
 export default {
   name: "CommentInputItem",
@@ -40,7 +39,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(commentStore, ["comment"]),
+    ...mapState(boardStore, ["comment"]),
   },
   props: {
     type: { type: String },
@@ -52,14 +51,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions(boardStore, ["createComment"]),
     onSubmit(event) {
       event.preventDefault();
+      this.createComment(this.comment);
     },
     onReset(event) {
       event.preventDefault();
-      this.board.subject = "";
-      this.board.content = "";
-      this.$router.push({ name: "boardList" });
     },
   },
 };
