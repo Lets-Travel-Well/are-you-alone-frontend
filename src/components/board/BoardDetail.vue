@@ -39,7 +39,7 @@
       </b-button>
     </b-row>
 
-    <comment-input-item type="register"></comment-input-item>
+    <comment-input-item></comment-input-item>
     <comment-list></comment-list>
   </b-container>
 </template>
