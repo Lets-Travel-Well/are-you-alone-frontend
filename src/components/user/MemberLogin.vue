@@ -38,6 +38,14 @@
             <b-button type="button" variant="success" class="m-1" @click="movePage"
               >회원가입</b-button
             >
+            <a
+              href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8080/oauth2/redirect"
+            >
+              <img
+                src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                width="180"
+              />
+            </a>
           </b-form>
         </b-card>
       </b-col>
