@@ -3,27 +3,27 @@
 </template>
 
 <script>
+// import { mapActions, mapState } from "vuex";
 import { mapActions } from "vuex";
+
 const loginStore = "loginStore";
+
 export default {
   name: "RedirectView",
   components: {},
-  data() {},
+  data() {
+    return {};
+  },
+  computed: {
+    // ...mapState(loginStore, ["authorizationCode"]),
+  },
   created() {
-    const code = this.$route.query.code;
-    console.log("code", code);
-    // if (code) {
-    //   this.setToken(token);
-    //   sessionStorage.setItem("accessToken", token);
-    //   window.alert("로그인하였습니다.");
-    //   router.push({ name: "home" });
-    // } else {
-    //   window.alert("로그인에 실패하였습니다.");
-    //   router.push({ name: "siginIn" });
-    // }
+    let authorizationCode = this.$route.query.code;
+    console.log("authorizationCode", authorizationCode);
+    this.setAuthorizationCode(authorizationCode);
   },
   methods: {
-    ...mapActions(loginStore, ["setToken"]),
+    ...mapActions(loginStore, ["setToken", "setAuthorizationCode"]),
   },
 };
 </script>

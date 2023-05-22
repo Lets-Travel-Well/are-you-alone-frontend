@@ -1,15 +1,19 @@
 const loginStore = {
+    namespaced: true,
+
+
     state: {
+        authorizationCode:null,
         tokens: null,
     },
     mutations: {
-        SET_TOKEN(state, token) {
-            state.token = token;
+        SET_AUTH_TOKEN(state, code) {
+            state.authorizationCode = code;
         }
     },
     actions: {
-        setToken:({commit},token)=>{
-            commit("SET_TOKEN", token);
+        setAuthorizationCode:({commit},code)=>{
+            commit("SET_AUTH_TOKEN", code);
         }
     }
 };
