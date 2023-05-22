@@ -14,9 +14,6 @@ export default {
   data() {
     return {};
   },
-  computed: {
-    // ...mapState(loginStore, ["authorizationCode"]),
-  },
   created() {
     let authorizationCode = this.$route.query.code;
     this.getTokens(authorizationCode);

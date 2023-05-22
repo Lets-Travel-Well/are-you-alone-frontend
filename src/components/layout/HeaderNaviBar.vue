@@ -55,18 +55,32 @@
                   font-scale="2"
                 ></b-icon>
               </template>
+              <div v-if="!this.login">
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'signUp' }" class="link"
+                    ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
+                  ></b-dropdown-item
+                >
 
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'signUp' }" class="link"
-                  ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-                ></b-dropdown-item
-              >
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'signIn' }" class="link"
+                    ><b-icon icon="key"></b-icon> 로그인</router-link
+                  ></b-dropdown-item
+                >
+              </div>
+              <div v-else>
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'home' }" class="link"
+                    ><b-icon icon="person-circle"></b-icon> 마이 페이지</router-link
+                  ></b-dropdown-item
+                >
 
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'signIn' }" class="link"
-                  ><b-icon icon="key"></b-icon> 로그인</router-link
-                ></b-dropdown-item
-              >
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'home' }" class="link"
+                    ><b-icon icon="key"></b-icon> 로그아웃</router-link
+                  ></b-dropdown-item
+                >
+              </div>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -76,8 +90,29 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+const loginStore = "loginStore";
+
 export default {
   name: "HeaderNaviBar",
+  data() {
+    return {
+      login: false,
+    };
+  },
+  computed: {
+    ...mapState(loginStore, ["tokens"]),
+  },
+  created() {
+    if (!localStorage.getItem("accessToken")) {
+      this.login = true;
+    } else {
+      this.login = false;
+    }
+  },
+  methods: {
+    logout() {},
+  },
 };
 </script>
 
