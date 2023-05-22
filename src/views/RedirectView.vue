@@ -19,11 +19,10 @@ export default {
   },
   created() {
     let authorizationCode = this.$route.query.code;
-    console.log("authorizationCode", authorizationCode);
-    this.setAuthorizationCode(authorizationCode);
+    this.getTokens(authorizationCode);
   },
   methods: {
-    ...mapActions(loginStore, ["setToken", "setAuthorizationCode"]),
+    ...mapActions(loginStore, ["getTokens"]),
   },
 };
 </script>

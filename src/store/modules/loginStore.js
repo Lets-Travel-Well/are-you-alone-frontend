@@ -1,19 +1,28 @@
+import { getKaKaoToken } from '@/api/auth';
+import router from '@/router';
+
 const loginStore = {
     namespaced: true,
-
-
     state: {
-        authorizationCode:null,
         tokens: null,
     },
     mutations: {
-        SET_AUTH_TOKEN(state, code) {
-            state.authorizationCode = code;
+        SET_TOKENS(state, tokens) {
+            state.tokens = tokens;
         }
     },
     actions: {
-        setAuthorizationCode:({commit},code)=>{
-            commit("SET_AUTH_TOKEN", code);
+        getTokens:({commit},authCode)=>{
+            let authToken = {
+                authorizationCode : authCode
+            }
+            getKaKaoToken(authToken,({ data }) => {
+                commit("SET_TOKENS", data);
+                router.push({ name: "home" });
+            },
+            (error) => {
+              console.log(error);
+            })
         }
     }
 };
