@@ -4,11 +4,15 @@ import router from '@/router';
 const loginStore = {
     namespaced: true,
     state: {
+        login: false,
         tokens: null,
     },
     mutations: {
         SET_TOKENS(state, tokens) {
             state.tokens = tokens;
+        },
+        RESET_TOKENS(state) {
+            state.tokens = null;
         }
     },
     actions: {
@@ -22,8 +26,12 @@ const loginStore = {
                 router.push({ name: "home" });
             },
             (error) => {
-              console.log(error);
+                console.log(error);
             })
+        },
+        logout: ({ commit }) => {
+            commit("RESET_TOKENS");
+            localStorage.removeItem("accessToken");
         }
     }
 };

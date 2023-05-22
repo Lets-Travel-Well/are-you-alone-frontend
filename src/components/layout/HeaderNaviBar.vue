@@ -55,7 +55,7 @@
                   font-scale="2"
                 ></b-icon>
               </template>
-              <div v-if="!this.login">
+              <div v-if="!this.tokens">
                 <b-dropdown-item href="#"
                   ><router-link :to="{ name: 'signUp' }" class="link"
                     ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
@@ -75,10 +75,8 @@
                   ></b-dropdown-item
                 >
 
-                <b-dropdown-item href="#"
-                  ><router-link :to="{ name: 'home' }" class="link"
-                    ><b-icon icon="key"></b-icon> 로그아웃</router-link
-                  ></b-dropdown-item
+                <b-dropdown-item href="#" @click="signOut"
+                  ><b-icon icon="key"></b-icon> 로그아웃</b-dropdown-item
                 >
               </div>
             </b-nav-item-dropdown>
@@ -90,28 +88,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 const loginStore = "loginStore";
 
 export default {
   name: "HeaderNaviBar",
   data() {
-    return {
-      login: false,
-    };
+    return {};
   },
   computed: {
     ...mapState(loginStore, ["tokens"]),
   },
-  created() {
-    if (!localStorage.getItem("accessToken")) {
-      this.login = true;
-    } else {
-      this.login = false;
-    }
-  },
+  created() {},
   methods: {
-    logout() {},
+    ...mapActions(loginStore, ["logout"]),
+    signOut() {
+      this.logout();
+    },
   },
 };
 </script>
