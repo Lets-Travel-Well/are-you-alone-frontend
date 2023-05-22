@@ -1,6 +1,6 @@
 const loginStore = {
     state: {
-        token: null,
+        tokens: null,
     },
     mutations: {
         SET_TOKEN(state, token) {
