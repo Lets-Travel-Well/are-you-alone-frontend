@@ -17,12 +17,6 @@ const attractionStore = {
         ],
         attracions: [],
         positions:[],
-        houses: [],
-        house: null,
-        todos: [
-          // { title: '할 일1', completed: false },
-          // { title: '할 일2', completed: false },
-        ],
       },
       getters: {
         allTodosCount(state) {
@@ -139,30 +133,14 @@ const attractionStore = {
               console.log(error);
             });
         },
-        detailHouse({ commit }, house) {
-          // 나중에 house.일련번호를 이용하여 API 호출
-          // console.log(commit, house);
-          commit("SET_DETAIL_HOUSE", house);
-        },
+
         /////////////////////////////// Attraction end /////////////////////////////////////
     
-        //////////////////////////// Todo List start //////////////////////////////////
+        //////////////////////////// HotPlace List start //////////////////////////////////
     
-        // createTodo(context, todoItem) { //context하면 명령의 모든것들을 불러옴
-          // console.log(context);
-          // console.log(todoItem);
-        // createTodo(context.commit, todoItem) { //그중에 commit만 쓸거임
-        createTodo({commit}, todoItem) {
-          commit("CREATE_TODO", todoItem);
-        },
-        updateTodoStatus({ commit }, todoItem) {
-          commit("UPDATE_TODO_STATUS", todoItem);
-        },
-        deleteTodoItem({ commit }, todoItem) {
-          commit("DELETE_TODO_ITEM", todoItem);
-        }
+
     
-        //////////////////////////// Todo List end //////////////////////////////////
+        //////////////////////////// HotPlace List end //////////////////////////////////
       },
   };
   

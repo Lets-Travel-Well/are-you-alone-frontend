@@ -51,4 +51,16 @@ function commentInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance, commentInstance };
+function hotplaceInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "http://localhost:80/api/hotplace-management/hotplace",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
+export { authInstance, boardInstance, commentInstance, hotplaceInstance };
