@@ -1,5 +1,4 @@
-import http from "@/api/http";
-import { listSido, listGugun } from "@/api/attraction.js"
+import { listSido, listGugun, listAttraction } from "@/api/attraction.js"
 
 const attractionStore = {
     namespaced: true,
@@ -18,8 +17,6 @@ const attractionStore = {
         ],
         attracions: [],
         positions:[],
-        houses: [],
-        house: null,
         todos: [
           // { title: '할 일1', completed: false },
           // { title: '할 일2', completed: false },
@@ -58,6 +55,9 @@ const attractionStore = {
         CLEAR_APT_LIST(state) {
           state.houses = [];
           state.house = null;
+        },
+        CLEAR_ATTRACTION_LIST(state) {
+          state.actions = [];
         },
         CLEAR_GUGUN_LIST(state) {
           state.guguns = [{ value: null, text: "구/군 선택" }];
@@ -101,7 +101,7 @@ const attractionStore = {
       },
   actions: {
         /////////////////////////////// Attraction start /////////////////////////////////////
-    getSido({ commit }) {
+    getSido: ({ commit }) => {
       listSido(({ data }) => {
         commit("CLEAR_SIDO_LIST")
         commit("SET_SIDO_LIST", data.response);
@@ -110,7 +110,7 @@ const attractionStore = {
         console.log(error);
       })
     },
-    getGugun({ commit }, sidoCode) {
+    getGugun: ({ commit }, sidoCode) => {
       listGugun(sidoCode, ({ data }) => {
         commit("CLEAR_GUGUN_LIST")
         commit("SET_GUGUN_LIST", data.response);
@@ -119,25 +119,20 @@ const attractionStore = {
         console.log(error);
       })
     },
+    getAttractionList: ({ commit }, { sidoCode, gugunCode, contentTypeId }) => {
+      console.log(sidoCode);
+      console.log(gugunCode);
+      console.log(contentTypeId);
+      listAttraction(sidoCode, gugunCode, contentTypeId, ({ data }) => {
+        commit("CLEAR_ATTRACTION_LIST")
+        commit("SET_ATTRACTION_LIST", data.response);
+      },
+      (error) => {
+        console.log(error);
+      })
+    },
     
-    
-        getAttractionList({ commit }, sidoCode, gugunCode, contentTypeId) {
-          const params = {
-            sidoCode,
-            gugunCode,
-            contentTypeId,
-          };
-          http
-            .get("/api/attraction-management/attraction", { params })
-            .then(({ data }) => {
-              commit("SET_ATTRACTION_LIST", data.response);
-              commit("SET_POSITIONS", data.response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
-        //////////////////////////// Todo List end //////////////////////////////////
+
       },
   };
   

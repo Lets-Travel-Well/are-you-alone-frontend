@@ -52,7 +52,10 @@ export default {
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
     searchAttraction() {
-      this.getAttractionList(this.sidoCode, this.gugunCode, this.contentTypeId);
+      console.log(this.sidoCode);
+      console.log(this.gugunCode);
+      console.log(this.contentTypeId);
+      this.getAttractionList({sidoCode : this.sidoCode, gugunCode : this.gugunCode, contentTypeId : this.contentTypeId});
     },
   },
 };
