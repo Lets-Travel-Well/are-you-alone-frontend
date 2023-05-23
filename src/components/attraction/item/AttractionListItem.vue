@@ -1,24 +1,26 @@
 <template>
-  <div class="attraction-wrapper">
-    <b-card
-      title="여행지 이름"
-      img-src="https://picsum.photos/600/300/?image=25"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="max-width: 20rem"
-      class="mb-2"
-    >
-      <b-card-text> 여행지 설명을 작성할거임 </b-card-text>
-      <b-button href="#" variant="primary">상세 버튼</b-button>
-    </b-card>
-  </div>
+  <b-card
+    :img-src="hotPlace.firstImage"
+    img-alt="Image"
+    img-top
+    img-height="150px"
+    tag="article"
+    style="max-width: 20rem; display: inline-block; width: 260px"
+    class="m-2"
+  >
+    <b-card-text> {{ hotPlace.title }} </b-card-text>
+
+    <b-card-text> <b-icon icon="heart"></b-icon>{{ hotPlace.likeCnt }} </b-card-text>
+    <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
+  </b-card>
 </template>
 
 <script>
 export default {
   name: "AttractionListItem",
-  props: {},
+  props: {
+    hotPlace: Object,
+  },
   filters: {},
   data() {
     return {
@@ -34,5 +36,11 @@ export default {
 .attraction-wrapper {
   border-radius: 15px;
   box-shadow: 2px 2px 2px 2px rgb(191, 191, 191);
+}
+.card-title {
+  font-size: 15px;
+}
+.card-body {
+  height: 150px;
 }
 </style>
