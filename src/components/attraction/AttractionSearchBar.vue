@@ -10,14 +10,18 @@
       <b-form-select v-model="contentTypeId" :options="contents"></b-form-select>
     </b-col>
     <b-col class="sm-2">
-      <b-button @click="searchAttraction">Search</b-button>
+      <b-button class="mr-2" @click="searchAttraction">검색</b-button>
+      <b-button class="mr-0" v-b-toggle.sidebar-1>검색 결과</b-button>
     </b-col>
     <div id="map" class="mt-3 shadow" style="width: 100%; height: 600px"></div>
+    <side-bar></side-bar>
   </b-row>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
+import SideBar from "../layout/SideBar.vue";
+
 const attractionStore = "attractionStore";
 
 var makerList = [];
@@ -26,6 +30,9 @@ var map = null;
 
 export default {
   name: "AttractionSearchBar",
+  components: {
+    SideBar,
+  },
   data() {
     return {
       sidoCode: null,
