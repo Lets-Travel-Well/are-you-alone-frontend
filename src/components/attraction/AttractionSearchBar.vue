@@ -93,7 +93,7 @@ export default {
     '        <div class="bg-primary ">' +
     '        		<div class="text-light font-weight-bold p-1 d-flex justify-content-between">' + 
                   this.attractions[k].title +
-    '         		<div class="far fa-times-circle fa-lg" onclick="closeOverlay('+k+')" title="닫기"></div>' + 
+    '         		<div class="far fa-times-circle fa-lg" onclick="closeOverlay('+k+')">닫기</div>' + 
     '        		</div>'+
     '		   </div>' + 
     '        <div class="body">' + 
@@ -125,9 +125,14 @@ export default {
           position: marker.getPosition()       
         });
 
-        window.kakao.maps.event.addListener(marker, 'click', function () {
-          console.log("click");
-            overlay.setMap(this.map);
+        window.kakao.maps.event.addListener(marker, 'click', () => {
+          overlay.setMap(this.map);
+        });
+        window.kakao.maps.event.addListener(marker, 'mouseover', () => {
+          overlay.setMap(this.map);
+        });
+        window.kakao.maps.event.addListener(marker, 'mouseout', () => {
+          overlay.setMap(null);
         });
         ovList[k] = overlay;
 
@@ -140,9 +145,13 @@ export default {
     },
     cleanMaker() {
       for (let k = 0; k < makerList.length; k++){
+
         makerList[k].setMap(null);
       }
-    }
+    },
+    closeOverlay(i) {
+      ovList[i].setMap(null);     
+    }   
   },
 };
 </script>
