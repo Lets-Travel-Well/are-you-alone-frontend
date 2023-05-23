@@ -9,9 +9,13 @@ const boardStore = {
     boards: [],
     board: null,
     like: false,
+    totalPages: 0,
+    totalElements:0,
 
     comments:[],
-    comment:null,
+    comment: {
+      content:""
+    },
     
   },
   getters: {},
@@ -21,9 +25,22 @@ const boardStore = {
     },
     CLEAR_BOARD_LIST(state) {
       state.boards = [];
+      state.totalPages = 0;
+    },
+    CLEAR_TOTAL_PAGES(state) {
+      state.totalPages = 0;
+    },
+    CLEAR_TOTAL_ELEMENTS(state) {
+      state.totalElements = 0;
     },
     SET_BOARD_LIST(state, boardList) {
         state.boards = boardList;
+    },
+    SET_TOTAL_PAGES(state, totalPages) {
+      state.totalPages = totalPages;
+    },
+    SET_TOTAL_ELEMENTS(state, totalElements) {
+      state.totalElements = totalElements;
     },
     SET_DETAIL_BOARD(state, board) {
       state.board = board;
@@ -106,11 +123,17 @@ const boardStore = {
       })
     },
 
-    getBoardList:({ commit })=> {
-      listBoard(({ data }) => {
-        commit("CLEAR_BOARD_LIST");
+    getBoardList: ({ commit }, { page, size }) => {
+      console.log(page, size);
+      listBoard(page,size,({ data }) => {
         commit("CLEAR_BOARD");
+        commit("CLEAR_BOARD_LIST");
         commit("SET_BOARD_LIST", data.response.content);
+        commit("CLEAR_TOTAL_PAGES");
+        commit("SET_TOTAL_PAGES", data.response.totalPages);
+        commit("CLEAR_TOTAL_ELEMENTS");
+        commit("SET_TOTAL_ELEMENTS", data.response.totalElements);
+
       },
       (error) => {
         console.log(error);

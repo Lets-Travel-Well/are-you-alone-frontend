@@ -9,7 +9,7 @@
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listArticle">목록</b-button>
       </b-col>
-      <b-col class="text-right">
+      <b-col class="text-right" v-show="board.myBoard">
         <b-button variant="outline-info" size="sm" @click="moveModifyArticle" class="mr-2"
           >글수정</b-button
         >
