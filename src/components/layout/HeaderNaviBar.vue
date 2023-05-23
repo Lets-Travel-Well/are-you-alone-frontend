@@ -37,6 +37,11 @@
                 ><b-icon icon="signpost" font-scale="1.5"></b-icon> 여행지 보기</router-link
               ></b-nav-item
             >
+            <b-nav-item href="#"
+              ><router-link :to="{ name: 'journey' }" class="link"
+                ><b-icon icon="signpost2" font-scale="1.5"></b-icon> 동행을 찾고 있어요</router-link
+              ></b-nav-item
+            >
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
