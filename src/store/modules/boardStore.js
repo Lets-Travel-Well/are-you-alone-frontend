@@ -11,7 +11,9 @@ const boardStore = {
     like: false,
 
     comments:[],
-    comment:null,
+    comment: {
+      content:""
+    },
     
   },
   getters: {},
