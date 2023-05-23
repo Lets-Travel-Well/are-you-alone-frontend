@@ -16,9 +16,6 @@ const boardStore = {
   },
   getters: {},
   mutations: {
-    CREATE_BOARD(state, board) {
-      state.boards.push(board);
-    },
     CLEAR_BOARD(state) {
       state.board = {}
     },
@@ -68,7 +65,6 @@ const boardStore = {
     createBoard: ({commit},board) => {
       console.log("등록할 아이템", board);
       writeBoard(board, () => {
-        commit("CREATE_BOARD");
         commit("CLEAR_BOARD");
         router.push({ name: "boardList" });
       },
@@ -95,9 +91,8 @@ const boardStore = {
       })
     },
 
-    updateBoard: ({ commit }, boardItem) => {
+    updateBoard: (boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
-        commit("UPDATE_BOARD", boardItem);
 
         let msg = "수정 처리시 문제가 발생했습니다.";
         if (data.success) {

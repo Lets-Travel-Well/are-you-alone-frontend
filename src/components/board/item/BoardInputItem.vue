@@ -88,22 +88,8 @@ export default {
 
     onSubmit(event) {
       event.preventDefault();
-      // let err = true;
-      // let msg = "";
-      // !this.article.userid &&
-      //   ((msg = "작성자 입력해주세요"), (err = false), this.$refs.userid.focus());
-      // err &&
-      if (
-        this.board.subject &&
-        // ((msg = "제목을 입력해주세요"), (err = false), this.$refs.subject.focus());
 
-        // err &&
-        this.board.content
-      ) {
-        // ((msg = "내용을 입력해주세요"), (err = false), this.$refs.content.focus());
-
-        // if (!err) alert(msg);
-        // else
+      if (this.board.subject && this.board.content) {
         this.type === "register" ? this.registBoard() : this.modifyBoard();
       }
     },

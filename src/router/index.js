@@ -3,10 +3,12 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import InstagramView from "../views/InstagramView.vue";
 import AttractionView from "../views/AttractionView.vue";
+import RedirectView from "../views/RedirectView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+
   {
     path: "/",
     name: "home",
@@ -77,6 +79,10 @@ const routes = [
     name: "trip",
     component: AttractionView,
   },
+  {
+    path: '/oauth2/redirect',
+    component:RedirectView
+  }
 ];
 
 const router = new VueRouter({

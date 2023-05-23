@@ -17,16 +17,16 @@
             <b-tr>
               <b-th>글번호</b-th>
               <b-th>제목</b-th>
+              <b-th>작성자</b-th>
               <b-th>조회수</b-th>
             </b-tr>
           </b-thead>
           <tbody>
             <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <board-list-item v-for="board in boards" :key="board.id" :board="board" />
+            <board-list-item v-for="board in this.boards" :key="board.id" :board="board" />
           </tbody>
         </b-table-simple>
       </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
     </b-row>
   </b-container>
 </template>

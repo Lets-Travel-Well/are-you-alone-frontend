@@ -55,18 +55,30 @@
                   font-scale="2"
                 ></b-icon>
               </template>
+              <div v-if="!this.tokens">
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'signUp' }" class="link"
+                    ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
+                  ></b-dropdown-item
+                >
 
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'signUp' }" class="link"
-                  ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-                ></b-dropdown-item
-              >
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'signIn' }" class="link"
+                    ><b-icon icon="key"></b-icon> 로그인</router-link
+                  ></b-dropdown-item
+                >
+              </div>
+              <div v-else>
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'home' }" class="link"
+                    ><b-icon icon="person-circle"></b-icon> 마이 페이지</router-link
+                  ></b-dropdown-item
+                >
 
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'signIn' }" class="link"
-                  ><b-icon icon="key"></b-icon> 로그인</router-link
-                ></b-dropdown-item
-              >
+                <b-dropdown-item href="#" @click="signOut"
+                  ><b-icon icon="key"></b-icon> 로그아웃</b-dropdown-item
+                >
+              </div>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -76,8 +88,24 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+const loginStore = "loginStore";
+
 export default {
   name: "HeaderNaviBar",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(loginStore, ["tokens"]),
+  },
+  created() {},
+  methods: {
+    ...mapActions(loginStore, ["logout"]),
+    signOut() {
+      this.logout();
+    },
+  },
 };
 </script>
 
