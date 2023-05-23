@@ -91,9 +91,8 @@ const boardStore = {
       })
     },
 
-    updateBoard: ({ commit }, boardItem) => {
+    updateBoard: ({  }, boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
-        commit("UPDATE_BOARD", boardItem);
 
         let msg = "수정 처리시 문제가 발생했습니다.";
         if (data.success) {

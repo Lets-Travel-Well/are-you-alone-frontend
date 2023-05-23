@@ -6,6 +6,7 @@
         board.subject
       }}</router-link>
     </b-th>
+    <b-td>{{ board.authorName }}</b-td>
     <b-td>{{ board.hit }}</b-td>
   </b-tr>
 </template>

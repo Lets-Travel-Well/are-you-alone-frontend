@@ -17,6 +17,7 @@
             <b-tr>
               <b-th>글번호</b-th>
               <b-th>제목</b-th>
+              <b-th>작성자</b-th>
               <b-th>조회수</b-th>
             </b-tr>
           </b-thead>
