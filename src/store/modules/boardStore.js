@@ -16,9 +16,6 @@ const boardStore = {
   },
   getters: {},
   mutations: {
-    CREATE_BOARD(state, board) {
-      state.boards.push(board);
-    },
     CLEAR_BOARD(state) {
       state.board = {}
     },
@@ -68,7 +65,6 @@ const boardStore = {
     createBoard: ({commit},board) => {
       console.log("등록할 아이템", board);
       writeBoard(board, () => {
-        commit("CREATE_BOARD");
         commit("CLEAR_BOARD");
         router.push({ name: "boardList" });
       },
