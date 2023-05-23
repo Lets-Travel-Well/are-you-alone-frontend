@@ -91,7 +91,7 @@ const boardStore = {
       })
     },
 
-    updateBoard: ({  }, boardItem) => {
+    updateBoard: (boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
 
         let msg = "수정 처리시 문제가 발생했습니다.";
