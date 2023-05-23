@@ -1,4 +1,5 @@
 import http from "@/api/http";
+import { listSido, listGugun } from "@/api/attraction.js"
 
 const attractionStore = {
     namespaced: true,
@@ -98,30 +99,27 @@ const attractionStore = {
     
         //////////////////////////// Todo List end //////////////////////////////////
       },
-      actions: {
+  actions: {
         /////////////////////////////// Attraction start /////////////////////////////////////
-        getSido({ commit }) {
-          http
-            .get(`/api/attraction-management/sido`)
-            .then(({ data }) => {
-              // console.log(data);
-              commit("SET_SIDO_LIST", data.response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
-        getGugun({ commit }, sidoCode) {
-          http
-            .get(`/api/attraction-management/gugun/${sidoCode}`)
-            .then(({ data }) => {
-              // console.log(commit, response);
-              commit("SET_GUGUN_LIST", data.response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
+    getSido({ commit }) {
+      listSido(({ data }) => {
+        commit("CLEAR_SIDO_LIST")
+        commit("SET_SIDO_LIST", data.response);
+      },
+      (error) => {
+        console.log(error);
+      })
+    },
+    getGugun({ commit }, sidoCode) {
+      listGugun(sidoCode, ({ data }) => {
+        commit("CLEAR_GUGUN_LIST")
+        commit("SET_GUGUN_LIST", data.response);
+      },
+      (error) => {
+        console.log(error);
+      })
+    },
+    
     
         getAttractionList({ commit }, sidoCode, gugunCode, contentTypeId) {
           const params = {
@@ -139,29 +137,6 @@ const attractionStore = {
               console.log(error);
             });
         },
-        detailHouse({ commit }, house) {
-          // 나중에 house.일련번호를 이용하여 API 호출
-          // console.log(commit, house);
-          commit("SET_DETAIL_HOUSE", house);
-        },
-        /////////////////////////////// Attraction end /////////////////////////////////////
-    
-        //////////////////////////// Todo List start //////////////////////////////////
-    
-        // createTodo(context, todoItem) { //context하면 명령의 모든것들을 불러옴
-          // console.log(context);
-          // console.log(todoItem);
-        // createTodo(context.commit, todoItem) { //그중에 commit만 쓸거임
-        createTodo({commit}, todoItem) {
-          commit("CREATE_TODO", todoItem);
-        },
-        updateTodoStatus({ commit }, todoItem) {
-          commit("UPDATE_TODO_STATUS", todoItem);
-        },
-        deleteTodoItem({ commit }, todoItem) {
-          commit("DELETE_TODO_ITEM", todoItem);
-        }
-    
         //////////////////////////// Todo List end //////////////////////////////////
       },
   };

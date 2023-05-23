@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 const attractionStore = "attractionStore";
 export default {
   name: "AttractionSearchBar",
@@ -41,20 +41,13 @@ export default {
     ...mapState(attractionStore, ["sidos", "guguns", "contents"]),
   },
   created() {
-    // this.$store.dispatch("getSido");
-    // this.sidoList();
-    this.CLEAR_SIDO_LIST();
     this.getSido();
   },
   methods: {
-    ...mapActions(attractionStore, ["getSido", "getGugun", "getHouseList", "getAttractionList"]),
-    ...mapMutations(attractionStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
-    // sidoList() {
-    //   this.getSido();
-    // },
+    ...mapActions(attractionStore, ["getSido", "getGugun", "getAttractionList"]),
+    // ...mapMutations(attractionStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
     gugunList() {
-      // console.log(this.sidoCode);
-      this.CLEAR_GUGUN_LIST();
+      // this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
