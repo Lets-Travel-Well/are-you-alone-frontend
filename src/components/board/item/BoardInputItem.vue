@@ -114,8 +114,8 @@ export default {
       this.$router.push({ name: "boardList" });
     },
 
-    registBoard() {
-      this.createBoard(this.board);
+    async registBoard() {
+      await this.createBoard(this.board);
     },
 
     modifyBoard() {

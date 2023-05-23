@@ -54,8 +54,8 @@ export default {
       this.$router.push({ name: "boardRegister" });
     },
   },
-  created() {
-    this.getBoardList();
+  async created() {
+    await this.getBoardList();
   },
 };
 </script>

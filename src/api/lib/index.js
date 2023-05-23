@@ -29,7 +29,6 @@ function authInstance() {
 
 function boardInstance() {
     let accessToken = getAccessToken();
-
     const instance = axios.create({
         baseURL: "http://localhost:80/api/board-management",
         headers: {
@@ -42,7 +41,6 @@ function boardInstance() {
 
 function commentInstance() {
     let accessToken = getAccessToken();
-
     const instance = axios.create({
         baseURL: "http://localhost:80/api/comment-management/comment",
         headers: {
