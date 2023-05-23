@@ -10,16 +10,28 @@
   >
     <b-card-text> {{ hotPlace.title }} </b-card-text>
 
-    <b-card-text> <b-icon icon="heart"></b-icon>{{ hotPlace.likeCnt }} </b-card-text>
+    <b-card-text>
+      <b-button class="bg-white" variant="white" @click="updateLike">
+        <b-icon icon="heart-fill" variant="danger" v-if="hotPlace.myHotPlace"></b-icon>
+        <b-icon icon="heart" variant="danger" v-else></b-icon>
+      </b-button>
+
+      <br>
+      <b-icon icon="hand-thumbs-up"></b-icon>
+        
+      {{ hotPlace.likeCnt }} </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
   </b-card>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: "AttractionListItem",
   props: {
     hotPlace: Object,
+    index: Number
   },
   filters: {},
   data() {
@@ -29,6 +41,12 @@ export default {
       img: "@/assets/happyhouse.png",
     };
   },
+  methods: {
+    ...mapActions("hotPlaceStore", ["changeLike"]),
+    async updateLike() {
+      await this.changeLike({index : this.index, contentId : this.hotPlace.contentId});
+    },
+  }
 };
 </script>
 

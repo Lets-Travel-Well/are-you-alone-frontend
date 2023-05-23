@@ -2,8 +2,9 @@
   <div style="inline-block">
     <h2><b-icon :icon="icon"></b-icon>{{ title }}</h2>
     <attraction-list-item
-      v-for="hotPlace in hotPlaceList"
+      v-for="(hotPlace, index) in hotPlaceList"
       :key="hotPlace.contendId"
+      :index="index"
       :hotPlace="hotPlace"
     ></attraction-list-item>
   </div>
