@@ -17,7 +17,7 @@ function listSido(success, fail) {
 function listGugun(sidoCode, success, fail) {
     api.get(`/gugun/${sidoCode}`).then(success).catch(fail)
 }
-function listAttraction(sidoCode, gugunCode, contentTypeId, success, fail) {
-    api.get(`/attraction?sidoCode=${sidoCode}&gugunCode=${gugunCode}&contentTypeId=${contentTypeId}`).then(success).catch(fail)
+async function listAttraction(sidoCode, gugunCode, contentTypeId, success, fail) {
+    await api.get(`/attraction?sidoCode=${sidoCode}&gugunCode=${gugunCode}&contentTypeId=${contentTypeId}`).then(success).catch(fail)
 }
 export { listSido, listGugun, listAttraction };

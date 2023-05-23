@@ -15,7 +15,7 @@ const attractionStore = {
         {value:38, text: "쇼핑"},
         {value:39, text: "음식점"},
         ],
-        attracions: [],
+      attractions: {},
         positions:[],
         todos: [
           // { title: '할 일1', completed: false },
@@ -62,8 +62,8 @@ const attractionStore = {
         CLEAR_GUGUN_LIST(state) {
           state.guguns = [{ value: null, text: "구/군 선택" }];
         },
-        SET_ATTRACTION_LIST(state, attracions) {
-          state.attracions = attracions;
+        SET_ATTRACTION_LIST(state, attractions) {
+          state.attractions = attractions;
         },
         SET_POSITIOINS(state,positions) {
           state.positions = positions;
@@ -119,11 +119,8 @@ const attractionStore = {
         console.log(error);
       })
     },
-    getAttractionList: ({ commit }, { sidoCode, gugunCode, contentTypeId }) => {
-      console.log(sidoCode);
-      console.log(gugunCode);
-      console.log(contentTypeId);
-      listAttraction(sidoCode, gugunCode, contentTypeId, ({ data }) => {
+    getAttractionList: async ({ commit }, { sidoCode, gugunCode, contentTypeId }) => {
+      await listAttraction(sidoCode, gugunCode, contentTypeId, ({ data }) => {
         commit("CLEAR_ATTRACTION_LIST")
         commit("SET_ATTRACTION_LIST", data.response);
       },
@@ -132,7 +129,7 @@ const attractionStore = {
       })
     },
     
-
+    
       },
   };
   

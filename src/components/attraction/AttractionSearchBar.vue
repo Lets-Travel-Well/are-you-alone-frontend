@@ -1,15 +1,6 @@
 <template>
   <b-row class="mt-4 mb-4 text-center">
-    <!-- <b-col class="sm-3">
-      <b-form-input
-        v-model.trim="dongCode"
-        placeholder="동코드 입력...(예 : 11110)"
-        @keypress.enter="sendKeyword"
-      ></b-form-input>
-    </b-col>
-    <b-col class="sm-3" align="left">
-      <b-button variant="outline-primary" @click="sendKeyword">검색</b-button>
-    </b-col> -->
+
     <b-col class="sm-3">
       <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
     </b-col>
@@ -22,12 +13,14 @@
     <b-col class="sm-2">
       <b-button @click="searchAttraction">Search</b-button>
     </b-col>
+    <div id="map" class="mt-3 shadow" style="width: 100%; height: 600px"></div>
   </b-row>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
 const attractionStore = "attractionStore";
+var makerList = [];
 export default {
   name: "AttractionSearchBar",
   data() {
@@ -35,13 +28,21 @@ export default {
       sidoCode: null,
       gugunCode: null,
       contentTypeId: null,
+      map: null,
     };
   },
   computed: {
-    ...mapState(attractionStore, ["sidos", "guguns", "contents"]),
+    ...mapState(attractionStore, ["sidos", "guguns", "contents", "attractions"]),
   },
   created() {
     this.getSido();
+  },
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.loadMap();
+    } else {
+      this.loadScript();
+    }
   },
   methods: {
     ...mapActions(attractionStore, ["getSido", "getGugun", "getAttractionList"]),
@@ -51,12 +52,49 @@ export default {
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
-    searchAttraction() {
-      console.log(this.sidoCode);
-      console.log(this.gugunCode);
-      console.log(this.contentTypeId);
-      this.getAttractionList({sidoCode : this.sidoCode, gugunCode : this.gugunCode, contentTypeId : this.contentTypeId});
+    async searchAttraction() {
+      await this.getAttractionList({ sidoCode: this.sidoCode, gugunCode: this.gugunCode, contentTypeId: this.contentTypeId });
+      this.cleanMaker();
+      this.loadMarker();
     },
+    loadScript() {
+      const script = document.createElement("script");
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=65e66ed3a412cb73e32b300c2f3a1803&libraries=services,clusterer,drawing";
+      script.onload = () => window.kakao.maps.load(this.loadMap);
+      document.head.appendChild(script);
+    },
+    loadMap() {
+      const container = document.getElementById("map");
+      const options = {
+        center: new window.kakao.maps.LatLng(37.500613, 127.036431), // 지도의 중심좌표
+        level: 5, // 지도의 확대 레벨
+      };
+      this.map = new window.kakao.maps.Map(container, options);
+      // this.loadMarker();
+    },
+    // 마커 찍기
+    loadMarker() {
+      
+      makerList = [];
+      for (let k = 0; k < this.attractions.length; k++){
+        let marker = new window.kakao.maps.Marker({
+          map: this.map,
+          position: new window.kakao.maps.LatLng(
+            this.attractions[k].latitude,
+            this.attractions[k].longitude
+          ),
+          content: this.attractions[k].title
+        })
+        
+        makerList[k] = marker;
+      }
+    },
+    cleanMaker() {
+      for (let k = 0; k < makerList.length; k++){
+        makerList[k].setMap(null);
+      }
+    }
   },
 };
 </script>
