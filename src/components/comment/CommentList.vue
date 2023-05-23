@@ -5,8 +5,8 @@
       <b-table-simple hover responsive>
         <b-thead head-variant="dark">
           <b-tr>
-            <b-th>댓글번호</b-th>
             <b-th>댓글 내용</b-th>
+            <b-th>작성자 이름</b-th>
             <b-th>작성날짜</b-th>
             <b-th>버튼</b-th>
           </b-tr>

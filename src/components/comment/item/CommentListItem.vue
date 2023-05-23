@@ -1,7 +1,7 @@
 <template>
   <b-tr>
-    <b-td>{{ comment.id }}</b-td>
     <b-td>{{ comment.content }}</b-td>
+    <b-td>{{ comment.authorName }}</b-td>
     <b-td>{{ comment.createDate | dateFormat }}</b-td>
     <div v-show="comment.myComment">
       <!-- <b-button>수정</b-button> -->
