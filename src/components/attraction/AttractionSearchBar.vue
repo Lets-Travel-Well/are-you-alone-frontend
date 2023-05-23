@@ -21,6 +21,7 @@
 import { mapState, mapActions } from "vuex";
 const attractionStore = "attractionStore";
 var makerList = [];
+var ovList= [];
 export default {
   name: "AttractionSearchBar",
   data() {
@@ -86,8 +87,55 @@ export default {
           ),
           content: this.attractions[k].title
         })
-        
+        // 인포 윈도우 띄우기
+        let content= '<div class="wrap">' + 
+    '    <div class="info  shadow ">' + 
+    '        <div class="bg-primary ">' +
+    '        		<div class="text-light font-weight-bold p-1 d-flex justify-content-between">' + 
+                  this.attractions[k].title +
+    '         		<div class="far fa-times-circle fa-lg" onclick="closeOverlay('+k+')" title="닫기"></div>' + 
+    '        		</div>'+
+    '		   </div>' + 
+    '        <div class="body">' + 
+    '            <div class="img">' +
+    '                <img src="'+ this.attractions[k].firstImage+'" width="73" height="70">' +
+    '           </div>' + 
+    '            <div class="desc">' + 
+    '                <div class="ellipsis">'+ this.attractions[k].addr1+'</div>' + 
+    '                <div class="jibun ellipsis">(우)'+ this.attractions[k].zipcode+'</div>' +
+    '                <div class="d-flex justify-content-end">';
+    
+    // if(user != "" && positions[i].like == false) {
+    // 	content += '<button id="btn-scrap" class="btn btn-outline-warning d-flex justify-content-center p-1 m-2" type="button" onclick="like('+i+')"> like </button>';
+    // } else if(user != "" && positions[i].like == true) {
+    // 	marker.setImage(markerImage);
+    // 	content += '<button id="btn-scrap" class="btn btn-outline-danger d-flex justify-content-center p-1 m-2" type="button" onclick="like('+i+')"> dislike </button>';
+    // }
+      
+      content +=     
+        '                </div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+        // console.log(content);
+
+        let overlay = new window.kakao.maps.CustomOverlay({
+          content: content,
+          position: marker.getPosition()       
+        });
+
+        window.kakao.maps.event.addListener(marker, 'click', function () {
+          console.log("click");
+            overlay.setMap(this.map);
+        });
+        ovList[k] = overlay;
+
         makerList[k] = marker;
+        if (k == 0) {
+          this.map.panTo(new window.kakao.maps.LatLng(this.attractions[k].latitude, this.attractions[k].longitude));
+        }
+        
       }
     },
     cleanMaker() {
