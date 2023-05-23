@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     ...mapActions(attractionStore, ["getSido", "getGugun", "getAttractionList"]),
-    // ...mapMutations(attractionStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
     gugunList() {
       // this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
@@ -94,64 +93,22 @@ export default {
           content: this.attractions[k].title,
         });
 
+        let contentWrapper = document.createElement("div");
+        contentWrapper.style.cssText = "background: white; border: 1px solid black";
+
         // 인포 윈도우 띄우기
-        let content =
-          // `<div class="wrap">
-          //       <div class="info  shadow >
-          //           <div class="bg-primary ">
-          //           		<div class="text-light font-weight-bold p-1 d-flex justify-content-between">
-          //   ${this.attractions[k].title}
-          //            		<div class="far fa-times-circle fa-lg id="close${k}"
-          //   onclick="">닫기</div>
-          //           		</div>
-          //   		   </div>
-          //           <div class="body bg-light">
-          //               <div class="img">
-          //                   <img src="
-          //   ${this.attractions[k].firstImage}
-          //   " width="73" height="70">
-          //              </div>
-          //               <div class="desc">
-          //                   <div class="ellipsis">
-          //   ${this.attractions[k].addr1}
-          //   </div>
-          //                   <div class="d-flex justify-content-end">
-          //                   </div>
-          //               </div>
-          //           </div>
-          //       </div>
-          //   </div>";`;
+        let title = document.createElement("div");
+        title.innerHTML = this.attractions[k].title;
 
-          // window.kakao.maps.event.addListener(marker, "click", () => {
-          //   overlay.setMap(this.map);
-          // });
+        let addr = document.createElement("div");
+        addr.innerHTML = this.attractions[k].addr1;
 
-          // window.document.getElementById(`close${k}`).onclick = function () {
-          //   ovList[k].setMap(null);
-          // };
-          // console.log(`close${k}`);
-          // console.log(document.getElementsByClassName(`close${k}`)[0]);
-          // document.getElementsByClassName(`close${k}`)[0];
-          // window.kakao.maps.event.addListener(marker, "mouseover", () => {
-          //   overlay.setMap(this.map);
-          // });
-
-          // window.kakao.maps.event.addListener(marker, "mouseout", () => {
-          //   overlay.setMap(null);
-          // });
-
-          // let closeBtn = document.createElement("div");
-          // closeBtn.appendChild(document.createTextNode("닫기"));
-          // closeBtn.onclick = () => {
-          //   ovList[k].setMap(null);
-          // };
-
-          document.createElement("div");
-        content.innerHTML = this.attractions[k].title;
-        content.style.cssText = "background: white; border: 1px solid black";
+        let image = document.createElement("img");
+        image.src = this.attractions[k].firstImage;
+        image.style.cssText = "width:200px";
 
         let overlay = new window.kakao.maps.CustomOverlay({
-          content: content,
+          content: contentWrapper,
           position: marker.getPosition(),
         });
 
@@ -161,8 +118,11 @@ export default {
           overlay.setMap(null);
         };
 
-        content.appendChild(closeBtn);
-        overlay.setContent(content);
+        contentWrapper.appendChild(title);
+        title.appendChild(closeBtn);
+        contentWrapper.appendChild(image);
+        contentWrapper.appendChild(addr);
+        overlay.setContent(contentWrapper);
 
         window.kakao.maps.event.addListener(marker, "click", function () {
           overlay.setMap(map);
