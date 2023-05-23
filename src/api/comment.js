@@ -1,11 +1,6 @@
-import axios from "axios";
+import { commentInstance } from "./lib/index";
 
-const api = axios.create({
-    baseURL: "http://localhost:80/api/comment-management/comment",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-  });
+const api = commentInstance();
 
 function writeComment(comment, success, fail) {
 api.post(`/create`, JSON.stringify(comment)).then(success).catch(fail);

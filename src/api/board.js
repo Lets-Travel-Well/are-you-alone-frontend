@@ -1,13 +1,6 @@
-import axios from "axios";
-// import { apiInstance } from "./index.js";
+import { boardInstance } from "./lib/index";
 
-// const api = apiInstance();
-const api = axios.create({
-      baseURL: "http://localhost:80/api/board-management",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-    });
+const api = boardInstance();
 
 function listBoard(success, fail) {
   api.get(`/post`).then(success).catch(fail);
