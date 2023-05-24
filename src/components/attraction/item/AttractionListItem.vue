@@ -26,7 +26,7 @@
       <b-textarea
         v-if="this.type == 'myList'"
         placeholder="간단한 일정을 적어주세요"
-        :value="place.content"
+        v-model="pla.content"
         @input="contentEnter"
       >
       </b-textarea>
@@ -50,7 +50,9 @@ export default {
   },
   filters: {},
   data() {
-    return {};
+    return {
+      pla: this.place,
+    };
   },
   created() {},
   methods: {
@@ -66,7 +68,7 @@ export default {
       this.deleteAttraction(this.place);
     },
     contentEnter() {
-      this.updateContent(this.place);
+      this.updateContent(this.pla);
     },
   },
 };
