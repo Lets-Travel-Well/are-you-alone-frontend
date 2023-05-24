@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="{name: 'journeyDetail', params: {journeyId: 1}}">
   <b-card
     :title="journey.subject"
     :img-src="journey.image || 'https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg'"
@@ -30,6 +31,7 @@
       </div>
     </b-card-text>
   </b-card>
+</router-link>
 </template>
 
 <script>
