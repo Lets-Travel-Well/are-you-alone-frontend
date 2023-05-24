@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>여행지 리스트입니다</div>
+    <b-button @click="moveRegist">등록버튼</b-button>
+
     <jouney-list-item></jouney-list-item>
   </div>
 </template>
@@ -14,7 +17,11 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    moveRegist() {
+      this.$router.push({ name: "writeJourney" });
+    },
+  },
   created() {},
 };
 </script>

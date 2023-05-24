@@ -80,6 +80,11 @@ const routes = [
         name: "journeyList",
         component: () => import(/* webpackChunkName: "board" */ "@/components/journey/JourneyList.vue"),
       },
+      {
+        path: "/write",
+        name: "writeJourney",
+        component: () => import(/* webpackChunkName: "board" */ "@/components/journey/JourneyRegister.vue"),
+      },
     ],
   },
   {

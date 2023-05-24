@@ -1,12 +1,13 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <div class="pageLogo"></div>
+    <div class="pageLogo">여행지 뷰 입니다</div>
     <router-view></router-view>
   </b-container>
 </template>
 <script>
 export default {
   name: "JourneyView",
+  methods: {},
 };
 </script>
 <style scoped>

@@ -6,6 +6,7 @@ function getHotplace(success, fail) {
 
     api.get().then(success).catch(fail);
 }
+
 async function updateLike(contentTypeId, success, fail){
     const api = hotplaceInstance();
     await api.get(`/${contentTypeId}/like`).then(success).catch(fail);
