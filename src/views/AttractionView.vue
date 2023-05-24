@@ -8,7 +8,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <attraction-search-bar></attraction-search-bar>
+        <attraction-search-bar type="attraction"></attraction-search-bar>
       </b-col>
     </b-row>
   </b-container>

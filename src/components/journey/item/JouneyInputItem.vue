@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>여행지 등록일 수도 수정일수도</div>
-    <attraction-search-bar></attraction-search-bar>
+    <attraction-search-bar type="journey"></attraction-search-bar>
     <hr />
     <b-button>여행 등록하기</b-button>
     <b-row>
