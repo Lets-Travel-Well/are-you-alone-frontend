@@ -1,9 +1,11 @@
 <template>
   <div>
     <div>여행지 리스트입니다</div>
-    <b-button @click="moveRegist">등록버튼</b-button>
+      <b-button @click="moveRegist">등록버튼</b-button>
+      <div style="display:flex">
+        <jouney-list-item v-for="journey in journeys" :key="journey.id" :journey="journey"></jouney-list-item>
 
-    <jouney-list-item v-for="journey in journeys" :key="journey.id" :journey="journey"></jouney-list-item>
+      </div>
   </div>
 </template>
 
