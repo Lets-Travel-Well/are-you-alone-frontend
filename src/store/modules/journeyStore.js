@@ -14,7 +14,7 @@ const journeyStore = {
             journeyPlaceCreateRequests:[],
         },  
         myJourneyList: [],
-        journeyList: []
+        journeys: []
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -38,8 +38,8 @@ const journeyStore = {
                 }
             });
         },
-        SET_JOURNEY_LIST(state, journeyList){
-            state.journeyList = journeyList;
+        SET_JOURNEY_LIST(state, journeys){
+            state.journeys = journeys;
         }
     },
     actions: {
@@ -57,7 +57,7 @@ const journeyStore = {
         deleteAttraction: ({ commit }, attraction) => {
             commit("REMOVE_JOURNEY", attraction);
         },
-        getJourney:({commit}) => {
+        getJourney: ({commit}) => {
             console.log("getJourney");
             getJourneyList(({data}) => {
                 commit("SET_JOURNEY_LIST", data.response);

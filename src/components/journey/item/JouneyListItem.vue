@@ -1,17 +1,23 @@
 <template>
-  <div></div>
+  <div>{{ journey.id }}</div>
 </template>
 
 <script>
 export default {
-  name: "JouneyListItem",
-  components: {},
+  name: "JourneyListItem",
+  props:{
+    journey: Object,
+  },
+  components: {
+  },
   data() {
     return {
       message: "",
     };
   },
-  created() {},
+  created() {
+    console.log("hellO");
+  },
   methods: {},
 };
 </script>
