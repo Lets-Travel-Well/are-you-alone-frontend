@@ -63,7 +63,7 @@ const boardStore = {
     //   });
     // },
     UPDATE_LIKE(state, like) {
-      state.like = like;
+      state.board.like = like;
     },
     UPDATE_COMMENT_LIST(state, commentList) {
       state.comments = commentList;
@@ -153,8 +153,8 @@ const boardStore = {
       //   commit("UPDATE_LIKE", data.success);
       // })
     },
-    changeLike: ({ commit }, boardId) => {
-      updateLike(boardId, ({ data }) => {
+    changeLike: async ({ commit }, boardId) => {
+      await updateLike(boardId, ({ data }) => {
         commit("UPDATE_LIKE", data.response)
       }, (error) => {
         console.log(error);

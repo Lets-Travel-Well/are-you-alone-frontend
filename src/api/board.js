@@ -29,10 +29,10 @@ const api = boardInstance();
   api.get(`/post/${boardId}/delete`).then(success).catch(fail);
 }
 
-function updateLike(boardId, success, fail) {
-const api = boardInstance();
+async function updateLike(boardId, success, fail) {
+  const api = boardInstance();
 
-  api.get(`post/${boardId}/like`).then(success).catch(fail);
+   await api.get(`post/${boardId}/like`).then(success).catch(fail);
 }
 
 export { listBoard, writeBoard, getBoard, modifyBoard, removeBoard, updateLike };
