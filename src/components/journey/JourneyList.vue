@@ -8,7 +8,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import JouneyListItem from "./item/JouneyListItem.vue";
+const journeyStore = "journeyStore"
 
 export default {
   name: "JourneyList",
@@ -18,11 +20,14 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions(journeyStore, ["getJourney"]),
     moveRegist() {
       this.$router.push({ name: "writeJourney" });
     },
   },
-  created() {},
+  created() {
+    this.getJourney();
+  },
 };
 </script>
 

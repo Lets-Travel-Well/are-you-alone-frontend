@@ -1,4 +1,4 @@
-import { createJourney } from '@/api/journey';
+import { createJourney, getJourneyList } from '@/api/journey';
 
 
 const journeyStore = {
@@ -13,7 +13,8 @@ const journeyStore = {
             startDay: "",
             journeyPlaceCreateRequests:[],
         },  
-        myJourneyList: []
+        myJourneyList: [],
+        journeyList: []
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -36,6 +37,9 @@ const journeyStore = {
                     state.myJourneyList.splice(index, 1);
                 }
             });
+        },
+        SET_JOURNEY_LIST(state, journeyList){
+            state.journeyList = journeyList;
         }
     },
     actions: {
@@ -52,6 +56,15 @@ const journeyStore = {
         },
         deleteAttraction: ({ commit }, attraction) => {
             commit("REMOVE_JOURNEY", attraction);
+        },
+        getJourney:({commit}) => {
+            console.log("getJourney");
+            getJourneyList(({data}) => {
+                commit("SET_JOURNEY_LIST", data.response);
+            },
+            (error) => {
+                console.log(error);
+            })
         }
     }
 }
