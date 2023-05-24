@@ -1,23 +1,22 @@
 <template>
   <b-card
-    :img-src="img"
+    :img-src="
+      place.firstImage ||
+      'https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg'
+    "
     img-top
     img-height="150px"
     tag="article"
     style="max-width: 20rem; display: inline-block; width: 260px"
     class="m-2"
   >
-    <b-card-text> {{ place.title }} </b-card-text>
     <b-card-text>
-      <b-button class="bg-white" variant="white" @click="updateLike">
+      {{ place.title }}
+      <b-button v-if="this.type != 'hotPlace'" class="bg-white" variant="white" @click="updateLike">
         <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
-
-      <br />
-      <b-icon icon="hand-thumbs-up"></b-icon>
-
-      {{ place.likeCnt }}
+      <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}
     </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
   </b-card>
@@ -31,17 +30,18 @@ export default {
   props: {
     place: Object,
     index: Number,
+    type: String,
   },
   filters: {},
   data() {
     return {
-      img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
+      // img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
     };
   },
   created() {
-    if (this.place.firstImage != "") {
-      this.img = this.place.firstImage;
-    }
+    // if (this.place.firstImage != "") {
+    //   this.img = this.place.firstImage;
+    // }
   },
   methods: {
     ...mapActions("hotPlaceStore", ["changeLike"]),
@@ -61,6 +61,8 @@ export default {
   font-size: 15px;
 }
 .card-body {
-  height: 150px;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  min-height: 80px;
+  height: fit-content;
 }
 </style>

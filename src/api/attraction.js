@@ -1,4 +1,4 @@
-import { attractionInstance } from './lib';
+import { attractionInstance } from './lib/index';
 
 function listSido(success, fail) {
   let api = attractionInstance();

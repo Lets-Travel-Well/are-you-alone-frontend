@@ -20,7 +20,7 @@
       <b-col>
         <b-card
           :header-html="`<h3>${board.id}.
-          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.hit}</h6></div>`"
+          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.likeCnt}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
@@ -34,7 +34,7 @@
     <b-row>
       <b-col cols="11"></b-col>
       <b-button class="bg-white" variant="white" @click="updateLike">
-        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="like" />
+        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="board.like" />
         <b-icon icon="heart" variant="danger" font-scale="2" v-else />
       </b-button>
     </b-row>
@@ -60,7 +60,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(boardStore, ["board", "like"]),
+    ...mapState(boardStore, ["board"]),
     message() {
       if (this.board.content) return this.board.content.split("\n").join("<br>");
       return "";
