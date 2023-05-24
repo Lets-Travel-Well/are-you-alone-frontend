@@ -1,4 +1,4 @@
-import { createJourney, getJourneyList } from '@/api/journey';
+import { createJourney, getJourneyList, getJourney } from '@/api/journey';
 
 
 const journeyStore = {
@@ -14,7 +14,8 @@ const journeyStore = {
             journeyPlaceCreateRequests:[],
         },  
         myJourneyList: [],
-        journeys: []
+        journeys: [],
+        journeyDeatil : {}
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -40,6 +41,9 @@ const journeyStore = {
         },
         SET_JOURNEY_LIST(state, journeys){
             state.journeys = journeys;
+        },
+        SET_JOURNEY_DETAIL(state, journey) {
+            state.journeyDeatil = journey;
         }
     },
     actions: {
@@ -61,6 +65,14 @@ const journeyStore = {
             console.log("getJourney");
             getJourneyList(({data}) => {
                 commit("SET_JOURNEY_LIST", data.response);
+            },
+            (error) => {
+                console.log(error);
+            })
+        },
+        getJourneyDetail: ({commit}, journeyId) => {
+            getJourney(journeyId, ({data}) => {
+                commit("SET_JOURNEY_DETAIL", data.response);
             },
             (error) => {
                 console.log(error);
