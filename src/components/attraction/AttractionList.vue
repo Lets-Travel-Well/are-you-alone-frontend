@@ -1,24 +1,20 @@
 <template>
-  <div>
+  <div style="inline-block">
     <h2><b-icon :icon="icon"></b-icon>{{ title }}</h2>
-    <b-row>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-      <b-col cols="3"><attraction-list-item></attraction-list-item></b-col>
-    </b-row>
+    <attraction-list-item
+      v-for="(hotPlace, index) in hotPlaceList"
+      :key="hotPlace.contendId"
+      :index="index"
+      :hotPlace="hotPlace"
+    ></attraction-list-item>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import AttractionListItem from "./item/AttractionListItem.vue";
 
+const hotPlaceStore = "hotPlaceStore";
 export default {
   name: "AttractionList",
   components: {
@@ -31,8 +27,15 @@ export default {
   data() {
     return {};
   },
-  created() {},
-  methods: {},
+  computed: {
+    ...mapState(hotPlaceStore, ["hotPlaceList"]),
+  },
+  created() {
+    this.getHotPlaceList();
+  },
+  methods: {
+    ...mapActions(hotPlaceStore, ["getHotPlaceList"]),
+  },
 };
 </script>
 

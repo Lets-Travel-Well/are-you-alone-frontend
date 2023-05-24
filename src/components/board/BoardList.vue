@@ -5,29 +5,80 @@
         <b-alert show><h3>글목록</h3></b-alert>
       </b-col>
     </b-row>
+
     <b-row class="mb-1">
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
       </b-col>
     </b-row>
-    <b-row>
+
+    <!-- <b-row>
       <b-col v-if="boards.length">
         <b-table-simple hover responsive>
           <b-thead head-variant="dark">
             <b-tr>
               <b-th>글번호</b-th>
               <b-th>제목</b-th>
+              <b-th>작성자</b-th>
               <b-th>조회수</b-th>
             </b-tr>
           </b-thead>
           <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <board-list-item v-for="board in boards" :key="board.id" :board="board" />
+            하위 component인 ListRow에 데이터 전달(props)
+            <board-list-item v-for="board in this.boards" :key="board.id" :board="board" />
           </tbody>
         </b-table-simple>
       </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
-    </b-row>
+    </b-row> -->
+
+    <div>
+      <b-row>
+        <b-col v-if="boards.length">
+          <b-table-simple
+            hover
+            responsive
+            id="my-table"
+            :items="boards"
+            :per-page="perPage"
+            :current-page="currentPage"
+            :fields="fields"
+          >
+            <b-thead head-variant="dark">
+              <b-tr>
+                <b-th>글번호</b-th>
+                <b-th>제목</b-th>
+                <b-th>작성자</b-th>
+                <b-th>조회수</b-th>
+              </b-tr>
+            </b-thead>
+            <tbody>
+              <!-- 하위 component인 ListRow에 데이터 전달(props) -->
+              <board-list-item v-for="board in this.boards" :key="board.id" :board="board" />
+            </tbody>
+          </b-table-simple>
+        </b-col>
+      </b-row>
+
+      <!-- <b-table
+        id="my-table"
+        :items="boards"
+        :per-page="perPage"
+        :current-page="currentPage"
+        :fields="fields"
+        small
+      ></b-table> -->
+
+      <p class="mt-3">Current Page: {{ currentPage }}</p>
+
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="totalElements"
+        :per-page="perPage"
+        align="center"
+        aria-controls="my-table"
+        @page-click="movepage($event)"
+      ></b-pagination>
+    </div>
   </b-container>
 </template>
 
@@ -43,19 +94,27 @@ export default {
     BoardListItem,
   },
   data() {
-    return {};
+    return {
+      fields: [{ id: "글번호" }, { subject: "제목" }, { authorName: "직성자" }, { hit: "조회수" }],
+      perPage: 10,
+      currentPage: 1,
+    };
   },
   computed: {
-    ...mapState(boardStore, ["boards"]),
+    ...mapState(boardStore, ["boards", "totalPages", "totalElements"]),
   },
   methods: {
     ...mapActions(boardStore, ["getBoardList"]),
     moveWrite() {
       this.$router.push({ name: "boardRegister" });
     },
+    movepage(event) {
+      let movePage = event.target.getAttribute("aria-posinset") - 1;
+      this.getBoardList({ page: movePage, size: 10 });
+    },
   },
   created() {
-    this.getBoardList();
+    this.getBoardList(0, 10);
   },
 };
 </script>

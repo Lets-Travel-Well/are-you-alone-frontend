@@ -17,10 +17,6 @@ const attractionStore = {
         ],
       attractions: {},
         positions:[],
-        todos: [
-          // { title: '할 일1', completed: false },
-          // { title: '할 일2', completed: false },
-        ],
       },
       getters: {
         allTodosCount(state) {
@@ -129,7 +125,30 @@ const attractionStore = {
       })
     },
     
+        getAttractionList({ commit }, sidoCode, gugunCode, contentTypeId) {
+          const params = {
+            sidoCode,
+            gugunCode,
+            contentTypeId,
+          };
+          http
+            .get("/api/attraction-management/attraction", { params })
+            .then(({ data }) => {
+              commit("SET_ATTRACTION_LIST", data.response);
+              commit("SET_POSITIONS", data.response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+
+        /////////////////////////////// Attraction end /////////////////////////////////////
     
+        //////////////////////////// HotPlace List start //////////////////////////////////
+    
+
+    
+        //////////////////////////// HotPlace List end //////////////////////////////////
       },
   };
   

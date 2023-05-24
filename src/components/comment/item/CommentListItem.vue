@@ -1,10 +1,12 @@
 <template>
   <b-tr>
-    <b-td>{{ comment.id }}</b-td>
     <b-td>{{ comment.content }}</b-td>
+    <b-td>{{ comment.authorName }}</b-td>
     <b-td>{{ comment.createDate | dateFormat }}</b-td>
-    <b-button>수정</b-button>
-    <b-button @click="removeComment">삭제</b-button>
+    <div v-show="comment.myComment">
+      <!-- <b-button>수정</b-button> -->
+      <b-button @click="removeComment">삭제</b-button>
+    </div>
   </b-tr>
 </template>
 

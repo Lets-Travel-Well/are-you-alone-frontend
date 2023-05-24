@@ -1,35 +1,37 @@
-import axios from "axios";
-// import { apiInstance } from "./index.js";
+import { boardInstance } from "./lib/index";
 
-// const api = apiInstance();
-const api = axios.create({
-      baseURL: "http://localhost:80/api/board-management",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-    });
 
-function listBoard(success, fail) {
-  api.get(`/post`).then(success).catch(fail);
+function listBoard(page,size,success, fail) {
+const api = boardInstance();
+  api.get(`/post?page=${page}&size=${size}`).then(success).catch(fail);
 }
 
 function writeBoard(board, success, fail) {
+const api = boardInstance();
+
   api.post(`/post/create`, JSON.stringify(board)).then(success).catch(fail);
 }
 
 function getBoard(boardId, success, fail) {
+const api = boardInstance();
+
   api.get(`/post/${boardId}`).then(success).catch(fail);
 }
 
 function modifyBoard(board, success, fail) {
+const api = boardInstance();
   api.post(`/post/${board.id}/update`, JSON.stringify(board)).then(success).catch(fail);
 }
 
 function removeBoard(boardId, success, fail) {
+const api = boardInstance();
+
   api.get(`/post/${boardId}/delete`).then(success).catch(fail);
 }
 
 function updateLike(boardId, success, fail) {
+const api = boardInstance();
+
   api.get(`post/${boardId}/like`).then(success).catch(fail);
 }
 
