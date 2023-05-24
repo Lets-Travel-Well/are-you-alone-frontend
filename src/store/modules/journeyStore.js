@@ -12,8 +12,8 @@ const journeyStore = {
             deadLine: "",
             startDay: "",
             journeyPlaceCreateRequests:[],
-        },
-        myJourneyList: {}
+        },  
+        myJourneyList: []
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -27,8 +27,15 @@ const journeyStore = {
                 journeyPlaceCreateRequests:[],
             }
         },
-        ADD_JOURNEY(state,attraction) {
+        ADD_JOURNEY(state, attraction) {
             state.myJourneyList.push(attraction);
+        },
+        REMOVE_JOURNEY(state, attraction) {
+            state.myJourneyList.forEach((item, index)=> {
+                if(item === attraction) {
+                    state.myJourneyList.splice(index, 1);
+                }
+            });
         }
     },
     actions: {
@@ -40,8 +47,11 @@ const journeyStore = {
                 console.log(error);
             })
         },
-        addAttraction:({ commit }, {attraction})=> {
+        addAttraction: ({ commit }, attraction) => {
             commit("ADD_JOURNEY", attraction);
+        },
+        deleteAttraction: ({ commit }, attraction) => {
+            commit("REMOVE_JOURNEY", attraction);
         }
     }
 }
