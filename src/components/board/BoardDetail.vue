@@ -20,7 +20,7 @@
       <b-col>
         <b-card
           :header-html="`<h3>${board.id}.
-          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.hit}</h6></div>`"
+          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.like}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
