@@ -1,11 +1,15 @@
 <template>
-  <div>asd</div>
+  <div>
+    <jouney-list-item></jouney-list-item>
+  </div>
 </template>
 
 <script>
+import JouneyListItem from "./item/JouneyListItem.vue";
+
 export default {
   name: "JourneyList",
-  components: {},
+  components: { JouneyListItem },
   data() {
     return {};
   },
