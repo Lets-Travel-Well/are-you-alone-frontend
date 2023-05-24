@@ -65,4 +65,17 @@ function hotplaceInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance };
+function journeyInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "http://localhost:80/api/journey-management/journey",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
+
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance};
