@@ -19,6 +19,24 @@
         draggable="true"
       ></attraction-list-item>
     </div>
+    <div v-if="type == 'journey'">
+      <attraction-list-item
+        v-for="attraction in attractions"
+        :key="attraction.contendId"
+        :place="attraction"
+        :type="type"
+        draggable="true"
+      ></attraction-list-item>
+    </div>
+    <div v-if="type == 'myList'">
+      <attraction-list-item
+        v-for="attraction in myJourneyList"
+        :key="attraction.contendId"
+        :place="attraction"
+        :type="type"
+        draggable="true"
+      ></attraction-list-item>
+    </div>
   </div>
 </template>
 
@@ -28,6 +46,8 @@ import AttractionListItem from "./item/AttractionListItem.vue";
 
 const hotPlaceStore = "hotPlaceStore";
 const attractionStore = "attractionStore";
+const journeyStore = "journeyStore";
+
 export default {
   name: "AttractionList",
   components: {
@@ -44,6 +64,7 @@ export default {
   computed: {
     ...mapState(hotPlaceStore, ["hotPlaceList"]),
     ...mapState(attractionStore, ["attractions"]),
+    ...mapState(journeyStore, ["myJourneyList"]),
   },
   created() {
     this.getHotPlaceList();
