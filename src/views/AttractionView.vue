@@ -11,18 +11,14 @@
         <attraction-search-bar></attraction-search-bar>
       </b-col>
     </b-row>
-    <!-- kakao map start -->
-    <attraction-map></attraction-map>
-    <!-- kakao map end -->
   </b-container>
 </template>
 
 <script>
 import AttractionSearchBar from "@/components/attraction/AttractionSearchBar.vue";
-import AttractionMap from "@/components/attraction/AttractionMap.vue";
 export default {
   name: "TripView",
-  components: { AttractionSearchBar, AttractionMap },
+  components: { AttractionSearchBar },
   data() {
     return {
       map: null,

@@ -1,15 +1,5 @@
 import axios from "axios";
 
-// local vue api axios instance
-// function apiInstance() {
-//   const instance = axios.create({
-//     baseURL: process.env.VUE_APP_API_BASE_URL,
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//   });
-//   return instance;
-// }
 
 function getAccessToken() {
     return localStorage.getItem("accessToken");
@@ -31,6 +21,18 @@ function boardInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
         baseURL: "http://localhost:80/api/board-management",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
+function attractionInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "http://localhost:80/api/attraction-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -63,4 +65,4 @@ function hotplaceInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance, commentInstance, hotplaceInstance };
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance };
