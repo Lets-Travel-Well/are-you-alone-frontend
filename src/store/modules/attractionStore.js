@@ -124,31 +124,7 @@ const attractionStore = {
         console.log(error);
       })
     },
-    
-        getAttractionList({ commit }, sidoCode, gugunCode, contentTypeId) {
-          const params = {
-            sidoCode,
-            gugunCode,
-            contentTypeId,
-          };
-          http
-            .get("/api/attraction-management/attraction", { params })
-            .then(({ data }) => {
-              commit("SET_ATTRACTION_LIST", data.response);
-              commit("SET_POSITIONS", data.response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
-
         /////////////////////////////// Attraction end /////////////////////////////////////
-    
-        //////////////////////////// HotPlace List start //////////////////////////////////
-    
-
-    
-        //////////////////////////// HotPlace List end //////////////////////////////////
       },
   };
   

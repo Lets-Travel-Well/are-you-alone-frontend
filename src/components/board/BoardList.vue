@@ -12,25 +12,6 @@
       </b-col>
     </b-row>
 
-    <!-- <b-row>
-      <b-col v-if="boards.length">
-        <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
-            <b-tr>
-              <b-th>글번호</b-th>
-              <b-th>제목</b-th>
-              <b-th>작성자</b-th>
-              <b-th>조회수</b-th>
-            </b-tr>
-          </b-thead>
-          <tbody>
-            하위 component인 ListRow에 데이터 전달(props)
-            <board-list-item v-for="board in this.boards" :key="board.id" :board="board" />
-          </tbody>
-        </b-table-simple>
-      </b-col>
-    </b-row> -->
-
     <div>
       <b-row>
         <b-col v-if="boards.length">

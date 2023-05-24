@@ -1,25 +1,23 @@
 <template>
   <b-card
-    :img-src="hotPlace.firstImage"
-    img-alt="Image"
+    :img-src="img"
     img-top
     img-height="150px"
     tag="article"
     style="max-width: 20rem; display: inline-block; width: 260px"
     class="m-2"
   >
-    <b-card-text> {{ hotPlace.title }} </b-card-text>
-
+    <b-card-text> {{ place.title }} </b-card-text>
     <b-card-text>
       <b-button class="bg-white" variant="white" @click="updateLike">
-        <b-icon icon="heart-fill" variant="danger" v-if="hotPlace.myHotPlace"></b-icon>
+        <b-icon icon="heart-fill" variant="danger" v-if="place.myHotPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
 
       <br />
       <b-icon icon="hand-thumbs-up"></b-icon>
 
-      {{ hotPlace.likeCnt }}
+      {{ place.likeCnt }}
     </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
   </b-card>
@@ -31,21 +29,24 @@ import { mapActions } from "vuex";
 export default {
   name: "AttractionListItem",
   props: {
-    hotPlace: Object,
+    place: Object,
     index: Number,
   },
   filters: {},
   data() {
     return {
-      title: "여행지 이름",
-      discription: "여행지 설명",
-      img: "@/assets/happyhouse.png",
+      img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
     };
+  },
+  created() {
+    if (this.place.firstImage != "") {
+      this.img = this.place.firstImage;
+    }
   },
   methods: {
     ...mapActions("hotPlaceStore", ["changeLike"]),
     async updateLike() {
-      await this.changeLike({ index: this.index, contentId: this.hotPlace.contentId });
+      await this.changeLike({ index: this.index, contentId: this.place.contentId });
     },
   },
 };
