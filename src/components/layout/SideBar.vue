@@ -2,7 +2,7 @@
   <div v-if="type == 'attraction'">
     <b-sidebar id="sidebar-1" title="여행지 검색 결과" shadow>
       <div class="px-3 py-2"></div>
-      <attraction-list :title="여행지검색결과" :icon="heart" :type="search"></attraction-list>
+      <attraction-list title="여행지검색결과" icon="heart" type="search"></attraction-list>
     </b-sidebar>
   </div>
   <div v-else>

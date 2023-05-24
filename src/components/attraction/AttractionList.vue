@@ -3,9 +3,8 @@
     <h2><b-icon :icon="icon"></b-icon>{{ title }}</h2>
     <div v-if="type === 'hotPlace'">
       <attraction-list-item
-        v-for="(hotPlace, index) in hotPlaceList"
+        v-for="hotPlace in hotPlaceList"
         :key="hotPlace.contendId"
-        :index="index"
         :place="hotPlace"
       ></attraction-list-item>
     </div>
