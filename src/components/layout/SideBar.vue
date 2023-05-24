@@ -1,16 +1,13 @@
 <template>
   <div v-if="type == 'attraction'">
-    <b-sidebar id="sidebar-1" title="여행지 검색 결과" shadow>
+    <b-sidebar id="attSearch" title="여행지 검색 결과" shadow>
       <div class="px-3 py-2"></div>
       <attraction-list title="" icon="" type="search"></attraction-list>
     </b-sidebar>
   </div>
-  <div v-else>
-    <b-sidebar id="sidebar-1" title="Sidebar" shadow>
-      <div class="px-3 py-2">
-        <p>dd</p>
-        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-      </div>
+  <div v-else-if="type == 'journey'">
+    <b-sidebar id="myList" title="여행 계획" right shadow>
+      <div class="px-3 py-2"></div>
     </b-sidebar>
   </div>
 </template>

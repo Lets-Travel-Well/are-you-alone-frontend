@@ -7,6 +7,7 @@
         :key="hotPlace.contendId"
         :place="hotPlace"
         :type="type"
+        draggable="true"
       ></attraction-list-item>
     </div>
     <div v-if="type == 'search'">
@@ -15,6 +16,7 @@
         :key="attraction.contendId"
         :place="attraction"
         :type="type"
+        draggable="true"
       ></attraction-list-item>
     </div>
   </div>

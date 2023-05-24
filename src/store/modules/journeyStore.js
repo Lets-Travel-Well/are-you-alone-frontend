@@ -12,7 +12,8 @@ const journeyStore = {
             deadLine: "",
             startDay: "",
             journeyPlaceCreateRequests:[],
-        }
+        },
+        myJourneyList: []
     },
     mutations: {
         CLEAR_JOURNEY(state) {
