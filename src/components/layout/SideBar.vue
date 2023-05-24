@@ -6,7 +6,7 @@
   </div>
   <div v-else-if="type == 'journey'">
     <b-sidebar id="attSearch" title="여행지 검색 결과" shadow>
-      <attraction-list title="" icon="" type="search"></attraction-list>
+      <attraction-list title="" icon="" type="journey"></attraction-list>
     </b-sidebar>
     <b-sidebar id="myList" title="여행 계획" right shadow>
       <attraction-list title="" icon="" type="myList"></attraction-list>

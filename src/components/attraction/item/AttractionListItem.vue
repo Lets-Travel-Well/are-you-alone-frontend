@@ -17,6 +17,7 @@
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
       <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}
+      <b-button v-if="this.type == 'journey'" @click="addMyPlace">여행담기</b-button>
     </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
   </b-card>
@@ -24,6 +25,8 @@
 
 <script>
 import { mapActions } from "vuex";
+const hotPlaceStore = "hotPlaceStore";
+const journeyStore = "journeyStore";
 
 export default {
   name: "AttractionListItem",
@@ -44,9 +47,13 @@ export default {
     // }
   },
   methods: {
-    ...mapActions("hotPlaceStore", ["changeLike"]),
+    ...mapActions(hotPlaceStore, ["changeLike"]),
+    ...mapActions(journeyStore, ["addAttraction"]),
     async updateLike() {
       await this.changeLike(this.place.contentId);
+    },
+    addMyPlace() {
+      this.addAttraction(this.place);
     },
   },
 };

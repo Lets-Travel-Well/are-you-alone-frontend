@@ -13,7 +13,7 @@ const journeyStore = {
             startDay: "",
             journeyPlaceCreateRequests:[],
         },
-        myJourneyList: []
+        myJourneyList: {}
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -26,7 +26,10 @@ const journeyStore = {
                 startDay: "",
                 journeyPlaceCreateRequests:[],
             }
-      }
+        },
+        ADD_JOURNEY(state,attraction) {
+            state.myJourneyList.push(attraction);
+        }
     },
     actions: {
         saveJourney: ({ commit }, journey) => {
@@ -36,6 +39,9 @@ const journeyStore = {
             (error) => {
                 console.log(error);
             })
+        },
+        addAttraction:({ commit }, {attraction})=> {
+            commit("ADD_JOURNEY", attraction);
         }
     }
 }
