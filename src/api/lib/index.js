@@ -39,6 +39,18 @@ function boardInstance() {
     return instance;
 }
 
+function attractionInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "http://localhost:80/api/attraction-management",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
 function commentInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
@@ -63,4 +75,4 @@ function hotplaceInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance, commentInstance, hotplaceInstance };
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance };

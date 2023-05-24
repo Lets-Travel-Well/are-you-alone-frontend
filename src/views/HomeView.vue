@@ -8,7 +8,7 @@
 
     <!-- <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> SSAFY</h3> -->
 
-    <attraction-list title="Hot Place" icon="award"></attraction-list>
+    <attraction-list title="Hot Place" icon="award" type="hotPlace"></attraction-list>
     <!-- <attraction-list title="동행 찾기" icon="brightness-high-fill"></attraction-list> -->
   </b-container>
 </template>
