@@ -37,34 +37,40 @@
                 ><b-icon icon="people" font-scale="1.5"></b-icon> 동행 구하기</router-link
               ></b-nav-item
             > -->
-              <b-nav-item href="#"
-                ><router-link :to="{ name: 'trip' }" class="link"
-                  ><b-icon icon="signpost" font-scale="1.5"></b-icon> 여행지 보기</router-link
-                ></b-nav-item
-              >
-            </b-navbar-nav>
-            <b-navbar-nav class="ml-auto">
-              <b-nav-item-dropdown right>
-                <template #button-content>
-                  <b-icon
-                    icon="people"
-                    variant="black"
-                    style="
-                      width: 40px;
-                      color: #242424;
-                      border: 1.5px solid gray;
-                      border-radius: 8px;
-                      padding: 4px;
-                    "
-                    font-scale="2"
-                  ></b-icon>
-                </template>
-                <div v-if="!this.tokens">
-                  <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'signUp' }" class="link"
-                      ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-                    ></b-dropdown-item
-                  >
+            <b-nav-item href="#"
+              ><router-link :to="{ name: 'trip' }" class="link"
+                ><b-icon icon="signpost" font-scale="1.5"></b-icon> 여행지 보기</router-link
+              ></b-nav-item
+            >
+            <b-nav-item href="#"
+              ><router-link :to="{ name: 'journey' }" class="link"
+                ><b-icon icon="signpost2" font-scale="1.5"></b-icon> 동행을 찾고 있어요</router-link
+              ></b-nav-item
+            >
+          </b-navbar-nav>
+
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item-dropdown right>
+              <template #button-content>
+                <b-icon
+                  icon="people"
+                  variant="black"
+                  style="
+                    width: 40px;
+                    color: #242424;
+                    border: 1.5px solid gray;
+                    border-radius: 8px;
+                    padding: 4px;
+                  "
+                  font-scale="2"
+                ></b-icon>
+              </template>
+              <div v-if="!this.tokens">
+                <b-dropdown-item href="#"
+                  ><router-link :to="{ name: 'signUp' }" class="link"
+                    ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
+                  ></b-dropdown-item
+                >
 
                   <b-dropdown-item href="#"
                     ><router-link :to="{ name: 'signIn' }" class="link"

@@ -70,6 +70,19 @@ const routes = [
     ],
   },
   {
+    path: "/journey",
+    name: "journey",
+    component: () => import(/* webpackChunkName: "board" */ "@/views/JourneyView.vue"),
+    redirect: "/journey",
+    children: [
+      {
+        path: "",
+        name: "journeyList",
+        component: () => import(/* webpackChunkName: "board" */ "@/components/journey/JourneyList.vue"),
+      },
+    ],
+  },
+  {
     path: "/instagram",
     name: "instagram",
     component: InstagramView,
