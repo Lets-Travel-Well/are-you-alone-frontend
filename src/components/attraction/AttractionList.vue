@@ -6,6 +6,7 @@
         v-for="hotPlace in hotPlaceList"
         :key="hotPlace.contendId"
         :place="hotPlace"
+        :type="type"
       ></attraction-list-item>
     </div>
     <div v-if="type == 'search'">
@@ -13,6 +14,7 @@
         v-for="attraction in attractions"
         :key="attraction.contendId"
         :place="attraction"
+        :type="type"
       ></attraction-list-item>
     </div>
   </div>
