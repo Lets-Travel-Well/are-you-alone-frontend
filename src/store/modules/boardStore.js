@@ -9,24 +9,38 @@ const boardStore = {
     boards: [],
     board: null,
     like: false,
+    totalPages: 0,
+    totalElements:0,
 
     comments:[],
-    comment:null,
+    comment: {
+      content:""
+    },
     
   },
   getters: {},
   mutations: {
-    CREATE_BOARD(state, board) {
-      state.boards.push(board);
-    },
     CLEAR_BOARD(state) {
       state.board = {}
     },
     CLEAR_BOARD_LIST(state) {
       state.boards = [];
+      state.totalPages = 0;
+    },
+    CLEAR_TOTAL_PAGES(state) {
+      state.totalPages = 0;
+    },
+    CLEAR_TOTAL_ELEMENTS(state) {
+      state.totalElements = 0;
     },
     SET_BOARD_LIST(state, boardList) {
         state.boards = boardList;
+    },
+    SET_TOTAL_PAGES(state, totalPages) {
+      state.totalPages = totalPages;
+    },
+    SET_TOTAL_ELEMENTS(state, totalElements) {
+      state.totalElements = totalElements;
     },
     SET_DETAIL_BOARD(state, board) {
       state.board = board;
@@ -68,7 +82,6 @@ const boardStore = {
     createBoard: ({commit},board) => {
       console.log("등록할 아이템", board);
       writeBoard(board, () => {
-        commit("CREATE_BOARD");
         commit("CLEAR_BOARD");
         router.push({ name: "boardList" });
       },
@@ -95,9 +108,8 @@ const boardStore = {
       })
     },
 
-    updateBoard: ({ commit }, boardItem) => {
+    updateBoard: (boardItem) => {
       modifyBoard(boardItem, ({ data }) => {
-        commit("UPDATE_BOARD", boardItem);
 
         let msg = "수정 처리시 문제가 발생했습니다.";
         if (data.success) {
@@ -111,11 +123,17 @@ const boardStore = {
       })
     },
 
-    getBoardList:({ commit })=> {
-      listBoard(({ data }) => {
-        commit("CLEAR_BOARD_LIST");
+    getBoardList: ({ commit }, { page, size }) => {
+      console.log(page, size);
+      listBoard(page,size,({ data }) => {
         commit("CLEAR_BOARD");
+        commit("CLEAR_BOARD_LIST");
         commit("SET_BOARD_LIST", data.response.content);
+        commit("CLEAR_TOTAL_PAGES");
+        commit("SET_TOTAL_PAGES", data.response.totalPages);
+        commit("CLEAR_TOTAL_ELEMENTS");
+        commit("SET_TOTAL_ELEMENTS", data.response.totalElements);
+
       },
       (error) => {
         console.log(error);
