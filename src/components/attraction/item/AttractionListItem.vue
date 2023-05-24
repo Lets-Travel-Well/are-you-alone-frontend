@@ -1,6 +1,9 @@
 <template>
   <b-card
-    :img-src="img"
+    :img-src="
+      place.firstImage ||
+      'https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg'
+    "
     img-top
     img-height="150px"
     tag="article"
@@ -32,13 +35,13 @@ export default {
   filters: {},
   data() {
     return {
-      img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
+      // img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
     };
   },
   created() {
-    if (this.place.firstImage != "") {
-      this.img = this.place.firstImage;
-    }
+    // if (this.place.firstImage != "") {
+    //   this.img = this.place.firstImage;
+    // }
   },
   methods: {
     ...mapActions("hotPlaceStore", ["changeLike"]),
@@ -59,6 +62,7 @@ export default {
 }
 .card-body {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
-  height: 80px;
+  min-height: 80px;
+  height: fit-content;
 }
 </style>

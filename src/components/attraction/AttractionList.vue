@@ -1,6 +1,6 @@
 <template>
   <div style="inline-block">
-    <h2><b-icon :icon="icon"></b-icon>{{ title }}</h2>
+    <h2 v-if="title != ''"><b-icon :icon="icon"></b-icon>{{ title }}</h2>
     <div v-if="type === 'hotPlace'">
       <attraction-list-item
         v-for="hotPlace in hotPlaceList"
