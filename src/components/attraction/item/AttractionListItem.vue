@@ -22,6 +22,14 @@
       <br />
 
       <b-button v-if="this.type == 'journey'" @click="addMyPlace">여행담기</b-button>
+
+      <b-textarea
+        v-if="this.type == 'myList'"
+        placeholder="간단한 일정을 적어주세요"
+        :value="place.content"
+        @input="contentEnter"
+      >
+      </b-textarea>
       <b-button v-if="this.type == 'myList'" @click="removeAttraction">삭제</b-button>
     </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
@@ -42,18 +50,12 @@ export default {
   },
   filters: {},
   data() {
-    return {
-      // img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
-    };
+    return {};
   },
-  created() {
-    // if (this.place.firstImage != "") {
-    //   this.img = this.place.firstImage;
-    // }
-  },
+  created() {},
   methods: {
     ...mapActions(hotPlaceStore, ["changeLike"]),
-    ...mapActions(journeyStore, ["addAttraction", "deleteAttraction"]),
+    ...mapActions(journeyStore, ["addAttraction", "deleteAttraction", "updateContent"]),
     async updateLike() {
       await this.changeLike(this.place.contentId);
     },
@@ -62,6 +64,9 @@ export default {
     },
     removeAttraction() {
       this.deleteAttraction(this.place);
+    },
+    contentEnter() {
+      this.updateContent(this.place);
     },
   },
 };

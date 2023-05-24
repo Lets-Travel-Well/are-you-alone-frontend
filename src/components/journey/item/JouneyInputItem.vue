@@ -3,9 +3,14 @@
     <div>여행지 등록일 수도 수정일수도</div>
     <attraction-search-bar type="journey"></attraction-search-bar>
     <hr />
-    <b-button>여행 등록하기</b-button>
+    <br />
     <b-row>
-      <b-col>
+      <b-col cols="10"></b-col>
+      <b-button @click="createJourney">여행 등록하기</b-button>
+    </b-row>
+    <br />
+    <b-row>
+      <b-col cols="4">
         <label for="startDate">여행 출발 일</label>
         <b-form-datepicker
           id="startDate"
@@ -16,7 +21,7 @@
           :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
         ></b-form-datepicker>
       </b-col>
-      <b-col>
+      <b-col cols="4">
         <label for="expireDate">모집 마감 일</label>
         <b-form-datepicker
           id="expireDate"
@@ -26,6 +31,28 @@
           :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
           class="mb-2"
         ></b-form-datepicker>
+      </b-col>
+      <b-col cols="2">
+        <label for="expireDate">모집 동행 인원</label>
+        <b-input type="number" v-model="journey.travelerCnt"></b-input>
+      </b-col>
+      <b-col cols="2">
+        <b-form-group label="여행 타입" v-slot="{ ariaDescribedby }">
+          <b-form-radio
+            v-model="journey.visibility"
+            :aria-describedby="ariaDescribedby"
+            name="choice"
+            value="false"
+            >개인 여행</b-form-radio
+          >
+          <b-form-radio
+            v-model="journey.visibility"
+            :aria-describedby="ariaDescribedby"
+            name="choice"
+            value="true"
+            >동행 여행</b-form-radio
+          >
+        </b-form-group>
       </b-col>
     </b-row>
     <b-input
@@ -50,7 +77,7 @@
 
 <script>
 import AttractionSearchBar from "@/components/attraction/AttractionSearchBar.vue";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 const journeyStore = "journeyStore";
 
@@ -67,7 +94,12 @@ export default {
     type: String,
   },
   created() {},
-  methods: {},
+  methods: {
+    ...mapActions("journeyStore", ["saveJourney"]),
+    createJourney() {
+      this.saveJourney(this.journey);
+    },
+  },
 };
 </script>
 

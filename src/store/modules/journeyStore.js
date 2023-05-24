@@ -27,7 +27,11 @@ const journeyStore = {
                 journeyPlaceCreateRequests:[],
             }
         },
+        CLEAR_JOURNEY_LIST(state) {
+            state.myJourneyList = [];
+        },
         ADD_JOURNEY(state, attraction) {
+            attraction.content= "";
             state.myJourneyList.push(attraction);
         },
         REMOVE_JOURNEY(state, attraction) {
@@ -36,12 +40,34 @@ const journeyStore = {
                     state.myJourneyList.splice(index, 1);
                 }
             });
+        },
+        SET_JOURNEY_CREATE_REQUEST(state) {
+            state.myJourneyList.forEach((j) => {
+                let jou = {
+                    contentId : j.contentId,
+                    content : j.content,
+                }
+                state.journey.journeyPlaceCreateRequests.push(jou);
+            })
+        },
+        UPDATE_CONTENT(state, place) {
+            state.myJourneyList.forEach((journey) => {
+                if (journey.contentId == place.contentId) {
+                    journey.content = place.content;
+                }
+            })
         }
+        // UPDATE_JOURNEY(state, JOURNEY) {
+        //     state.myJourneyList = JOURNEY;
+        // }
     },
     actions: {
-        saveJourney: ({ commit }, journey) => {
+        saveJourney: ({ commit },journey) => {
+            commit("SET_JOURNEY_CREATE_REQUEST");
+
             createJourney(journey, () => { 
                 commit("CLEAR_JOURNEY");
+                commit("CLEAR_JOURNEY_LIST");
             },
             (error) => {
                 console.log(error);
@@ -52,6 +78,13 @@ const journeyStore = {
         },
         deleteAttraction: ({ commit }, attraction) => {
             commit("REMOVE_JOURNEY", attraction);
+        },
+        // updateJourney: ({ commit }) => {
+        //     commit("UPDATE_JOURNEY");
+        // }
+        updateContent: ({ commit }, place) => {
+            console.log(place.content);
+            commit("UPDATE_CONTENT", place);
         }
     }
 }
