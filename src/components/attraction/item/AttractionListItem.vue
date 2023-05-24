@@ -10,7 +10,7 @@
     <b-card-text> {{ place.title }} </b-card-text>
     <b-card-text>
       <b-button class="bg-white" variant="white" @click="updateLike">
-        <b-icon icon="heart-fill" variant="danger" v-if="place.myHotPlace"></b-icon>
+        <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
 
@@ -46,7 +46,7 @@ export default {
   methods: {
     ...mapActions("hotPlaceStore", ["changeLike"]),
     async updateLike() {
-      await this.changeLike({ index: this.index, contentId: this.place.contentId });
+      await this.changeLike(this.place.contentId);
     },
   },
 };
