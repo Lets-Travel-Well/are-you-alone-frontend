@@ -87,8 +87,8 @@ export default {
         this.deleteBoard(this.board.id);
       }
     },
-    updateLike() {
-      this.changeLike(this.board.id);
+    async updateLike() {
+      await this.changeLike(this.board.id);
     },
   },
   created() {
