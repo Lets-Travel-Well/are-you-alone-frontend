@@ -17,7 +17,7 @@
             id="startDate"
             hide-header
             placeholder="여행 출발일을 설정해주세요"
-            :value="journey.startDay"
+            v-model="journey.startDay"
             class="mb-2"
             :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
           ></b-form-datepicker>
@@ -27,7 +27,7 @@
           <b-form-datepicker
             id="expireDate"
             hide-header
-            :vaule="journey.deadLine"
+            v-model="journey.deadLine"
             placeholder="모집 마감일을 설정해주세요"
             :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
             class="mb-2"

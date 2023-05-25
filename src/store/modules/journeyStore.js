@@ -85,6 +85,23 @@ const journeyStore = {
         },
         deleteAttraction: ({ commit }, attraction) => {
             commit("REMOVE_JOURNEY", attraction);
+        },
+        getJourney: ({commit}) => {
+            console.log("getJourney");
+            getJourneyList(({data}) => {
+                commit("SET_JOURNEY_LIST", data.response);
+            },
+            (error) => {
+                console.log(error);
+            })
+        },
+        getJourneyDetail: ({commit}, journeyId) => {
+            getJourney(journeyId, ({data}) => {
+                commit("SET_JOURNEY_DETAIL", data.response);
+            },
+            (error) => {
+                console.log(error);
+            })
         }
     }
 }
