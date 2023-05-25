@@ -1,4 +1,4 @@
-import { createJourney } from '@/api/journey';
+import { createJourney, getJourneyList, getJourney } from '@/api/journey';
 
 const journeyStore = {
     namespaced: true,
@@ -12,7 +12,9 @@ const journeyStore = {
             startDay: null,
             journeyPlaceCreateRequests:[],
         },  
-        myJourneyList: []
+        myJourneyList: [],
+        journeys: [],
+        journeyDeatil : {}
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -55,6 +57,12 @@ const journeyStore = {
                     journey.content = place.content;
                 }
             })
+        },
+        SET_JOURNEY_LIST(state, journeys){
+            state.journeys = journeys;
+        },
+        SET_JOURNEY_DETAIL(state, journey) {
+            state.journeyDeatil = journey;
         }
         // UPDATE_JOURNEY(state, JOURNEY) {
         //     state.myJourneyList = JOURNEY;
@@ -77,13 +85,6 @@ const journeyStore = {
         },
         deleteAttraction: ({ commit }, attraction) => {
             commit("REMOVE_JOURNEY", attraction);
-        },
-        // updateJourney: ({ commit }) => {
-        //     commit("UPDATE_JOURNEY");
-        // }
-        updateContent: ({ commit }, place) => {
-            console.log(place.content);
-            commit("UPDATE_CONTENT", place);
         }
     }
 }

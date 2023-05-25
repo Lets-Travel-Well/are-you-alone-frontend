@@ -16,4 +16,8 @@ function shortestPath(pathList, success, fail){
     api.post("/path",JSON.stringify(pathList)).then(success).catch(fail);
 }
 
-export { getJourneyList, createJourney, shortestPath};
+function getJourney(journeyId, success, fail){
+    const api = journeyInstance();
+    api.get().then(success).catch(fail);
+}
+export { getJourneyList, createJourney, shortestPath, getJourney};
