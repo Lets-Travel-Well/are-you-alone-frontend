@@ -108,14 +108,10 @@ const boardStore = {
       })
     },
 
-    updateBoard: (boardItem) => {
-      modifyBoard(boardItem, ({ data }) => {
-
-        let msg = "수정 처리시 문제가 발생했습니다.";
-        if (data.success) {
-          msg = "수정이 완료되었습니다.";
-        }
-        alert(msg);
+    updateBoard: ({commit},boardItem ) => {
+      console.log(boardItem.id);
+      modifyBoard(boardItem, () => {
+        commit("CLEAR_BOARD");
         router.push({ name: "boardList" });
       },
       (error) => {
@@ -148,9 +144,6 @@ const boardStore = {
           console.log(error);
         });
       
-      // getLike(boardId, ({ data })=> {
-      //   commit("UPDATE_LIKE", data.success);
-      // })
     },
     changeLike: async ({ commit }, boardId) => {
       await updateLike(boardId, ({ data }) => {
