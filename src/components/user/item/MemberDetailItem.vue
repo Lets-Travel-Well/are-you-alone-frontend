@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ member }}
+        <b-card :title="member.nickName"></b-card>
     </div>
 </template>
 

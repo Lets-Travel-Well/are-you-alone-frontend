@@ -23,7 +23,13 @@
                         ></member-detail-item>
                 </div>
                 <div>
-                    {{ journeyDetail.fuddy }}
+                    <member-detail-item
+                        v-for="fuddy in journeyDetail.fuddy"
+                        :key="fuddy.nickName"
+                        title="fuddy" 
+                        type="fuddy"
+                        :member="fuddy"
+                        ></member-detail-item>
                 </div>
             </div>
         </div>
