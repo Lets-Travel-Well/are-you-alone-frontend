@@ -1,17 +1,12 @@
 <template>
-  <div class="fixed-top border-bottom">
+  <div class="fixed-top border-bottom header-wrapper">
     <b-row class="nav-content">
       <b-col cols="2"></b-col>
       <b-col cols="8">
-        <b-navbar toggleable="lg" type="dark" variant="white">
+        <b-navbar toggleable="lg" type="dark" variant="white" class="p-0">
           <b-navbar-brand href="#">
             <router-link to="/">
-              <img
-                src="@/assets/rualone_logo.png"
-                class="d-inline-block align-middle"
-                width="100px"
-                alt="ssafy"
-              />
+              <img src="@/assets/rualone_logo.png" width="100px" alt="ssafy" />
             </router-link>
           </b-navbar-brand>
 
@@ -20,7 +15,7 @@
             style="background-color: #38d0eb"
           ></b-navbar-toggle>
 
-          <b-collapse id="nav-collapse" is-nav>
+          <b-collapse id="nav-collapse" class="align-bottom mt-5" is-nav>
             <b-navbar-nav>
               <b-nav-item href="#"
                 ><router-link :to="{ name: 'home' }" class="link"
@@ -54,39 +49,40 @@
               <b-nav-item-dropdown right>
                 <template #button-content>
                   <b-icon
-                    icon="people"
+                    icon="people-fill"
                     variant="black"
                     style="
-                      width: 40px;
-                      color: #242424;
-                      border: 1.5px solid gray;
-                      border-radius: 8px;
-                      padding: 4px;
+                      width: 60px;
+                      height: 35px;
+                      color: #3aa4ca;
+                      border: 1.5px solid #3aa4ca;
+                      border-radius: 10px;
+                      padding: 2px;
                     "
                     font-scale="2"
                   ></b-icon>
                 </template>
                 <div v-if="!this.tokens">
                   <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'signUp' }" class="link"
+                    ><router-link :to="{ name: 'signUp' }" class="link" style="color: #3aa4ca"
                       ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
                     ></b-dropdown-item
                   >
 
                   <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'signIn' }" class="link"
+                    ><router-link :to="{ name: 'signIn' }" class="link" style="color: #3aa4ca"
                       ><b-icon icon="key"></b-icon> 로그인</router-link
                     ></b-dropdown-item
                   >
                 </div>
                 <div v-else>
                   <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'home' }" class="link"
+                    ><router-link :to="{ name: 'home' }" class="link" style="color: #3aa4ca"
                       ><b-icon icon="person-circle"></b-icon> 마이 페이지</router-link
                     ></b-dropdown-item
                   >
 
-                  <b-dropdown-item href="#" @click="signOut"
+                  <b-dropdown-item href="#" @click="signOut" style="color: #3aa4ca"
                     ><b-icon icon="key"></b-icon> 로그아웃</b-dropdown-item
                   >
                 </div>
@@ -125,5 +121,10 @@ export default {
 <style>
 .nav-content {
   background-color: #fff;
+}
+.header-wrapper {
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
 }
 </style>
