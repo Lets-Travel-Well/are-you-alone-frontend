@@ -16,13 +16,20 @@
       <b-col></b-col>
     </b-row>
     <!-- <attraction-list title="동행 찾기" icon="brightness-high-fill"></attraction-list> -->
+
+    <b-row>
+      <b-col></b-col>
+      <chat-gpt-input></chat-gpt-input>
+    </b-row>
   </div>
 </template>
 
 <script>
 import AttractionList from "@/components/attraction/AttractionList.vue";
+import ChatGptInput from "@/components/gpt/ChatGptInput.vue";
+
 export default {
-  components: { AttractionList },
+  components: { AttractionList, ChatGptInput },
   name: "HomeView",
   props: {
     msg: String,
