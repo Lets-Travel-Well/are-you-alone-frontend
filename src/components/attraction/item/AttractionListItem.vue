@@ -12,15 +12,17 @@
   >
     <b-card-text>
       {{ place.title }}
-      <b-button v-if="this.type != 'myList'" class="bg-white" variant="white" @click="updateLike">
+      <b-button v-if="this.type !== 'myList' && this.type !== 'journeyDetail'" class="bg-white" variant="white" @click="updateLike">        
         <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
-      <span v-if="this.type != 'myList'">
+      <span v-if="this.type !== 'myList' && this.type !== 'journeyDetail'">
         <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}</span
       >
       <br />
-
+      <span v-if="this.type === 'journeyDetail'">
+        {{ place.content }}
+      </span>
       <b-button v-if="this.type == 'journey'" @click="addMyPlace">여행담기</b-button>
 
       <b-textarea

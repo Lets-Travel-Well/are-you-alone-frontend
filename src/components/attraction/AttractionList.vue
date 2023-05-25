@@ -37,6 +37,19 @@
       ></attraction-list-item>
       <!-- </draggable> -->
     </div>
+
+
+    <div v-if="type === 'journeyDetail'">
+      <attraction-list-item
+        v-for="journeyPlace in journeyDeatil.journeyPlaceResponseList"
+        :key="journeyPlace.contendId"
+        :place="journeyPlace"
+        :type="type"
+      ></attraction-list-item>
+    </div>
+
+
+
   </div>
 </template>
 
@@ -66,7 +79,7 @@ export default {
   computed: {
     ...mapState(hotPlaceStore, ["hotPlaceList"]),
     ...mapState(attractionStore, ["attractions"]),
-    ...mapState(journeyStore, ["myJourneyList"]),
+    ...mapState(journeyStore, ["myJourneyList", "journeyDeatil"]),
     // myJourneyList: {
     //   get() {
     //     console.log("zzz");
@@ -79,6 +92,7 @@ export default {
   },
   created() {
     this.getHotPlaceList();
+    console.log(this.type);
   },
   methods: {
     ...mapActions(hotPlaceStore, ["getHotPlaceList"]),
