@@ -1,16 +1,22 @@
 <template>
-  <b-container class="text-center">
+  <div class="bv-example-row text-center">
     <b-row>
-      <b-col cols="12">
+      <b-col></b-col>
+      <b-col cols="10">
         <img src="@/assets/rualone_main.png" class="main-img" />
       </b-col>
+      <b-col></b-col>
     </b-row>
-
     <!-- <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> SSAFY</h3> -->
-
-    <attraction-list title="Hot Place" icon="award" type="hotPlace"></attraction-list>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="10">
+        <attraction-list title="Hot Place" icon="award" type="hotPlace"></attraction-list>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
     <!-- <attraction-list title="동행 찾기" icon="brightness-high-fill"></attraction-list> -->
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -33,6 +39,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 90%;
+  height: 100%;
+  border-radius: 40px;
 }
 </style>

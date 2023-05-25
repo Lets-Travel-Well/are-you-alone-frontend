@@ -2,7 +2,7 @@
   <div id="app">
     <navi-bar />
     <div class="contents-wrapper">
-      <div style="height: 100px"></div>
+      <div style="height: 130px"></div>
       <router-view />
     </div>
     <footer-bar></footer-bar>

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'journeyDetail', params: { journeyId: 1 } }">
+  <router-link :to="{ name: 'journeyDetail', params: { journeyId: journey.id } }">
     <b-card
       :title="journey.subject"
       :img-src="
@@ -9,23 +9,19 @@
       img-top
       img-height="150px"
       tag="article"
-      style="max-width: 80rem; display: inline-block; width: 260px"
-      class="mb-2 custom-card"
+      style="max-width: 80rem; display: inline-block; width: 300px"
+      class="m-2 custom-card"
     >
       <b-card-text>
-        {{ journey.content }}
+        <div style="overflow: hidden">{{ journey.content }}</div>
         <div class="card-info">
+          <div><b-icon icon="calendar-fill"> </b-icon>마감일 : {{ journey.deadLine }}</div>
           <div>
-            <b-icon icon="calendar-fill"></b-icon>
-            마감일: {{ journey.deadLine }}
-          </div>
-          <div>
-            <b-icon icon="calendar2-check-fill"></b-icon>
-            여행 시작일: {{ journey.startDay }}
+            <b-icon icon="calendar2-check-fill"></b-icon> 여행 시작일 : {{ journey.startDay }}
           </div>
           <div>
             <b-icon icon="person-fill"></b-icon>
-            리더: {{ journey.leaderName }}
+            리더 : {{ journey.leaderName }}
           </div>
           <div>
             <b-icon icon="people-fill"></b-icon>

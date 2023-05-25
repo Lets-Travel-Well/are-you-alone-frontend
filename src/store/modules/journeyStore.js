@@ -71,7 +71,6 @@ const journeyStore = {
     actions: {
         saveJourney: ({ commit }, journey) => {
             commit("SET_JOURNEY_CREATE_REQUEST");
-            console.log("ss");
             createJourney(journey, () => {
                 commit("CLEAR_JOURNEY");
                 commit("CLEAR_JOURNEY_LIST");
@@ -87,7 +86,6 @@ const journeyStore = {
             commit("REMOVE_JOURNEY", attraction);
         },
         getJourney: ({commit}) => {
-            console.log("getJourney");
             getJourneyList(({data}) => {
                 commit("SET_JOURNEY_LIST", data.response);
             },

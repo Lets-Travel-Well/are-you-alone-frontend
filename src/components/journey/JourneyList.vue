@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div>여행지 리스트입니다</div>
-    <b-button @click="moveRegist">등록버튼</b-button>
-    <div style="display: flex">
+    <br />
+    <br />
+    <b-row>
+      <b-col cols="11"></b-col>
+      <b-button @click="moveRegist">동행 구하기</b-button>
+    </b-row>
+    <br />
+
+    <div style="inline-block">
       <jouney-list-item
         v-for="journey in journeys"
         :key="journey.id"

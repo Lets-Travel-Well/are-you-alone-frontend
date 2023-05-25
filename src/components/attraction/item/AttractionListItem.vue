@@ -7,11 +7,12 @@
     img-top
     img-height="150px"
     tag="article"
-    style="max-width: 20rem; display: inline-block; width: 260px"
-    class="m-2"
+    style="max-width: 20rem; display: inline-block; width: 300px"
+    class="m-2 custom-card"
   >
     <b-card-text>
       {{ place.title }}
+      <br />
       <b-button v-if="this.type != 'myList'" class="bg-white" variant="white" @click="updateLike">
         <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
