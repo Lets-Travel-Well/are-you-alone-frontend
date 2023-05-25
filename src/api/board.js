@@ -1,7 +1,7 @@
 import { boardInstance } from "./lib/index";
 
 
-function listBoard(page,size,success, fail) {
+function listBoard(page, size, success, fail) {
 const api = boardInstance();
   api.get(`/post?page=${page}&size=${size}`).then(success).catch(fail);
 }

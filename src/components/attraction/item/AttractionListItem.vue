@@ -7,16 +7,33 @@
     img-top
     img-height="150px"
     tag="article"
-    style="max-width: 20rem; display: inline-block; width: 260px"
-    class="m-2"
+    style="max-width: 20rem; display: inline-block; width: 300px"
+    class="m-2 custom-card"
   >
     <b-card-text>
       {{ place.title }}
-      <b-button v-if="this.type != 'hotPlace'" class="bg-white" variant="white" @click="updateLike">
+      <br />
+      <b-button v-if="this.type != 'myList'" class="bg-white" variant="white" @click="updateLike">
         <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
-      <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}
+      <span v-if="this.type !== 'myList' && this.type !== 'journeyDetail'">
+        <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}</span
+      >
+      <br />
+      <span v-if="this.type === 'journeyDetail'">
+        {{ place.content }}
+      </span>
+      <b-button v-if="this.type == 'journey'" @click="addMyPlace">여행담기</b-button>
+
+      <b-textarea
+        v-if="this.type == 'myList'"
+        placeholder="간단한 일정을 적어주세요"
+        v-model="pla.content"
+        @input="contentEnter"
+      >
+      </b-textarea>
+      <b-button v-if="this.type == 'myList'" @click="removeAttraction">삭제</b-button>
     </b-card-text>
     <!-- <b-button href="#" variant="primary">{{ hotPlace.addr1 }}</b-button> -->
   </b-card>
@@ -24,6 +41,8 @@
 
 <script>
 import { mapActions } from "vuex";
+const hotPlaceStore = "hotPlaceStore";
+const journeyStore = "journeyStore";
 
 export default {
   name: "AttractionListItem",
@@ -35,18 +54,24 @@ export default {
   filters: {},
   data() {
     return {
-      // img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/No_Image_%282879926%29_-_The_Noun_Project.svg",
+      pla: this.place,
     };
   },
-  created() {
-    // if (this.place.firstImage != "") {
-    //   this.img = this.place.firstImage;
-    // }
-  },
+  created() {},
   methods: {
-    ...mapActions("hotPlaceStore", ["changeLike"]),
+    ...mapActions(hotPlaceStore, ["changeLike"]),
+    ...mapActions(journeyStore, ["addAttraction", "deleteAttraction", "updateContent"]),
     async updateLike() {
       await this.changeLike(this.place.contentId);
+    },
+    addMyPlace() {
+      this.addAttraction(this.place);
+    },
+    removeAttraction() {
+      this.deleteAttraction(this.place);
+    },
+    contentEnter() {
+      this.updateContent(this.pla);
     },
   },
 };

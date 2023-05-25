@@ -11,10 +11,13 @@
     </b-col>
     <b-col class="sm-2">
       <b-button class="mr-2" @click="searchAttraction">검색</b-button>
-      <b-button class="mr-0" v-b-toggle.sidebar-1>검색 목록 보기</b-button>
+      <b-button class="mr-2" v-b-toggle.attSearch>검색 목록</b-button>
+      <b-button v-if="type == 'journey'" v-b-toggle.myList>내 여행</b-button>
     </b-col>
     <div id="map" class="mt-3 shadow" style="width: 100%; height: 600px"></div>
-    <side-bar type="attraction"></side-bar>
+
+    <side-bar :type="type"></side-bar>
+    <side-bar v-if="type == 'journey'" type="myList"></side-bar>
   </b-row>
 </template>
 
@@ -32,6 +35,9 @@ export default {
   name: "AttractionSearchBar",
   components: {
     SideBar,
+  },
+  props: {
+    type: String,
   },
   data() {
     return {
