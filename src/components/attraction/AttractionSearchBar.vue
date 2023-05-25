@@ -11,10 +11,10 @@
       <b-col class="sm-3">
         <b-form-select v-model="contentTypeId" :options="contents"></b-form-select>
       </b-col>
-      <b-col class="sm-2">
+      <b-col cols="3" class="sm-2">
         <b-button class="mr-2" @click="searchAttraction">검색</b-button>
         <b-button class="mr-2" v-b-toggle.attSearch>결과창 열기</b-button>
-        <b-button v-if="type == 'journey'" v-b-toggle.myList>내 여행</b-button>
+        <b-button v-if="type == 'journey'" v-b-toggle.myList>여행지 목록</b-button>
       </b-col>
       <b-col></b-col>
     </b-row>

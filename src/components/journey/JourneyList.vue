@@ -3,8 +3,10 @@
     <br />
     <br />
     <b-row>
-      <b-col cols="11"></b-col>
-      <b-button @click="moveRegist">동행 구하기</b-button>
+      <b-col cols="9"></b-col>
+      <b-col>
+        <b-button @click="moveRegist">동행 구하기</b-button>
+      </b-col>
     </b-row>
     <br />
 

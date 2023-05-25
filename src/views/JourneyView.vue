@@ -7,13 +7,7 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-    <b-row>
-      <b-col cols="1"></b-col>
-      <b-col>
-        <router-view></router-view>
-      </b-col>
-      <b-col cols="1"></b-col>
-    </b-row>
+    <router-view></router-view>
   </div>
 </template>
 <script>
