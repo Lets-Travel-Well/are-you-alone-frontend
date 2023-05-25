@@ -18,6 +18,6 @@ function shortestPath(pathList, success, fail){
 
 function getJourney(journeyId, success, fail){
     const api = journeyInstance();
-    api.get().then(success).catch(fail);
+    api.get(`/${journeyId}`).then(success).catch(fail);
 }
 export { getJourneyList, createJourney, shortestPath, getJourney};

@@ -95,7 +95,9 @@ const journeyStore = {
                 console.log(error);
             })
         },
-        getJourneyDetail: ({commit}, journeyId) => {
+        getJourneyDetail: ({ commit }, journeyId) => {
+            console.log("here");
+            console.log(journeyId);
             getJourney(journeyId, ({data}) => {
                 commit("SET_JOURNEY_DETAIL", data.response);
             },

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'journeyDetail', params: { journeyId: 1 } }">
+  <router-link :to="{ name: 'journeyDetail', params: { journeyId: journey.id } }">
     <b-card
       :title="journey.subject"
       :img-src="
