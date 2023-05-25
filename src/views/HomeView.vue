@@ -2,7 +2,7 @@
   <div class="bv-example-row text-center">
     <b-row>
       <b-col></b-col>
-      <b-col cols="8">
+      <b-col cols="10">
         <img src="@/assets/rualone_main.png" class="main-img" />
       </b-col>
       <b-col></b-col>
@@ -11,7 +11,7 @@
     <!-- <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> SSAFY</h3> -->
     <b-row>
       <b-col></b-col>
-      <b-col cols="8">
+      <b-col cols="10">
         <attraction-list
           title="RUALONE 선정 인기 장소"
           icon="award"

@@ -5,7 +5,7 @@
       <b-col cols="10">
         <h2 v-if="title != ''">{{ title }}</h2>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" v-if="type === 'hotPlace'">
         <router-link :to="{ name: 'trip' }" class="link"
           ><h6 class="attraction-search">여행지 더 보러가기</h6></router-link
         >

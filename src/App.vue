@@ -34,6 +34,7 @@ a.router-link-exact-active {
 #app {
   height: 100vh;
   min-height: 100%;
+  font-family: "Nanum Gothic", sans-serif;
 }
 .contents-wrapper {
   min-height: 100%;
