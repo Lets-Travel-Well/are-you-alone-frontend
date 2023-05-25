@@ -1,8 +1,8 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
+  <div class="bv-example-row mt-3 text-center">
     <b-row>
       <b-col></b-col>
-      <b-col cols="12">
+      <b-col cols="10">
         <img src="@/assets/attractionSearch.png" style="width: 100%" />
       </b-col>
       <b-col></b-col>
@@ -12,7 +12,7 @@
         <attraction-search-bar type="attraction"></attraction-search-bar>
       </b-col>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
