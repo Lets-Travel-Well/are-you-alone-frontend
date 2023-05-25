@@ -64,15 +64,8 @@
                 </template>
                 <div v-if="!this.tokens">
                   <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'signUp' }" class="link" style="color: #3aa4ca"
-                      ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-                    ></b-dropdown-item
-                  >
-
-                  <b-dropdown-item href="#"
-                    ><router-link :to="{ name: 'signIn' }" class="link" style="color: #3aa4ca"
-                      ><b-icon icon="key"></b-icon> 로그인</router-link
-                    ></b-dropdown-item
+                    ><b-icon icon="person-circle"></b-icon>
+                    <span v-b-modal.modal-1>로그인/회원가입</span></b-dropdown-item
                   >
                 </div>
                 <div v-else>
@@ -93,6 +86,27 @@
       </b-col>
       <b-col cols="2"></b-col>
     </b-row>
+
+    <b-modal id="modal-1" title="로그인/회원가입" hide-footer>
+      <a
+        href="https://kauth.kakao.com/oauth/authorize
+?client_id=75704a9f2561ed081d5538850a2ad394
+&redirect_uri=http://localhost:8080/oauth2/redirect
+&response_type=code"
+      >
+        <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="180" />
+      </a>
+      <a
+        href="http://localhost:8080/oauth2/authorize/naver?redirect_uri=http://localhost:3001/oauth2/redirect"
+      >
+        <img class="bi me-2" width="140" height="40" src="@/assets/naver_login.png" />
+      </a>
+      <a
+        href="http://localhost:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:3001/oauth2/redirect"
+      >
+        <img class="bi me-2" width="140" height="40" src="@/assets/google_login.png" />
+      </a>
+    </b-modal>
   </div>
 </template>
 
