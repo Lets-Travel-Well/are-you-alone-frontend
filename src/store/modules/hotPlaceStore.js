@@ -26,8 +26,8 @@ const hotPlaceStore = {
                 console.log(error);
             })
         },
-        changeLike: async ({commit }, {contentId}) => {
-            await updateLike(contentId, () => {},
+        changeLike: ({commit}, contentId) => {
+            updateLike(contentId, () => {},
             (error) => {
                 console.log(error);
             })

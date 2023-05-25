@@ -7,13 +7,20 @@
     img-top
     img-height="150px"
     tag="article"
-    style="max-width: 20rem; display: inline-block; width: 280px"
+    style="max-width: 20rem; display: inline-block; width: 260px"
     class="m-3 custom-card"
   >
     <b-card-text>
-      {{ place.title }}
+      <div style="width: '218px'; text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
+        {{ place.title }}
+      </div>
       <br />
-      <b-button v-if="this.type != 'myList'" class="bg-white" variant="white" @click="updateLike">
+      <b-button
+        v-if="this.type == 'search' || this.type == 'journey'"
+        class="bg-white"
+        variant="white"
+        @click="updateLike"
+      >
         <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
         <b-icon icon="heart" variant="danger" v-else></b-icon>
       </b-button>
@@ -43,6 +50,7 @@
 import { mapActions } from "vuex";
 const hotPlaceStore = "hotPlaceStore";
 const journeyStore = "journeyStore";
+const attractionStore = "attractionStore";
 
 export default {
   name: "AttractionListItem",
@@ -60,9 +68,10 @@ export default {
   created() {},
   methods: {
     ...mapActions(hotPlaceStore, ["changeLike"]),
+    ...mapActions(attractionStore, ["changeLike"]),
     ...mapActions(journeyStore, ["addAttraction", "deleteAttraction", "updateContent"]),
-    async updateLike() {
-      await this.changeLike(this.place.contentId);
+    updateLike() {
+      this.changeLike(this.place.contentId);
     },
     addMyPlace() {
       this.addAttraction(this.place);

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="10">
+        <img src="@/assets/journey.png" class="journey-img" />
+      </b-col>
+      <b-col></b-col>
+    </b-row>
     <br />
     <br />
     <b-row>
@@ -54,5 +61,12 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+.journey-img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
 }
 </style>
