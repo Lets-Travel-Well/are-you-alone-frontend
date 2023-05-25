@@ -1,11 +1,5 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>글목록</h3></b-alert>
-      </b-col>
-    </b-row>
-
     <b-row class="mb-1">
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
@@ -23,6 +17,7 @@
             :per-page="perPage"
             :current-page="currentPage"
             :fields="fields"
+            style="border-radius: 15px"
           >
             <b-thead head-variant="dark">
               <b-tr>
@@ -49,8 +44,6 @@
         small
       ></b-table> -->
 
-      <p class="mt-3">Current Page: {{ currentPage }}</p>
-
       <b-pagination
         v-model="currentPage"
         :total-rows="totalElements"
@@ -59,6 +52,7 @@
         aria-controls="my-table"
         @page-click="movepage($event)"
       ></b-pagination>
+      <br />
     </div>
   </b-container>
 </template>

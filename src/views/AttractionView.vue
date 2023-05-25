@@ -1,12 +1,18 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-green"><b-icon icon="truck"></b-icon> 여행지 검색하기</h3>
+  <div class="bv-example-row mt-3 text-center">
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="10">
+        <img src="@/assets/attractionSearch.png" style="width: 100%" />
+      </b-col>
+      <b-col></b-col>
+    </b-row>
     <b-row>
       <b-col>
         <attraction-search-bar type="attraction"></attraction-search-bar>
       </b-col>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -24,8 +30,11 @@ export default {
 </script>
 
 <style scoped>
-.underline-green {
-  display: inline-block;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, rgba(27, 231, 75, 0.3) 30%);
+img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
 }
 </style>

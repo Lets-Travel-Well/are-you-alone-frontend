@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div>여행지 등록일 수도 수정일수도</div>
     <attraction-search-bar type="journey"></attraction-search-bar>
-    <hr />
     <br />
+    <hr />
     <b-form @submit="createJourney">
       <b-row>
         <b-col cols="10"></b-col>
@@ -11,6 +10,7 @@
       </b-row>
       <br />
       <b-row>
+        <b-col></b-col>
         <b-col cols="4">
           <label for="startDate">여행 출발 일</label>
           <b-form-datepicker
@@ -33,11 +33,11 @@
             class="mb-2"
           ></b-form-datepicker>
         </b-col>
-        <b-col cols="2">
-          <label for="expireDate">모집 동행 인원</label>
+        <b-col cols="1">
+          <label for="expireDate">동행 인원</label>
           <b-form-input type="number" v-model="journey.travelerCnt" required></b-form-input>
         </b-col>
-        <b-col cols="2">
+        <b-col cols="1" style="margin: auto; align-items: center">
           <b-form-radio v-model="journey.visibility" name="choice" value="false" required
             >개인 여행</b-form-radio
           >
@@ -45,27 +45,41 @@
             >동행 여행</b-form-radio
           >
         </b-col>
+        <b-col></b-col>
       </b-row>
-      <b-form-input
-        required
-        v-model="journey.subject"
-        id="subject"
-        placeholder="ex) 6월에 바다보러 가실분 구해요"
-      ></b-form-input>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="10">
+          <b-form-input
+            required
+            v-model="journey.subject"
+            id="subject"
+            placeholder="ex) 6월에 바다보러 가실분 구해요"
+          ></b-form-input>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
       <br />
-      <b-form-textarea
-        required
-        style="min-height: 350px"
-        v-model="journey.content"
-        placeholder="1. 현재 동행이 있나요?
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="10">
+          <b-form-textarea
+            required
+            style="min-height: 350px"
+            v-model="journey.content"
+            placeholder="1. 현재 동행이 있나요?
     ex) 혼자입니다 / 동행이 1명 있어요
     
     2. 어떤 동행을 찾고 있나요?
     ex) 일정이 너무 타이트하지 않고 여유 있는 여행을 좋아하는 동행을 찾아요!
     
     3. 원하는 여행 코스가 있다면 알려주세요!"
-      ></b-form-textarea>
+          ></b-form-textarea>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
     </b-form>
+    <br />
   </div>
 </template>
 

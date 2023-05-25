@@ -80,7 +80,7 @@ function journeyInstance() {
 function chatGptInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "http://localhost:80/api/v1",
+        baseURL: "http://localhost:80/api/gpt-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,

@@ -1,13 +1,15 @@
 <template>
-  <b-tr>
-    <b-td>{{ comment.content }}</b-td>
-    <b-td>{{ comment.authorName }}</b-td>
-    <b-td>{{ comment.createDate | dateFormat }}</b-td>
-    <div v-show="comment.myComment">
-      <!-- <b-button>수정</b-button> -->
+  <b-row class="mb-3 comment">
+    <b-col cols="1">{{ comment.authorName }}</b-col>
+    <b-col>{{ comment.content }}</b-col>
+
+    <b-col cols="2" v-if="!comment.myComment">{{ comment.createDate | dateFormat }}</b-col>
+
+    <b-col cols="1" v-if="comment.myComment">{{ comment.createDate | dateFormat }}</b-col>
+    <b-col cols="1" v-if="comment.myComment">
       <b-button @click="removeComment">삭제</b-button>
-    </div>
-  </b-tr>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -35,4 +37,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.comment {
+  background-color: #ddf3ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+/* .col {
+} */
+</style>

@@ -1,24 +1,7 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <!-- <b-col v-if="comments.length"> -->
-      <b-table-simple hover responsive>
-        <b-thead head-variant="dark">
-          <b-tr>
-            <b-th>댓글 내용</b-th>
-            <b-th>작성자 이름</b-th>
-            <b-th>작성날짜</b-th>
-            <b-th>버튼</b-th>
-          </b-tr>
-        </b-thead>
-        <tbody>
-          <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-          <comment-list-item v-for="comment in comments" :key="comment.id" :comment="comment" />
-        </tbody>
-      </b-table-simple>
-      <!-- </b-col> -->
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
-    </b-row>
+    <comment-list-item v-for="comment in comments" :key="comment.id" :comment="comment" />
+    <br />
   </b-container>
 </template>
 
@@ -59,5 +42,9 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
 }
 </style>

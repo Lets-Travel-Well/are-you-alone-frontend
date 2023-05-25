@@ -1,42 +1,39 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>글보기</h3></b-alert>
-      </b-col>
-    </b-row>
     <b-row class="mb-1">
       <b-col class="text-left">
-        <b-button variant="outline-primary" @click="listArticle">목록</b-button>
+        <b-button variant="outline-primary" @click="listArticle">게시판 목록으로</b-button>
       </b-col>
       <b-col class="text-right" v-show="board.myBoard">
         <b-button variant="outline-info" size="sm" @click="moveModifyArticle" class="mr-2"
-          >글수정</b-button
+          >수정하기</b-button
         >
-        <b-button variant="outline-danger" size="sm" @click="deleteArticle">글삭제</b-button>
+        <b-button variant="outline-danger" size="sm" @click="deleteArticle">삭제하기</b-button>
       </b-col>
     </b-row>
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${board.id}.
-          ${board.subject} </h3><div>조회수 : ${board.hit} 좋아요 : ${board.likeCnt}</h6></div>`"
+          :header-html="`<h3>
+          ${board.subject} </h3>`"
           class="mb-2"
           border-variant="dark"
           no-body
         >
-          <b-card-body class="text-left">
+          <b-card-body class="text-left" style="min-height: 300px">
             <div v-html="message"></div>
           </b-card-body>
+          <hr />
+          <div>조회수 : {{ board.hit }} 좋아요 : {{ board.likeCnt }}</div>
+          <b-button class="bg-white" variant="white" @click="updateLike">
+            <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="board.like" />
+            <b-icon icon="heart" variant="danger" font-scale="2" v-else />
+          </b-button>
         </b-card>
       </b-col>
     </b-row>
     <b-row>
       <b-col cols="11"></b-col>
-      <b-button class="bg-white" variant="white" @click="updateLike">
-        <b-icon icon="heart-fill" variant="danger" font-scale="2" v-if="board.like" />
-        <b-icon icon="heart" variant="danger" font-scale="2" v-else />
-      </b-button>
     </b-row>
 
     <comment-input-item></comment-input-item>

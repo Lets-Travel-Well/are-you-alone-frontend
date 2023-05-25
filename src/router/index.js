@@ -18,19 +18,6 @@ const routes = [
     path: "/user",
     name: "user",
     component: () => import(/* webpackChunkName: "user" */ "@/views/MemberView.vue"),
-    children: [
-      {
-        path: "singin",
-        name: "signIn",
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/MemberLogin.vue"),
-      },
-      {
-        path: "singup",
-        name: "signUp",
-        component: () =>
-          import(/* webpackChunkName: "user" */ "@/components/user/MemberRegister.vue"),
-      },
-    ],
   },
   {
     path: "/board",

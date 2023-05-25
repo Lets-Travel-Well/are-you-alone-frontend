@@ -1,24 +1,34 @@
 <template>
-  <b-row class="mt-4 mb-4 text-center">
-    <b-col class="sm-3">
-      <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="gugunCode" :options="guguns"></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="contentTypeId" :options="contents"></b-form-select>
-    </b-col>
-    <b-col class="sm-2">
-      <b-button class="mr-2" @click="searchAttraction">검색</b-button>
-      <b-button class="mr-2" v-b-toggle.attSearch>검색 목록</b-button>
-      <b-button v-if="type == 'journey'" v-b-toggle.myList>내 여행</b-button>
-    </b-col>
-    <div id="map" class="mt-3 shadow" style="width: 100%; height: 600px"></div>
-
+  <div>
+    <b-row class="mt-4 mb-4 text-center">
+      <b-col></b-col>
+      <b-col class="sm-3">
+        <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
+      </b-col>
+      <b-col class="sm-3">
+        <b-form-select v-model="gugunCode" :options="guguns"></b-form-select>
+      </b-col>
+      <b-col class="sm-3">
+        <b-form-select v-model="contentTypeId" :options="contents"></b-form-select>
+      </b-col>
+      <b-col cols="3" class="sm-2">
+        <b-button class="mr-2" @click="searchAttraction">검색</b-button>
+        <b-button class="mr-2" v-b-toggle.attSearch>결과창 열기</b-button>
+        <b-button v-if="type == 'journey'" v-b-toggle.myList>여행지 목록</b-button>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="10">
+        <div id="map" class="mt-3 shadow" style="width: 100%; height: 600px"></div>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+    <br />
     <side-bar :type="type"></side-bar>
     <side-bar v-if="type == 'journey'" type="myList"></side-bar>
-  </b-row>
+  </div>
 </template>
 
 <script>

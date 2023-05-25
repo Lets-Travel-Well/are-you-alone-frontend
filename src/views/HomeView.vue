@@ -7,31 +7,27 @@
       </b-col>
       <b-col></b-col>
     </b-row>
+    <br />
     <!-- <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> SSAFY</h3> -->
     <b-row>
       <b-col></b-col>
       <b-col cols="10">
-        <attraction-list title="Hot Place" icon="award" type="hotPlace"></attraction-list>
+        <attraction-list
+          title="RUALONE 선정 인기 장소"
+          icon="award"
+          type="hotPlace"
+        ></attraction-list>
       </b-col>
       <b-col></b-col>
-    </b-row>
-    <!-- <attraction-list title="동행 찾기" icon="brightness-high-fill"></attraction-list> -->
-    <b-row>
-      <b-col cols="2"></b-col>
-      <b-col cols="8">
-        <chat-gpt-input></chat-gpt-input>
-      </b-col>
-      <b-col cols="2"></b-col>
     </b-row>
   </div>
 </template>
 
 <script>
 import AttractionList from "@/components/attraction/AttractionList.vue";
-import ChatGptInput from "@/components/gpt/ChatGptInput.vue";
 
 export default {
-  components: { AttractionList, ChatGptInput },
+  components: { AttractionList },
   name: "HomeView",
   props: {
     msg: String,

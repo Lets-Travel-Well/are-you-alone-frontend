@@ -124,7 +124,6 @@ const boardStore = {
     },
 
     getBoardList: ({ commit }, { page, size }) => {
-      console.log(page, size);
       listBoard(page,size,({ data }) => {
         commit("CLEAR_BOARD");
         commit("CLEAR_BOARD_LIST");
@@ -163,7 +162,6 @@ const boardStore = {
 //////////////////////////////////////////////////////////////////////////////
 
     createComment: ({commit}, comment) => {
-      console.log("등록할 댓글", comment);
       writeComment(comment, () => {
         findAllComment(comment.postId, ({ data }) => {
           commit("UPDATE_COMMENT_LIST", data.response);
@@ -178,7 +176,6 @@ const boardStore = {
       })
     },
     deleteComment: ({commit},comment ) => {
-      console.log("삭제할 댓글", comment);
       removeComment(comment.id,
         () => {
           commit("CLEAR_COMMENT");
@@ -195,7 +192,6 @@ const boardStore = {
       })
     },
     getComments:({ commit }, postId)=> {
-      console.log("댓글을 불러올 postId", postId);
       findAllComment(postId, ({ data }) => {
         commit("UPDATE_COMMENT_LIST", data.response);
       },
