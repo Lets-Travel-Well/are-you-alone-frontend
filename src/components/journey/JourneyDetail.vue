@@ -68,20 +68,27 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-    <hr />
-    <div style="height: 130px">댓글이 들어갈 곳</div>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="10"><hr /></b-col>
+      <b-col></b-col>
+    </b-row>
+    AI를 활용한 댓글
+    <chat-gpt-input></chat-gpt-input>
   </div>
 </template>
 
 <script>
 import AttractionList from "@/components/attraction/AttractionList.vue";
 import MemberDetailItem from "@/components/user/item/MemberDetailItem.vue";
+import ChatGptInput from "../gpt/ChatGptInput.vue";
+
 import { mapActions, mapState } from "vuex";
 const journeyStore = "journeyStore";
 
 export default {
   name: "JourenyDetail",
-  components: { AttractionList, MemberDetailItem },
+  components: { AttractionList, MemberDetailItem, ChatGptInput },
   computed: {
     ...mapState(journeyStore, ["journeyDetail"]),
   },
