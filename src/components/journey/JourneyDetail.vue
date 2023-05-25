@@ -1,25 +1,29 @@
 <template>
     <div>
         <section>
-            <b-img :src="journeyDeatil.journeyPlaceResponseList[0].firstImage"></b-img>
+            <b-img :src="journeyDetail.journeyPlaceResponseList[0].firstImage"></b-img>
         </section>
 
         <div style="display: flex;">
             <div style="background-color: red;">
                 <div>
-                    {{ journeyDeatil.subject }}
+                    {{ journeyDetail.subject }}
                 </div>
                 <div>
-                    {{ journeyDeatil.content }}
+                    {{ journeyDetail.content }}
                 </div>
             </div>
 
             <div style="background-color: black;">
                 <div>
-                    {{ journeyDeatil.leader }}
+                    <member-detail-item 
+                        title="leader" 
+                        type="leader"
+                        :member="journeyDetail.leader"
+                        ></member-detail-item>
                 </div>
                 <div>
-                    {{ journeyDeatil.fuddy }}
+                    {{ journeyDetail.fuddy }}
                 </div>
             </div>
         </div>
@@ -27,7 +31,7 @@
 
         <div style="background-color: green;">
             <attraction-list title="journeyDetail" type="journeyDetail"></attraction-list>
-            <!-- {{ journeyDeatil.journeyPlaceResponseList }} -->
+            <!-- {{ journeyDetail.journeyPlaceResponseList }} -->
         </div>
     </div>
 
@@ -35,13 +39,14 @@
 
 <script>
 import AttractionList from "@/components/attraction/AttractionList.vue";
+import MemberDetailItem from "@/components/user/item/MemberDetailItem.vue"
 import { mapActions, mapState } from 'vuex';
 const journeyStore = "journeyStore";
 export default {
     name: "JourenyDetail",
-    components: { AttractionList },
+    components: { AttractionList, MemberDetailItem },
     computed: {
-        ...mapState(journeyStore, ["journeyDeatil"]),
+        ...mapState(journeyStore, ["journeyDetail"]),
     },
     methods: {
         ...mapActions(journeyStore, ["getJourneyDetail"]),
@@ -53,8 +58,6 @@ export default {
     },
     created() {
         let journeyId = this.$route.params.journeyId;
-        console.log(journeyId);
-        console.log("qqqqqqq");
         this.getJourneyDetail(journeyId);
     },
 

@@ -14,7 +14,7 @@ const journeyStore = {
         },  
         myJourneyList: [],
         journeys: [],
-        journeyDeatil : {}
+        journeyDetail : {}
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -62,7 +62,7 @@ const journeyStore = {
             state.journeys = journeys;
         },
         SET_JOURNEY_DETAIL(state, journey) {
-            state.journeyDeatil = journey;
+            state.journeyDetail = journey;
         }
         // UPDATE_JOURNEY(state, JOURNEY) {
         //     state.myJourneyList = JOURNEY;

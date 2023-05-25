@@ -41,7 +41,7 @@
 
     <div v-if="type === 'journeyDetail'">
       <attraction-list-item
-        v-for="journeyPlace in journeyDeatil.journeyPlaceResponseList"
+        v-for="journeyPlace in journeyDetail.journeyPlaceResponseList"
         :key="journeyPlace.contendId"
         :place="journeyPlace"
         :type="type"
@@ -79,7 +79,7 @@ export default {
   computed: {
     ...mapState(hotPlaceStore, ["hotPlaceList"]),
     ...mapState(attractionStore, ["attractions"]),
-    ...mapState(journeyStore, ["myJourneyList", "journeyDeatil"]),
+    ...mapState(journeyStore, ["myJourneyList", "journeyDetail"]),
     // myJourneyList: {
     //   get() {
     //     console.log("zzz");
