@@ -1,6 +1,9 @@
 <template>
     <div>
-        <b-card :title="member.nickName"></b-card>
+        <b-card :title="member.nickName">
+            <b-progress :value="member.footage" :max="max" show-progress animated></b-progress>
+
+        </b-card>
     </div>
 </template>
 
@@ -14,6 +17,7 @@ export default {
     data() {
         return {
             message: '',
+            max: 100,
         };
     },
     created() {},
