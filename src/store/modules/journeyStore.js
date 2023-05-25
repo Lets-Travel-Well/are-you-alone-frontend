@@ -14,7 +14,7 @@ const journeyStore = {
         },  
         myJourneyList: [],
         journeys: [],
-        journeyDeatil : {}
+        journeyDetail : {}
     },
     mutations: {
         CLEAR_JOURNEY(state) {
@@ -62,7 +62,7 @@ const journeyStore = {
             state.journeys = journeys;
         },
         SET_JOURNEY_DETAIL(state, journey) {
-            state.journeyDeatil = journey;
+            state.journeyDetail = journey;
         }
         // UPDATE_JOURNEY(state, JOURNEY) {
         //     state.myJourneyList = JOURNEY;
@@ -93,7 +93,9 @@ const journeyStore = {
                 console.log(error);
             })
         },
-        getJourneyDetail: ({commit}, journeyId) => {
+        getJourneyDetail: ({ commit }, journeyId) => {
+            console.log("here");
+            console.log(journeyId);
             getJourney(journeyId, ({data}) => {
                 commit("SET_JOURNEY_DETAIL", data.response);
             },
