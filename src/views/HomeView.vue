@@ -16,10 +16,12 @@
       <b-col></b-col>
     </b-row>
     <!-- <attraction-list title="동행 찾기" icon="brightness-high-fill"></attraction-list> -->
-
     <b-row>
-      <b-col></b-col>
-      <chat-gpt-input></chat-gpt-input>
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
+        <chat-gpt-input></chat-gpt-input>
+      </b-col>
+      <b-col cols="2"></b-col>
     </b-row>
   </div>
 </template>

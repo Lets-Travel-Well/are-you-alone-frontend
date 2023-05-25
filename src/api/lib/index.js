@@ -77,5 +77,16 @@ function journeyInstance() {
     return instance;
 }
 
+function chatGptInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "http://localhost:80/api/v1",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
 
-export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance};
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance};
