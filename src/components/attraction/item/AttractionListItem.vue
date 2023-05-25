@@ -7,8 +7,8 @@
     img-top
     img-height="150px"
     tag="article"
-    style="max-width: 20rem; display: inline-block; width: 300px"
-    class="m-2 custom-card"
+    style="max-width: 20rem; display: inline-block; width: 280px"
+    class="m-3 custom-card"
   >
     <b-card-text>
       {{ place.title }}
