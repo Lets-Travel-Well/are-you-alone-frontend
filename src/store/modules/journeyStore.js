@@ -1,6 +1,5 @@
 import { createJourney } from '@/api/journey';
 
-
 const journeyStore = {
     namespaced: true,
     state: {
@@ -9,8 +8,8 @@ const journeyStore = {
             content: "",
             visibility:"",
             travelerCnt: "",
-            deadLine: "",
-            startDay: "",
+            deadLine: null,
+            startDay: null,
             journeyPlaceCreateRequests:[],
         },  
         myJourneyList: []
@@ -22,8 +21,8 @@ const journeyStore = {
                 content: "",
                 visibility:"",
                 travelerCnt: "",
-                deadLine: "",
-                startDay: "",
+                deadLine: null,
+                startDay: null,
                 journeyPlaceCreateRequests:[],
             }
         },
@@ -62,10 +61,10 @@ const journeyStore = {
         // }
     },
     actions: {
-        saveJourney: ({ commit },journey) => {
+        saveJourney: ({ commit }, journey) => {
             commit("SET_JOURNEY_CREATE_REQUEST");
-
-            createJourney(journey, () => { 
+            console.log("ss");
+            createJourney(journey, () => {
                 commit("CLEAR_JOURNEY");
                 commit("CLEAR_JOURNEY_LIST");
             },

@@ -1,5 +1,5 @@
 <template>
-  <DefaultBlogCard
+  <!-- <DefaultBlogCard
     image="https://bit.ly/3EZlfcW"
     :category="{ color: 'warning', label: 'Hub' }"
     title="Shared Coworking"
@@ -10,7 +10,8 @@
       name: 'Mathew Glock',
       date: 'Posted on 28 February',
     }"
-  />
+  /> -->
+  <div></div>
 </template>
 
 <script>
