@@ -19,19 +19,6 @@ const attractionStore = {
         positions:[],
       },
       getters: {
-        allTodosCount(state) {
-          return state.todos.length;
-        },
-        completedTodosCount(state) {
-          return state.todos.filter((todo) => {
-            return todo.completed === true;
-          }).length;
-        },
-        unCompletedTodosCount(state) {
-          return state.todos.filter((todo) => {
-            return todo.completed === false;
-          }).length;
-        },
       },
       mutations: {
         /////////////////////////////// House start /////////////////////////////////////
