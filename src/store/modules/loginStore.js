@@ -23,7 +23,7 @@ const loginStore = {
             getKaKaoToken(authToken,({ data }) => {
                 commit("SET_TOKENS", data);
                 localStorage.setItem("accessToken", data.accessToken);
-                router.push({ name: "home" });
+                router.push({ name: "main" });
             },
             (error) => {
                 console.log(error);

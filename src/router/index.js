@@ -4,13 +4,19 @@ import HomeView from "../views/HomeView.vue";
 import InstagramView from "../views/InstagramView.vue";
 import AttractionView from "../views/AttractionView.vue";
 import RedirectView from "../views/RedirectView.vue";
-
+import MypageView from "@/views/userpage/MypageView.vue";
+import MainHomeView from "@/views/MainHomeView.vue";
+// import store from '@/store'
 Vue.use(VueRouter);
 
 const routes = [
-
   {
-    path: "/",
+    path: '/',
+    name: "main",
+    component:MainHomeView
+  },
+  {
+    path: "/home",
     name: "home",
     component: HomeView,
   },
@@ -92,7 +98,12 @@ const routes = [
   {
     path: '/oauth2/redirect',
     component:RedirectView
-  }
+  },
+  {
+    path: '/mypage',
+    component:MypageView
+  },
+  
 ];
 
 const router = new VueRouter({
@@ -100,5 +111,19 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+export default router
+//전역가드 위 스토어도 주석임
+// router.beforeEach((to, from, next) => {
+//   const isLoggedIn =  store.state.loginStore.Login;
+//   const authPage = ['MainHomeView']
+//   const isAuth = !authPage.includes(to.name)
+//   // 로그인이 필요한 페이지에 접근하려고 할 때
+//   if (isAuth && !isLoggedIn) {
+//     alert('로그인하세요')
+//     next({ name: 'MainHomeView' }); // MainHomeView로 리디렉션합니다.
+    
+//   } else {
+//     next(); //
+//   }
+// });
 
-export default router;
