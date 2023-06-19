@@ -29,3 +29,17 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }} .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
+
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.FRONTEND_SERVER_HOST }}
+        username: ${{ secrets.FRONTEND_SERVER_USERNAME }}
+        key: ${{ secrets.FRONTEND_SERVER_KEY }}
+        port: ${{ secrets.FRONTEND_SERVER_PORT }}
+        passphrase: ${{ secrets.FRONTEND_SERVER_PASSPHRASE }}
+        script: |
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
+          sudo docker stop ${{secrets.DOCKERHUB_FRONTEND_SERVER}}
+          sudo docker run --name=${{ secrets.DOCKERHUB_FRONTEND_SERVER }} -d --rm -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
+          sudo docker image prune -f
