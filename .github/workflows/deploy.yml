@@ -38,8 +38,8 @@ jobs:
         key: ${{ secrets.FRONTEND_SERVER_KEY }}
         port: ${{ secrets.FRONTEND_SERVER_PORT }}
         passphrase: ${{ secrets.FRONTEND_SERVER_PASSPHRASE }}
-#         script: |
-#           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
-#           sudo docker stop ${{secrets.DOCKERHUB_FRONTEND_SERVER}}
-#           sudo docker run --name=${{ secrets.DOCKERHUB_FRONTEND_SERVER }} -d --rm -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
-#           sudo docker image prune -f
+        script: |
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
+          sudo docker stop ${{secrets.DOCKERHUB_FRONTEND_SERVER}}
+          sudo docker run --name=${{ secrets.DOCKERHUB_FRONTEND_SERVER }} -d --rm -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONTEND_SERVER }}
+          sudo docker image prune -f
