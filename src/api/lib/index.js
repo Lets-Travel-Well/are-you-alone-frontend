@@ -88,5 +88,16 @@ function chatGptInstance() {
     });
     return instance;
 }
+function followInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: "https://api.rualone.site/api/follow-management",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
 
-export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance};
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance, followInstance};
