@@ -20,16 +20,18 @@
           <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
-              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" :src="`http://127.0.0.1:80/api/hotplace-management/hotplace/2924134/like`" width="80">
-                <h3 class="h5 mb-1">{{ }}</h3>
+              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="@/assets/동행고양이.png" width="150" height="150">
+                <h3 class="h5 mb-1">닉네임</h3>
                 <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
-                <p class="fs-sm text-muted mb-0" @click="showUserFollower = !showUserFollower">팔로잉 {{  }}/ 팔로워 {{  }}</p>
+                <p class="fs-sm text-muted mb-0" @click="showUserFollower = !showUserFollower">팔로잉 {{followeeid}} / 팔로워</p>
                 <br>
-                <span type="button" v-if="!isFollow" @click="follow" class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
+                <span type="button" v-if="!follow" @click="follow" class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
                   팔로우
                 </span>
                 <span v-else @click="follow" class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
                   언팔로우
+
+
                 </span>
               </div>
             </div>
@@ -65,7 +67,6 @@
           </div>
         </div>
       </div>
-
       
     </div>
   </div>
@@ -76,8 +77,10 @@
 
 <script>
 // import axios from 'axios'
+const followStore = "followStore"
+import { mapActions } from "vuex";
+import UserFollower from '@/components/user/item/UserFollower.vue';
 
-import UserFollower from '@/components/user/item/UserFollower.vue'
 
 export default {
 name: "MypageView",
@@ -90,10 +93,22 @@ data() {
   }
 },
 methods: {
-  toggleUserFollower() {
-    this.showUserFollower = !this.showUserFollower;
-  }
-}
+  ...mapActions(followStore, ["followCh"]),
+  follow() {
+      if (this.$store.state.username == this.user.username) return
+
+      if (this.$store.state.likeUsers.includes(this.user.id)) {
+        this.follower_count -= 1
+      } else {
+        this.follower_count += 1
+      }
+
+      this.$store.dispatch('follow', this.user.id)
+    }
+},
+ created(){
+  this.followCh(2);
+ }
 };
 
 
