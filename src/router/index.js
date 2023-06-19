@@ -6,6 +6,8 @@ import AttractionView from "../views/AttractionView.vue";
 import RedirectView from "../views/RedirectView.vue";
 import MypageView from "@/views/userpage/MypageView.vue";
 import MainHomeView from "@/views/MainHomeView.vue";
+import NotFound from "@/views/NotFound.vue";
+import LoginView from "@/views/LoginView.vue";
 // import store from '@/store'
 Vue.use(VueRouter);
 
@@ -101,9 +103,24 @@ const routes = [
   },
   {
     path: '/mypage',
+    name: "mypage",
     component:MypageView
   },
-  
+  {
+    path: '/404notfound',
+    name: "404notfound",
+    component:NotFound
+  },
+  {
+    path: '*',
+    redirect: '/404notfound'
+  },
+  {
+    path: '/login',
+    name: "login",
+    component:LoginView
+  },
+ 
 ];
 
 const router = new VueRouter({
