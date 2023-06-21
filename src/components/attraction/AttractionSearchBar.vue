@@ -86,13 +86,15 @@ export default {
       this.cleanMaker();
       this.loadMarker();
     },
+
     loadScript() {
       const script = document.createElement("script");
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=65e66ed3a412cb73e32b300c2f3a1803&libraries=services,clusterer,drawing";
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d2c3523350abff43ba78fc582f9eb625&libraries=services,clusterer,drawing";
       script.onload = () => window.kakao.maps.load(this.loadMap);
       document.head.appendChild(script);
     },
+
     loadMap() {
       const container = document.getElementById("map");
       const options = {

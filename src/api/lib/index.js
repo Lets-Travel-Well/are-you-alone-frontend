@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 function getAccessToken() {
     return localStorage.getItem("accessToken");
 }
