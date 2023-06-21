@@ -3,8 +3,10 @@ import { follow, removeFollow, followCheck } from "@/api/follow.js";
 const followStore = {
     namespaced: true,
     state: {
-        followcheck : [],
+        followcheck: [],
         followStatus: null,
+        followerCount: 0,
+        followingCount:0,
     },
     getters: {
         followStatus: state => state.followStatus,
@@ -15,7 +17,19 @@ const followStore = {
         },
         SET_FOLLOW_STATUS: (state, status) => {
             state.followStatus = status;
-        }
+        },
+        INCREMENT_FOLLOWER_COUNT: (state) => { // 팔로워 수 증가 뮤테이션
+            state.followerCount += 1;
+        },
+        DECREMENT_FOLLOWER_COUNT: (state) => { // 팔로워 수 감소 뮤테이션
+            state.followerCount -= 1;
+        },
+        INCREMENT_FOLLOWING_COUNT: (state) => { // 팔로잉 수 증가 뮤테이션
+            state.followingCount += 1;
+        },
+        DECREMENT_FOLLOWING_COUNT: (state) => { // 팔로잉 수 감소 뮤테이션
+            state.followingCount -= 1;
+        },
     },
     actions: {
         follow: ({ commit }, comment) => {
@@ -53,7 +67,13 @@ const followStore = {
               (error) => {
                 console.log(error);
               })
-        }
+        },
+        incrementFollowerCount({ commit }) {
+            commit('INCREMENT_FOLLOWER_COUNT');
+        },
+        decrementFollowerCount({ commit }) {
+            commit('DECREMENT_FOLLOWER_COUNT');
+        },
     }
 };
 export default followStore;

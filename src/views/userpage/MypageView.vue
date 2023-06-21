@@ -7,9 +7,9 @@
           <b-icon icon="person-lines-fill"></b-icon> 마이페이지
         </h3>
       </b-col>
-
       <b-col></b-col>
     </b-row>
+
   <div>
   <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
     <div class="row pt-sm-2 pt-lg-0">
@@ -23,27 +23,22 @@
               <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="@/assets/동행고양이.png" width="150" height="150">
                 <h3 class="h5 mb-1">닉네임</h3>
                 <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
-                <p class="fs-sm text-muted mb-0" @click="showUserFollower = !showUserFollower">팔로잉 {{followeeid}} / 팔로워</p>
+
+                <p class="fs-sm text-muted mb-0">팔로잉 {{followingCount}}/ 팔로워 {{followerCount}}</p>
+
                 <br>
-                <span type="button" v-if="!follow" @click="follow" class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
+                <span type="button" v-if="!follow"  class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
                   팔로우
                 </span>
-                <span v-else @click="follow" class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
+                <span v-else  class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
                   언팔로우
-
-
                 </span>
               </div>
             </div>
           </div>
         </div>
       </aside>
-
   
-
-  <!-- UserFollower 컴포넌트 -->
-  <UserFollower v-if="showUserFollower"></UserFollower>
-
       <!-- 관심여행 목록 -->
 
       <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
@@ -79,38 +74,57 @@
 // import axios from 'axios'
 const followStore = "followStore"
 import { mapActions } from "vuex";
-import UserFollower from '@/components/user/item/UserFollower.vue';
+// import UserFollower from '@/components/user/item/UserFollower.vue';
 
 
 export default {
-name: "MypageView",
-components: {
-  UserFollower
-},
-data() {
-  return {
-    showUserFollower: false,
-  }
-},
-methods: {
-  ...mapActions(followStore, ["followCh"]),
-  follow() {
-      if (this.$store.state.username == this.user.username) return
+  name: "MypageView",
+  props: ['userId'],
+  components: {
+  
+  },
+  data() {
+    return {
+     
+      followeeid: null,
+    }
+  },
+  methods: {
+    ...mapActions(followStore, ["follow", "followCh", "incrementFollowerCount", "decrementFollowerCount"]),
+    handleFollow() {
+        if (this.$store.state.username == this.user.username) return
 
-      if (this.$store.state.likeUsers.includes(this.user.id)) {
-        this.follower_count -= 1
-      } else {
-        this.follower_count += 1
-      }
+        if (this.$store.state.likeUsers.includes(this.user.id)) {
+            this.decrementFollowerCount(); // 팔로우 수 감소
+        } else {
+            this.incrementFollowerCount(); // 팔로우 수 증가 
+        }
 
-      this.$store.dispatch('follow', this.user.id)
+        this.$store.dispatch('follow', this.user.id).then(() => {
+           
+            this.followCh(this.user.id);
+        });
     }
 },
- created(){
-  this.followCh(2);
- }
-};
+computed: {
+  //팔로워
+    followerCount() {
+        return this.$store.state.followStore.followerCount;
+    },
+  // 팔로잉
+    followingCount() { 
+        return this.$store.state.followStore.followingCount;
+    },
+  //내페이지인지
+    isMyPage() {
+        return this.$store.state.loginUser.id === this.pageOwnerId;
+    },
+},
 
+  created(){
+    this.followCh(2);
+  }
+};
 
 </script>
 
