@@ -1,5 +1,6 @@
 <template>
   <div style="border: 1px solid black; border-radius: 15px; overflow: hidden">
+    <p>맴버디테일</p>
     <div v-if="type == 'leader'">
       <h5>여행 리더</h5>
       <hr />

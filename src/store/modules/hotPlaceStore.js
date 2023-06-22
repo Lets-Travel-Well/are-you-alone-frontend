@@ -3,7 +3,8 @@ import { getHotplace, updateLike } from '@/api/hotplace';
 const hotPlaceStore = {
     namespaced: true,
     state: {
-        hotPlaceList: []
+        hotPlaceList: [],
+        myplace:[]
     },
     mutations: {
         SET_HOTPLACE_LIST(state, hotPlaceList) {
@@ -14,7 +15,14 @@ const hotPlaceStore = {
         },
         UPDATE_HOTPLACE_LIKE(state, index, like){
             state.hotPlaceList[index].myHotPlace = like;
-        }
+        },
+
+        SET_MYPLACE_LIST(state, myplace){
+            state.myplace = myplace;
+        },
+        CLEAR_MYPLACE_LIST(state) {
+            state.myplace = [];
+        },
     },
     actions: {
         getHotPlaceList: ({commit}) => {
@@ -39,6 +47,8 @@ const hotPlaceStore = {
                 console.log(error);
             })
           },
+
+       
     }
 };
 

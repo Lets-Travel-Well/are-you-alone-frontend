@@ -39,9 +39,9 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/여행지.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
-                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지추천</a></h3>
+                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지찾기</a></h3>
               </div>
           </div>
           <div class="col">
@@ -56,7 +56,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/자유.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">자유게시판</a></h3>
               </div>
@@ -64,7 +64,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/축제.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">축제정보</a></h3>
               </div>
@@ -101,6 +101,7 @@
           <div class="flex-xxl-shrink-0 position-relative zindex-2" style="max-width: 700px; margin-top: 26%; margin-right: 0%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400" data-disable-parallax-down="lg">
             <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/jeju.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
           </div>
+
           <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 700px; margin-top: 17.6%; margin-right: 5.5%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
             <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/gyeongbokgung.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2); max-width: 650px; height: auto;">
             </div>
@@ -111,7 +112,7 @@
     
   </div>
   
-  
+  <hr>
   <div id="hiddenSection2">
     <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
       <h2 class="display-5 text-center pt-2 pt-sm-3 pt-md-4 pt-lg-5 pb-lg-3 mt-xxl-2 mb-0">여행정보는 손쉽게 찾아보세요!</h2>
