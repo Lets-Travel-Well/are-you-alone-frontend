@@ -1,8 +1,10 @@
-import { getIsCurrentUser, getMyPageUser} from "@/api/mypage.js";
+// import { getIsCurrentUser, getMyPageUser} from "@/api/mypage.js";
+// import { findLoginUserId} from "@/api/mypage.js";
 
 const myPageStore = {
     namespaced:true,
-    state : {
+    state: {
+        loginUser: {},
         myPageUser : {},
         isCurrentUser : false,
     },
@@ -10,6 +12,9 @@ const myPageStore = {
         myPageStatus: state => state.myPageStatus,
     },
     mutations: {
+        SET_LOGIN_USER: (state, loginUser) => {
+            state.loginUser = loginUser;
+        },
         IS_CURRENT_USER: (state, isCurrentUser) => {
             state.isCurrentUser = isCurrentUser;
         },
@@ -18,29 +23,28 @@ const myPageStore = {
         }
     },
     actions: {
-        getIsCurrentUser: async ({commit}, userId) => {
-            await getIsCurrentUser(userId,
-                ({data}) => {
-                    commit("IS_CURRENT_USER", data.response)
-                }, 
-                (error => {
-                    console.log("Error:", error);
-                })
-            )
-        },
-        getMyPageUser: async ({commit}, userId) => {
-            await getMyPageUser(userId,
-                ({data}) =>  {
-                    commit("MY_PAGE_USER", data.response)
-                }, 
-                (error => {
-                    console.log("Error:", error);
-                })
-            )
-        },
+        // getIsCurrentUser: async ({commit}, userId) => {
+        //     await getIsCurrentUser(userId,
+        //         ({data}) => {
+        //             commit("IS_CURRENT_USER", data.response)
+        //         }, 
+        //         (error => {
+        //             console.log("Error:", error);
+        //         })
+        //     )
+        // },
+        // getMyPageUser: async ({commit}, userId) => {
+        //     await getMyPageUser(userId,
+        //         ({data}) =>  {
+        //             commit("MY_PAGE_USER", data.response)
+        //         }, 
+        //         (error => {
+        //             console.log("Error:", error);
+        //         })
+        //     )
+        // },
         // findLoginUserId: ({commit}) => {
         //     console.log("findLoginUserId store 접속");
-            
         //     findLoginUserId(
         //         ({data}) => {commit("SET_LOGIN_USER", data.response)}, 
         //         (error => {

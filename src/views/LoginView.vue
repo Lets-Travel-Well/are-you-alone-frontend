@@ -11,12 +11,15 @@
         <div class="w-100 mt-auto" style="max-width: 526px">
           <div class="col">
             <!-- dev 환경 -->
-            <a
+            <!-- <a
               class="btn btn-lg w-100"
               href="https://kauth.kakao.com/oauth/authorize?client_id=75704a9f2561ed081d5538850a2ad394&redirect_uri=https://rualone.site/oauth2/redirect&response_type=code"
+            > -->
+            <!-- local 환경 -->
+            <a
+              class="btn btn-lg w-100"
+              href="https://kauth.kakao.com/oauth/authorize?client_id=75704a9f2561ed081d5538850a2ad394&redirect_uri=http://localhost:8081/oauth2/redirect&response_type=code"
             >
-              <!-- local 환경 -->
-              <!-- <a class="btn btn-lg w-100" href="https://kauth.kakao.com/oauth/authorize?client_id=75704a9f2561ed081d5538850a2ad394&redirect_uri=http://localhost:8081/oauth2/redirect&response_type=code"> -->
               <img
                 class="btn-img"
                 src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"

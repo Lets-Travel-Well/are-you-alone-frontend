@@ -161,10 +161,7 @@ export default {
 
   created() {
     // 현재 로그인 사용자 정보를 state에 저장, state에서 loginUser로 접근하여 사용
-    console.log("findLoginUserId 접근");
     this.findLoginUserId();
-    console.log("findLoginUserId접근 완료");
-    console.log("현재 로그인 사용자 정보");
     console.log(this.loginUser);
     console.log(this.loginUser.id);
     console.log(this.$route.params.userId);
