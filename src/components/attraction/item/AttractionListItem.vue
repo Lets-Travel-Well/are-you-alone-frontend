@@ -10,23 +10,36 @@
     style="max-width: 20rem; display: inline-block; width: 260px"
     class="m-3 custom-card"
   >
-    <b-card-text>
-      <div style="width: '218px'; text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
+    <b-card-text style="min-height: 120px">
+      <div
+        style="
+          font-size: 17px;
+          font-weight: bold;
+          width: '218px';
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        "
+      >
         {{ place.title }}
       </div>
-      <br />
-      <b-button
-        v-if="this.type == 'search' || this.type == 'journey'"
-        class="bg-white"
-        variant="white"
-        @click="updateLike"
-      >
-        <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
-        <b-icon icon="heart" variant="danger" v-else></b-icon>
-      </b-button>
-      <span v-if="this.type !== 'myList' && this.type !== 'journeyDetail'">
-        <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}</span
-      >
+      <div style="font-size: 15px; margin-top: 10px; min-height: 30px">
+        {{ place.addr1 }}
+      </div>
+      <div>
+        <b-button
+          v-if="this.type == 'search' || this.type == 'journey'"
+          class="bg-white"
+          variant="white"
+          @click="updateLike"
+        >
+          <b-icon icon="heart-fill" variant="danger" v-if="place.myPlace"></b-icon>
+          <b-icon icon="heart" variant="danger" v-else></b-icon>
+        </b-button>
+        <span v-if="this.type !== 'myList' && this.type !== 'journeyDetail'">
+          <b-icon icon="hand-thumbs-up"></b-icon>{{ place.likeCnt }}</span
+        >
+      </div>
       <br />
       <span v-if="this.type === 'journeyDetail'">
         {{ place.content }}
@@ -48,7 +61,7 @@
 
 <script>
 import { mapActions } from "vuex";
-const hotPlaceStore = "hotPlaceStore";
+// const hotPlaceStore = "hotPlaceStore";
 const journeyStore = "journeyStore";
 const attractionStore = "attractionStore";
 
@@ -67,10 +80,11 @@ export default {
   },
   created() {},
   methods: {
-    ...mapActions(hotPlaceStore, ["changeLike"]),
+    // ...mapActions(hotPlaceStore, ["changeLike"]),
     ...mapActions(attractionStore, ["changeLike"]),
-    ...mapActions(journeyStore, ["addAttraction", "deleteAttraction", "updateContent"]),
+    ...mapActions(journeyStore, ["addAttraction", "deleteAttraction", "updateContent", ""]),
     updateLike() {
+      this.pla.myPlace = !this.pla.myPlace;
       this.changeLike(this.place.contentId);
     },
     addMyPlace() {
