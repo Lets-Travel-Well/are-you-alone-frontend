@@ -84,6 +84,7 @@ export default {
         contentTypeId: this.contentTypeId,
       });
       this.cleanMaker();
+      this.cleanOvList();
       this.loadMarker();
     },
 
@@ -107,7 +108,7 @@ export default {
     // 마커 찍기
     loadMarker() {
       makerList = [];
-
+      ovList = [];
       for (let k = 0; k < this.attractions.length; k++) {
         let marker = new window.kakao.maps.Marker({
           map: map,
@@ -118,36 +119,60 @@ export default {
           content: this.attractions[k].title,
         });
 
-        let contentWrapper = document.createElement("div");
-        contentWrapper.style.cssText = "background: white; border: 1px solid black";
-
         // 인포 윈도우 띄우기
-        let title = document.createElement("div");
-        title.innerHTML = this.attractions[k].title;
+        let contentWrapper = document.createElement("div");
+        contentWrapper.style.cssText =
+          "position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;";
+        let infoWrapper = document.createElement("div");
+        infoWrapper.style.cssText =
+          "width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;";
+        let titleWrapper = document.createElement("div");
+        titleWrapper.style.cssText =
+          "overflow: hidden; border: 0;box-shadow: 0px 1px 2px #888;padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;";
+        titleWrapper.innerHTML = this.attractions[k].title;
+
+        let bodyWrapper = document.createElement("div");
+        bodyWrapper.style.cssText = "position: relative;overflow: hidden;";
+
+        let imgWrapper = document.createElement("div");
+        imgWrapper.style.cssText =
+          "position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;";
+        let descWrapper = document.createElement("div");
+        descWrapper.style.cssText = "position: relative;margin: 13px 0 0 90px;height: 75px;";
 
         let addr = document.createElement("div");
         addr.innerHTML = this.attractions[k].addr1;
+        addr.style.cssText = "overflow: hidden;text-overflow: ellipsis;white-space: nowrap;";
+
+        let likeCnt = document.createElement("div");
+        likeCnt.innerHTML = "좋아요 : " + this.attractions[k].likeCnt;
 
         let image = document.createElement("img");
         image.src = this.attractions[k].firstImage;
-        image.style.cssText = "width:200px";
+        image.style.cssText = "width:73px; height:70px";
 
         let overlay = new window.kakao.maps.CustomOverlay({
           content: contentWrapper,
           position: marker.getPosition(),
         });
 
-        var closeBtn = document.createElement("button");
-        closeBtn.innerHTML = "닫기";
+        var closeBtn = document.createElement("div");
+        closeBtn.setAttribute("title", "닫기");
+        closeBtn.style.cssText =
+          "position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');";
         closeBtn.onclick = function () {
           overlay.setMap(null);
         };
 
-        contentWrapper.appendChild(title);
-        title.appendChild(closeBtn);
-        contentWrapper.appendChild(image);
-        contentWrapper.appendChild(addr);
-        overlay.setContent(contentWrapper);
+        contentWrapper.appendChild(infoWrapper);
+        infoWrapper.appendChild(titleWrapper);
+        titleWrapper.appendChild(closeBtn);
+        infoWrapper.appendChild(bodyWrapper);
+        bodyWrapper.appendChild(imgWrapper);
+        imgWrapper.appendChild(image);
+        bodyWrapper.appendChild(descWrapper);
+        descWrapper.appendChild(addr);
+        descWrapper.appendChild(likeCnt);
 
         window.kakao.maps.event.addListener(marker, "click", function () {
           overlay.setMap(map);
@@ -174,6 +199,11 @@ export default {
     cleanMaker() {
       for (let k = 0; k < makerList.length; k++) {
         makerList[k].setMap(null);
+      }
+    },
+    cleanOvList() {
+      for (let k = 0; k < ovList.length; k++) {
+        ovList[k].setMap(null);
       }
     },
   },

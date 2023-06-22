@@ -1,6 +1,6 @@
 import axios from "axios";
-const networktarget = "https://api.rualone.site";
-// const networktarget = "http://localhost:80";
+// const networktarget = "https://api.rualone.site";
+const networktarget = "http://localhost:8080";
 
 function getAccessToken() {
     return localStorage.getItem("accessToken");
