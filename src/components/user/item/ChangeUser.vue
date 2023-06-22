@@ -1,17 +1,12 @@
 <template>
-    <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-       <div class="d-flex align-items-center mb-4">
-         <h1 class="h2 mb-0">회원정보수정</h1>
-       </div>
-       <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
-         <div class="card-body pb-4">
-           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-           </div>
-         </div>
-       </div>
-       
-       
-     </div>
+  <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+        <div class="d-flex align-items-center mb-4">
+          <h1 class="underline-steelblue h2 mb-0">회원정보수정</h1>
+        </div>
+        <hr>
+   
+
+</div>
  </template>
  
  <script>
@@ -20,6 +15,12 @@
   
  };
  </script>
- 
- <style scoped></style>
+
+ <style scoped>
+ .underline-steelblue {
+  display: inline-block;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, rgba(72, 190, 233, 0.3) 30%);
+  margin-bottom: 40px;
+}
+</style>
  

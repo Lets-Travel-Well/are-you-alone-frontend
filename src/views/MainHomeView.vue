@@ -79,7 +79,7 @@
     <div>
     <section id="hiddenSection" class="pt-2 pt-sm-3 pt-md-4 pt-lg-3 pb-1 pb-sm-3 pb-md-4 pb-lg-5" >
       <div class="container position-relative py-5 my-lg-3 my-xl-4 my-xxl-5">
-        <div class="position-absolute" style="margin-left: -9.7%;" >
+        <div class="position-absolute" style="margin-left: -15%;" >
           <svg class="text-skyblue d-none d-lg-block" width="744" height="744" viewBox="0 0 744 744" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <circle cx="372" cy="372" r="372"></circle>
           </svg>
@@ -90,20 +90,19 @@
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-4 text-center" >
             <div class="d-none d-lg-block">
               <h2 class="display-5 mb-4 my-heading"> RUALONE</h2>
-              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-heading">"한국의 여행지로<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;함께 떠나요!!"</p>
+              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-paragraph">"한국의 여행지로<br>&nbsp;&nbsp;&nbsp;&nbsp;함께 떠나요!"</p>
             </div>
            
           </div>
         </div>
-        <div class="d-none d-xl-block" style="margin-top: -240px;"></div>
-        <div class="d-none d-lg-block d-xl-none" style="margin-top: -160px;"></div>
+        <div style="margin-top: -240px;"></div>
         <div class="d-flex position-relative zindex-2 mb-3">
-          <div class="flex-xxl-shrink-0 position-relative zindex-2" style="max-width: 700px; margin-top: 26%; margin-right: 0%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400" data-disable-parallax-down="lg">
-            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/jeju.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
+          <div class="flex-xxl-shrink-0 position-relative zindex-2" style="max-width: 700px; margin-top: 32%; margin-right: -12.4%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400" data-disable-parallax-down="lg">
+            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/jeju.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, 72);">
           </div>
 
-          <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 700px; margin-top: 17.6%; margin-right: 5.5%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
-            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/gyeongbokgung.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2); max-width: 650px; height: auto;">
+          <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 700px; margin-top: 17.6%; margin-right: -10%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
+            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/gyeongbokgung.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,80, 32); max-width: 700px; height: auto;">
             </div>
           
         </div>
@@ -376,10 +375,10 @@ position: absolute;
 }
 
 .my-heading {
-font-size: 40px; /* 원하는 크기로 설정 */
+font-size: 70px;
 }
 
 .my-paragraph {
-font-size: 24px; /* 원하는 크기로 설정 */
+font-size: 24px;
 }
 </style>

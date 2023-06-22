@@ -104,4 +104,16 @@ function followInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance, followInstance};
+function memberInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: networktarget + "/api/user-management",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance, followInstance,memberInstance};
