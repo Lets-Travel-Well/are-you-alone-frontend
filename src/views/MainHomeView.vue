@@ -102,7 +102,7 @@
             <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/city.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
           </div>
           <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 600px; margin-top: 17.6%; margin-right: 5.5%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
-            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/city.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
+            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/city.jpg" alt="Page" style="box-shadow: 5rem .625rem 5rem rgba(65,81,98, .2);">
             </div>
           
         </div>
