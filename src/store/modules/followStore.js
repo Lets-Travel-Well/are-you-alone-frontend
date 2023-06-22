@@ -1,4 +1,4 @@
-import { follow, removeFollow, followCheck } from "@/api/follow.js";
+import { follow, removeFollow, followCheck, getFollowerCount } from "@/api/follow.js";
 
 const followStore = {
     namespaced: true,
@@ -31,6 +31,11 @@ const followStore = {
         DECREMENT_FOLLOWING_COUNT: (state) => { // 팔로잉 수 감소 뮤테이션
             state.followingCount -= 1;
         },
+        SET_FOLLOWER_COUNT: (state, data) => {
+            console.log("데이터 몇개일까요");
+            console.log(data);
+            state.followerCount = data;
+        }
 
     },
     actions: {
@@ -75,6 +80,16 @@ const followStore = {
         },
         decrementFollowerCount({ commit }) {
             commit('DECREMENT_FOLLOWER_COUNT');
+        },
+        getFollowerCount : ({commit}, userId) => {
+            console.log("getFollowerCount 메서드 접근");
+            getFollowerCount(userId, ({data}) => {
+                commit("SET_FOLLOWER_COUNT", data.response);
+                console.log(data.response);
+            },
+            (error) => {
+                console.log(error);
+            })
         },
     }
 };

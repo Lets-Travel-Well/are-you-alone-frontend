@@ -1,6 +1,6 @@
 import axios from "axios";
-const networktarget = "https://api.rualone.site";
-// const networktarget = "http://localhost:8080";
+// const networktarget = "https://api.rualone.site";
+const networktarget = "http://localhost:8080";
 
 function getAccessToken() {
     return localStorage.getItem("accessToken");
@@ -10,6 +10,18 @@ function authInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
         baseURL: networktarget + "/api/auth",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": `Bearer ${accessToken}`,
+        },
+    });
+    return instance;
+}
+
+function memberInstance() {
+    let accessToken = getAccessToken();
+    const instance = axios.create({
+        baseURL: networktarget + "/api/user-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -104,4 +116,4 @@ function followInstance() {
     return instance;
 }
 
-export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance, followInstance};
+export { authInstance, boardInstance,attractionInstance, commentInstance, hotplaceInstance, journeyInstance, chatGptInstance, followInstance, memberInstance};

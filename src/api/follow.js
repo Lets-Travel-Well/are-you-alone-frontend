@@ -18,9 +18,12 @@ import { followInstance } from "./lib/index";
         api.get(`/followcheck?followeeId=${followeeId}`, JSON.stringify(followeeId)).then(success).catch(fail);
     }
 
-    
-        
-    
-    
+    function getFollowerCount(userId, success, fail){
+        console.log("api 접근 전");
+        console.log(userId);
+        const api = followInstance();
+        api.get(`/followercount?userId=${userId}`).then(success).catch(fail);
+    }
 
-export {follow,removeFollow,followCheck};
+
+export {follow,removeFollow,followCheck,getFollowerCount};
