@@ -102,9 +102,10 @@ const routes = [
     component:RedirectView
   },
   {
-    path: '/mypage',
+    path: '/mypage/:userId',
     name: "mypage",
-    component:MypageView
+    component:MypageView,
+    props:true
   },
   {
     path: '/404notfound',

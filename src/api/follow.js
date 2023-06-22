@@ -17,6 +17,8 @@ import { followInstance } from "./lib/index";
         const api = followInstance();
         api.get(`/followcheck?followeeId=${followeeId}`, JSON.stringify(followeeId)).then(success).catch(fail);
     }
+
+    
         
     
     

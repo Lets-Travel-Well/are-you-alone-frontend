@@ -1,4 +1,6 @@
 import axios from "axios";
+const networktarget = "https://api.rualone.site";
+// const networktarget = "http://localhost:80";
 
 function getAccessToken() {
     return localStorage.getItem("accessToken");
@@ -7,7 +9,7 @@ function getAccessToken() {
 function authInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/auth",
+        baseURL: networktarget + "/api/auth",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -19,7 +21,7 @@ function authInstance() {
 function boardInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/board-management",
+        baseURL: networktarget + "/api/board-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -31,7 +33,7 @@ function boardInstance() {
 function attractionInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/attraction-management",
+        baseURL: networktarget + "/api/attraction-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -43,7 +45,7 @@ function attractionInstance() {
 function commentInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/comment-management/comment",
+        baseURL: networktarget + "/api/comment-management/comment",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -55,7 +57,7 @@ function commentInstance() {
 function hotplaceInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/hotplace-management/hotplace",
+        baseURL: networktarget + "/api/hotplace-management/hotplace",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -67,7 +69,7 @@ function hotplaceInstance() {
 function journeyInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/journey-management/journey",
+        baseURL: networktarget + "/api/journey-management/journey",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -79,7 +81,7 @@ function journeyInstance() {
 function chatGptInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/gpt-management",
+        baseURL: networktarget + "/api/gpt-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
@@ -90,7 +92,10 @@ function chatGptInstance() {
 function followInstance() {
     let accessToken = getAccessToken();
     const instance = axios.create({
-        baseURL: "https://api.rualone.site/api/follow-management",
+        // baseURL: "https://api.rualone.site/api/follow-management",
+        // baseURL: "http://localhost:80/api/follow-management",
+    
+        baseURL: networktarget + "/api/follow-management",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": `Bearer ${accessToken}`,
