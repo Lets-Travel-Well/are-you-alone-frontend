@@ -39,9 +39,9 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/여행지.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
-                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지추천</a></h3>
+                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지찾기</a></h3>
               </div>
           </div>
           <div class="col">
@@ -56,7 +56,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/자유.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">자유게시판</a></h3>
               </div>
@@ -64,7 +64,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/축제.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">축제정보</a></h3>
               </div>
@@ -90,7 +90,7 @@
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-4 text-center" >
             <div class="d-none d-lg-block">
               <h2 class="display-5 mb-4 my-heading"> RUALONE</h2>
-              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-heading">"됫냐 ?!"</p>
+              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-heading">혼자 떠나는 여행</p>
             </div>
            
           </div>
@@ -111,7 +111,7 @@
     
   </div>
   
-  
+  <hr>
   <div id="hiddenSection2">
     <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
       <h2 class="display-5 text-center pt-2 pt-sm-3 pt-md-4 pt-lg-5 pb-lg-3 mt-xxl-2 mb-0">여행정보는 손쉽게 찾아보세요!</h2>

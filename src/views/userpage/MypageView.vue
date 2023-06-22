@@ -21,9 +21,13 @@
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
               <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="@/assets/동행고양이.png" width="150" height="150">
+                <span type="button" @click="showChangeUser" class="fs-sm btn btn-outline-warning py-2 px-0 " style="width: 50%;">
+                  회원정보수정
+                </span>
                 <h3 class="h5 mb-1">{{ myPageUser.nickName }}</h3>
+                <h3>닉네임</h3>
+                
                 <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
-
                 <p class="fs-sm text-muted mb-0">팔로잉 {{followingCount}}/ 팔로워 {{followerCount}}</p>
 
                 <br>
@@ -33,17 +37,30 @@
                 <span v-else  class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
                   언팔로우
                 </span>
-              </div>
+                
+                
+              </div >
+              <span type="button" @click="showMyTravel" class="fs-sm btn btn-outline-success py-2 px-0 " style="width: 50%;">
+                  내 여행
+              </span>
+              <br>
+              <br>
+              <br>
+    
             </div>
+            <span type="button" @click="showFavoriteTravel" class="fs-sm btn btn-outline-info py-2 px-0 " style="width: 50%;">
+                관심있는여행
+            </span>
           </div>
         </div>
       </aside>
   
-      <!-- 관심여행 목록  -->
-      <MemberDetailItem/>
-      <FavoriteTravel/>
-     
+      <!-- 컴포넌트목록  -->
       
+      <ChangeUser v-if="currentComponent === 'ChangeUser'"/>
+      <MyTravel v-else-if="currentComponent === 'MyTravel'"/>
+      <FavoriteTravel v-else/>
+    
       
     </div>
   </div>
@@ -58,8 +75,9 @@
 const followStore = "followStore"
 const myPageStore = "myPageStore"
 import { mapActions,mapState } from "vuex";
-import MemberDetailItem from '@/components/user/item/MemberDetailItem.vue';
 import FavoriteTravel from '@/components/user/item/FavoriteTravel.vue';
+import MyTravel from '@/components/user/item/MyTravel.vue';
+import ChangeUser from '@/components/user/item/ChangeUser.vue';
 
 
 
@@ -67,12 +85,16 @@ export default {
   name: "MypageView",
   props: ['userId'],
   components: {
-    MemberDetailItem,
-    FavoriteTravel
+    
+    FavoriteTravel,
+    MyTravel,
+    ChangeUser,
+
   },
   data() {
     return {
       myPageUser: null,
+      currentComponent: 'FavoriteTravel'
     }
   },
   methods: {
@@ -91,7 +113,16 @@ export default {
             this.isMyPage();
             this.followCh(this.user.id);
         });
-    }
+        },
+        showMyTravel() {
+          this.currentComponent = 'MyTravel'
+        },
+        showFavoriteTravel() {
+          this.currentComponent = 'FavoriteTravel'
+        },
+        showChangeUser() {
+          this.currentComponent = 'ChangeUser'
+        }
 },
 computed: {
   ...mapState(myPageStore, ["loginUser"]),

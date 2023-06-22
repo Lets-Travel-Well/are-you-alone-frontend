@@ -11,6 +11,9 @@ async function updateLike(contentTypeId, success, fail){
     const api = hotplaceInstance();
     await api.get(`/${contentTypeId}/like`).then(success).catch(fail);
 }
+function myplace(success, fail) {
+    const api = hotplaceInstance();
+    api.get(`/my-place`).then(success).catch(fail);
+}
 
-
-export { getHotplace, updateLike};
+export { getHotplace, updateLike, myplace};

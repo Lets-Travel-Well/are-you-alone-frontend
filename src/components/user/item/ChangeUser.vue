@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
        <div class="d-flex align-items-center mb-4">
-         <h1 class="h2 mb-0">내여행<span class='fs-base fw-normal text-muted'></span></h1>
+         <h1 class="h2 mb-0">회원정보수정</h1>
        </div>
        <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
          <div class="card-body pb-4">
@@ -16,7 +16,7 @@
  
  <script>
  export default {
-   name: "MyTravel",
+   name: "ChangeUser",
   
  };
  </script>
