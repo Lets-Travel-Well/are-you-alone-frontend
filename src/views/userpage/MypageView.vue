@@ -20,7 +20,9 @@
           <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
-              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="@/assets/동행고양이.png" width="150" height="150">
+              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5">
+                
+                <img class="d-block rounded-circle mb-2" style="margin-left: -34%; " src="@/assets/동행고양이.png" width="300" height="300">
                 <span type="button" @click="showChangeUser" class="fs-sm btn btn-outline-warning py-2 px-0 " style="width: 50%;">
                   회원정보수정
                 </span>
