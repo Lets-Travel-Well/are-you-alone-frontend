@@ -103,6 +103,7 @@ const routes = [
   },
   {
     path: '/mypage/:userId',
+
     name: "mypage",
     component:MypageView,
     props:true

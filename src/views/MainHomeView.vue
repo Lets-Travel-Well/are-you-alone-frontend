@@ -39,9 +39,9 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/여행지.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
-                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지추천</a></h3>
+                  <h3 class="text-center mb-0"><a class="stretched-link" href="#">여행지찾기</a></h3>
               </div>
           </div>
           <div class="col">
@@ -56,7 +56,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/자유.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">자유게시판</a></h3>
               </div>
@@ -64,7 +64,7 @@
           <div class="col">
               <div class="card-hover card-lifted mx-auto" >
                   <div class="card-lifted rounded-3 mb-3">
-                      <img src="../assets/동행고양이.png" style="width: 100%; height: 100%; border-radius: 70%">
+                      <img src="../assets/축제.png" style="width: 100%; height: 100%; border-radius: 70%">
                   </div>
                   <h3 class="text-center mb-0"><a class="stretched-link" href="#">축제정보</a></h3>
               </div>
@@ -90,7 +90,7 @@
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-4 text-center" >
             <div class="d-none d-lg-block">
               <h2 class="display-5 mb-4 my-heading"> RUALONE</h2>
-              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-heading">"됫냐 ?!"</p>
+              <p class="fs-lg text-dark pb-3 pb-sm-4 mb-lg-0 my-heading">"한국의 여행지로<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;함께 떠나요!!"</p>
             </div>
            
           </div>
@@ -99,10 +99,11 @@
         <div class="d-none d-lg-block d-xl-none" style="margin-top: -160px;"></div>
         <div class="d-flex position-relative zindex-2 mb-3">
           <div class="flex-xxl-shrink-0 position-relative zindex-2" style="max-width: 700px; margin-top: 26%; margin-right: 0%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400" data-disable-parallax-down="lg">
-            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/city.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
+            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/jeju.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
           </div>
-          <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 600px; margin-top: 17.6%; margin-right: 5.5%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
-            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/city.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2);">
+
+          <div class="flex-xxl-shrink-0 position-relative zindex-1" style="max-width: 700px; margin-top: 17.6%; margin-right: 5.5%;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" data-disable-parallax-down="lg">
+            <img class="rounded-3 mt-n5 mt-lg-0 d-block " src="../assets/gyeongbokgung.jpg" alt="Page" style="box-shadow: 1.875rem .625rem 5rem rgba(65,81,98, .2); max-width: 650px; height: auto;">
             </div>
           
         </div>
@@ -111,7 +112,7 @@
     
   </div>
   
-  
+  <hr>
   <div id="hiddenSection2">
     <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
       <h2 class="display-5 text-center pt-2 pt-sm-3 pt-md-4 pt-lg-5 pb-lg-3 mt-xxl-2 mb-0">여행정보는 손쉽게 찾아보세요!</h2>
@@ -119,9 +120,9 @@
       <div class="row align-items-center py-4 mt-2 mt-sm-3 mt-md-4 mb-2 mb-md-3 mb-lg-4" >
         <div class="col-md-6 col-lg-7 order-md-2 d-flex justify-content-end"><img class="d-dark-mode-none" src="../assets/testmap.png" width="593" alt="Colors" style="border-radius: 3%;"></div>
         <div class="col-md-6 col-lg-5 order-md-1 mt-md-n5">
-          <h1 class="display-5 mb-4">어쩌고</h1>
-          <h2 class="fs-lg mb-0 mb-lg-4">저쩌고</h2>
-          <h2 class="fs-lg mb-0 mb-lg-4">이러쿵</h2>
+          <h1 class="display-5 mb-4">여행지를 검색하고</h1>
+          <h2 class="fs-lg mb-0 mb-lg-4">여행계획을 만들고</h2>
+          <h2 class="fs-lg mb-0 mb-lg-4">마음에 맞는 동행을 구해보세요</h2>
         </div>
       </div>
       
