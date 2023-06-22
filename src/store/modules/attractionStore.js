@@ -1,4 +1,5 @@
 import { listSido, listGugun, listAttraction } from "@/api/attraction.js"
+import { updateLike } from '@/api/hotplace';
 
 const attractionStore = {
     namespaced: true,
@@ -15,7 +16,7 @@ const attractionStore = {
         {value:38, text: "쇼핑"},
         {value:39, text: "음식점"},
         ],
-      attractions: {},
+        attractions: {},
         positions:[],
       },
       getters: {
@@ -78,10 +79,22 @@ const attractionStore = {
         DELETE_TODO_ITEM(state, todoItem) {
           const idx = state.todos.indexOf(todoItem);
           state.todos.splice(idx,1);
+        },
+        UPDATE_ATTRACTION_LIKE(state, data) {
+          state.attractions.forEach((attraction) => {
+            if (attraction.contentId == data[0]) {
+              attraction.myPlace = data[1];
+              if (data[1]) {
+                attraction.likeCnt++;
+              } else {
+                if(attraction.likeCnt>0)
+                  attraction.likeCnt--;
+              }
+            }
+          })
         }
-    
-        //////////////////////////// Todo List end //////////////////////////////////
-      },
+
+  },
   actions: {
         /////////////////////////////// Attraction start /////////////////////////////////////
     getSido: ({ commit }) => {
@@ -112,7 +125,16 @@ const attractionStore = {
       })
     },
         /////////////////////////////// Attraction end /////////////////////////////////////
+    changeLike: ({commit}, contentId) => {
+      updateLike(contentId, ({ data }) => {
+        commit("UPDATE_ATTRACTION_LIKE", [contentId, data.response]);
       },
+      (error) => {
+          console.log(error);
+      })
+    },
+  
+  },
   };
   
   export default attractionStore;
