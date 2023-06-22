@@ -7,7 +7,6 @@
         <div class="card-lifted overflow-hidden rounded-3">
           <img src="../assets/메인로고.png" />
         </div>
-
         <h1>로그인</h1>
         <div class="w-100 mt-auto" style="max-width: 526px">
           <div class="col">
