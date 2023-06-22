@@ -64,11 +64,11 @@
                  >
                </div>
                <div v-else>
-                 <b-dropdown-item href="#"
-                   ><router-link :to="{ name: 'mypage' }" class="link" style="color: #3aa4ca"
-                     ><b-icon icon="person-circle"></b-icon> 마이 페이지</router-link
-                   ></b-dropdown-item
-                 >
+                  <b-dropdown-item href="#"
+                    ><router-link :to="{ name: 'mypage', params: { userId: '0' } }" class="link" style="color: #3aa4ca"
+                      ><b-icon icon="person-circle"></b-icon> 마이 페이지</router-link
+                    ></b-dropdown-item
+                  >
 
                  <b-dropdown-item href="#" @click="signOut" style="color: #3aa4ca"
                    ><b-icon icon="key"></b-icon> 로그아웃</b-dropdown-item
@@ -94,25 +94,29 @@ import { mapActions, mapState } from "vuex";
 const loginStore = "loginStore";
 
 export default {
- name: "HeaderNaviBar",
- data() {
-   return {};
- },
- computed: {
-   ...mapState(loginStore, ["tokens"]),
- },
- created() {},
- methods: {
-   ...mapActions(loginStore, ["logout"]),
-   signOut() {
-     this.logout();
-   },
-   goLogin(){
-   
-     this.$router.push({name: 'login'})
-   
-   }
- },
+  name: "HeaderNaviBar",
+  data() {
+    return {
+      
+    };
+  },
+  computed: {
+    ...mapState(loginStore, ["tokens"]),
+  },
+  created() {},
+  methods: {
+    ...mapActions(loginStore, ["logout", "findLoginUserId"]),
+    signOut() {
+      this.logout();
+    },
+    goLogin(){
+      this.$router.push({name: 'login'})
+    },
+    findLoginUser() {
+      this.loginUserId = this.findLoginUserId();
+    }
+
+  },
 };
 </script>
 

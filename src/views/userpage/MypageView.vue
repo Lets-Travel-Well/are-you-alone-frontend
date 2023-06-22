@@ -21,7 +21,7 @@
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
               <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="@/assets/동행고양이.png" width="150" height="150">
-                <h3 class="h5 mb-1">닉네임</h3>
+                <h3 class="h5 mb-1">{{ myPageUser.nickName }}</h3>
                 <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
 
                 <p class="fs-sm text-muted mb-0">팔로잉 {{followingCount}}/ 팔로워 {{followerCount}}</p>
@@ -73,7 +73,8 @@
 <script>
 // import axios from 'axios'
 const followStore = "followStore"
-import { mapActions } from "vuex";
+const myPageStore = "myPageStore"
+import { mapActions, mapState } from "vuex";
 // import UserFollower from '@/components/user/item/UserFollower.vue';
 
 
@@ -85,12 +86,12 @@ export default {
   },
   data() {
     return {
-     
-      followeeid: null,
+      myPageUser: null,
     }
   },
   methods: {
     ...mapActions(followStore, ["follow", "followCh", "incrementFollowerCount", "decrementFollowerCount"]),
+    ...mapActions(myPageStore, ["findLoginUserId"]),
     handleFollow() {
         if (this.$store.state.username == this.user.username) return
 
@@ -101,12 +102,13 @@ export default {
         }
 
         this.$store.dispatch('follow', this.user.id).then(() => {
-           
+            this.isMyPage();
             this.followCh(this.user.id);
         });
     }
 },
 computed: {
+  ...mapState(myPageStore, ["loginUser"]),
   //팔로워
     followerCount() {
         return this.$store.state.followStore.followerCount;
@@ -122,7 +124,34 @@ computed: {
 },
 
   created(){
-    this.followCh(2);
+    // 현재 로그인 사용자 정보를 state에 저장, state에서 loginUser로 접근하여 사용
+    console.log("findLoginUserId 접근");
+    this.findLoginUserId();
+    console.log("findLoginUserId접근 완료");
+    console.log("현재 로그인 사용자 정보");
+    console.log(this.loginUser);
+    console.log(this.loginUser.id);
+    console.log(this.$route.params.userId);
+    // 보여줄 마이페이지 유저 id값이 0일 경우 현재 로그인한 유저를 의미
+    if(this.$route.params.userId === '0'){
+      console.log("if문 접속 완료");
+      // 마이페이지 유저, 로그인한 유저가 동일할 경우 mypageUser에 로그인 유저정보를 입력
+      this.myPageUser = this.loginUser;
+      console.log(this.myPageUser);
+    }else {
+      console.log("에러방지");
+    }
+    // console.log("파라미터 전달");
+    // console.log(this.$route.params.userId);
+    // this.findLoginUserId();
+    // this.loginUserId = this.loginUser;
+    // console.log(this.loginUserId);
+    // console.log("userId 출력");
+    // console.log(this.userId);
+    // if(this.$route.params.userId === 0){
+    //   this.userId = this.loginUserId.id;
+    // }
+    
   }
 };
 
