@@ -24,15 +24,18 @@
                 <h3 class="h5 mb-1">{{ myPageUser.nickName }}</h3>
                 <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
 
-                <p class="fs-sm text-muted mb-0">팔로잉 {{followingCount}}/ 팔로워 {{followerCount}}</p>
+                <p class="fs-sm text-muted mb-0">팔로잉 {{followeeCount}}/ 팔로워 {{followerCount}}</p>
 
                 <br>
-                <span type="button" v-if="!follow"  class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
-                  팔로우
-                </span>
-                <span v-else  class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
-                  언팔로우
-                </span>
+                <div v-if="!getIsCurrentUser">
+                  <span type="button" v-if="!follow"  class="fs-sm btn btn-outline-primary py-2 px-0 " style="width: 50%;">
+                    팔로우
+                  </span>
+                  <span v-else  class="fs-sm btn btn-outline-danger py-2 px-0 " style="width: 50%;">
+                    언팔로우
+                  </span>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -86,17 +89,16 @@ export default {
   },
   data() {
     return {
-      followercount : null,
-      followeecount : null,
     }
   },
   watch: {
     myPageUser() {
       this.getFollowerCount(this.myPageUser.id);
+      this.getFolloweeCount(this.myPageUser.id);
     }
   },
   methods: {
-    ...mapActions(followStore, ["follow", "followCh", "incrementFollowerCount", "decrementFollowerCount", "getFollowerCount"]),
+    ...mapActions(followStore, ["follow", "followCh", "incrementFollowerCount", "decrementFollowerCount", "getFollowerCount", "getFolloweeCount"]),
     ...mapActions(myPageStore, ["getIsCurrentUser", "getMyPageUser"]),
     handleFollow() {
         if (this.$store.state.username == this.user.username) return
@@ -116,6 +118,7 @@ export default {
  
   computed: {
     ...mapState(myPageStore, ["isCurrentUser", "myPageUser"]),
+    ...mapState(followStore, ["followeeCount", "followerCount"]),
     //팔로워
       followerCount() {
           return this.$store.state.followStore.followerCount;
