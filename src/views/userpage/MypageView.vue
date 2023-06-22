@@ -15,13 +15,33 @@
                   data-bs-target="#sidebarAccount"
                 ></button>
                 <div class="offcanvas-body">
-                  <div class="pb-2 pb-lg-0 mb-4 mb-lg-5">
+                  <div class="pb-2 pb-lg-0 mb-lg-3">
                     <img
                       class="d-block rounded-circle mb-2"
                       src="@/assets/동행고양이.png"
                       width="150"
                       height="150"
                     />
+                    <h3 class="h5">{{ myPageUser.nickName }}</h3>
+                    <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
+                    <p class="fs-sm text-muted mb-0">
+                      팔로잉 {{ followeeCount }}/ 팔로워 {{ followerCount }}
+                    </p>
+                  </div>
+                  <div v-if="isCurrentUser" class="mb-3">
+                      <span
+                      type="button"
+                      v-if="!follow"
+                      class="fs-sm btn btn-outline-primary py-2 px-0 "
+                      style="width: 50%"
+                      >
+                        팔로우
+                      </span>
+                      <span v-else class="fs-sm btn btn-outline-danger py-2 px-0" style="width: 50%">
+                        언팔로우
+                      </span>
+                    </div>
+                  <div class="mb-3">
                     <span
                       type="button"
                       @click="showChangeUser"
@@ -30,37 +50,17 @@
                     >
                       회원정보수정
                     </span>
-                    <h3 class="h5 mb-1">{{ myPageUser.nickName }}</h3>
-
-                    <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
-                    <p class="fs-sm text-muted mb-0">
-                      팔로잉 {{ followeeCount }}/ 팔로워 {{ followerCount }}
-                    </p>
-
-                    <br />
+                  </div>
+                  <div class="mb-3">
                     <span
                       type="button"
-                      v-if="!follow"
-                      class="fs-sm btn btn-outline-primary py-2 px-0"
+                      @click="showMyTravel"
+                      class="fs-sm btn btn-outline-success py-2 px-0"
                       style="width: 50%"
                     >
-                      팔로우
-                    </span>
-                    <span v-else class="fs-sm btn btn-outline-danger py-2 px-0" style="width: 50%">
-                      언팔로우
+                      내 여행
                     </span>
                   </div>
-                  <span
-                    type="button"
-                    @click="showMyTravel"
-                    class="fs-sm btn btn-outline-success py-2 px-0"
-                    style="width: 50%"
-                  >
-                    내 여행
-                  </span>
-                  <br />
-                  <br />
-                  <br />
                 </div>
                 <span
                   type="button"
