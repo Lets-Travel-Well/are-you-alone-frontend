@@ -7,6 +7,7 @@ const followStore = {
         followStatus: null,
         followerCount: 0,
         followingCount:0,
+        
     },
     getters: {
         followStatus: state => state.followStatus,
@@ -30,6 +31,7 @@ const followStore = {
         DECREMENT_FOLLOWING_COUNT: (state) => { // 팔로잉 수 감소 뮤테이션
             state.followingCount -= 1;
         },
+
     },
     actions: {
         follow: ({ commit }, comment) => {
