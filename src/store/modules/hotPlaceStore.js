@@ -1,10 +1,10 @@
-import { getHotplace, updateLike } from '@/api/hotplace';
+import { getHotplace, updateLike, myPlace } from '@/api/hotplace';
 
 const hotPlaceStore = {
     namespaced: true,
     state: {
         hotPlaceList: [],
-        myplace:[]
+        myPlaceList:[]
     },
     mutations: {
         SET_HOTPLACE_LIST(state, hotPlaceList) {
@@ -17,11 +17,11 @@ const hotPlaceStore = {
             state.hotPlaceList[index].myHotPlace = like;
         },
 
-        SET_MYPLACE_LIST(state, myplace){
-            state.myplace = myplace;
+        SET_MYPLACE_LIST(state, myPlaceList){
+            state.myPlaceList = myPlaceList;
         },
         CLEAR_MYPLACE_LIST(state) {
-            state.myplace = [];
+            state.myPlaceList = [];
         },
     },
     actions: {
@@ -33,6 +33,15 @@ const hotPlaceStore = {
             (error) => {
                 console.log(error);
             })
+        },
+        getMyPlace: ({ commit }) => {
+            myPlace(({ data }) => {
+                commit("CLEAR_MYPLACE_LIST");
+                commit("SET_MYPLACE_LIST", data.response);
+            }),
+            (error) => {
+                console.log(error);
+            }
         },
         changeLike: ({commit}, contentId) => {
             updateLike(contentId, () => {},
