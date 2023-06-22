@@ -11,11 +11,19 @@
         >
       </b-col>
     </b-row>
-    <div v-if="type === 'hotPlace'">
+    <div v-if="type == 'hotPlace'">
       <attraction-list-item
         v-for="hotPlace in hotPlaceList"
         :key="hotPlace.contendId"
         :place="hotPlace"
+        :type="type"
+      ></attraction-list-item>
+    </div>
+    <div v-if="type == 'myPlace'">
+      <attraction-list-item
+        v-for="myPlace in myPlaceList"
+        :key="myPlace.contendId"
+        :place="myPlace"
         :type="type"
       ></attraction-list-item>
     </div>
@@ -83,7 +91,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(hotPlaceStore, ["hotPlaceList"]),
+    ...mapState(hotPlaceStore, ["hotPlaceList", "myPlaceList"]),
     ...mapState(attractionStore, ["attractions"]),
     ...mapState(journeyStore, ["myJourneyList", "journeyDetail"]),
     // myJourneyList: {
