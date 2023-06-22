@@ -31,11 +31,10 @@
                       회원정보수정
                     </span>
                     <h3 class="h5 mb-1">{{ myPageUser.nickName }}</h3>
-                    <h3>닉네임</h3>
 
                     <!-- 팔로잉 텍스트 클릭 시 UserFollower 표시 -->
                     <p class="fs-sm text-muted mb-0">
-                      팔로잉 {{ followingCount }}/ 팔로워 {{ followerCount }}
+                      팔로잉 {{ followeeCount }}/ 팔로워 {{ followerCount }}
                     </p>
 
                     <br />
@@ -107,18 +106,19 @@ export default {
   },
   data() {
     return {
-      myPageUser: null,
       currentComponent: "FavoriteTravel",
     };
   },
+  watch: {
+    myPageUser() {
+      this.getFollowerCount(this.myPageUser.id);
+      this.getFolloweeCount(this.myPageUser.id);
+    }
+  },
   methods: {
-    ...mapActions(followStore, [
-      "follow",
-      "followCh",
-      "incrementFollowerCount",
-      "decrementFollowerCount",
+    ...mapActions(followStore, ["follow","followCh","incrementFollowerCount","decrementFollowerCount","getFollowerCount","getFolloweeCount"
     ]),
-    ...mapActions(myPageStore, ["findLoginUserId"]),
+    ...mapActions(myPageStore, ["getIsCurrentUser", "getMyPageUser"]),
     handleFollow() {
       if (this.$store.state.username == this.user.username) return;
 
@@ -142,9 +142,13 @@ export default {
     showChangeUser() {
       this.currentComponent = "ChangeUser";
     },
+    
+    
+
   },
   computed: {
-    ...mapState(myPageStore, ["loginUser"]),
+    ...mapState(myPageStore, ["isCurrentUser", "myPageUser"]),
+    ...mapState(followStore, ["followeeCount", "followerCount"]),
     //팔로워
     followerCount() {
       return this.$store.state.followStore.followerCount;
@@ -161,28 +165,16 @@ export default {
 
   created() {
     // 현재 로그인 사용자 정보를 state에 저장, state에서 loginUser로 접근하여 사용
-    this.findLoginUserId();
-    console.log(this.loginUser);
-    console.log(this.loginUser.id);
-    console.log(this.$route.params.userId);
+    this.getIsCurrentUser(this.userId);
+    this.getMyPageUser(this.userId);
     // 보여줄 마이페이지 유저 id값이 0일 경우 현재 로그인한 유저를 의미
-    if (this.$route.params.userId === "0") {
-      console.log("if문 접속 완료");
-      // 마이페이지 유저, 로그인한 유저가 동일할 경우 mypageUser에 로그인 유저정보를 입력
-      this.myPageUser = this.loginUser;
-      console.log(this.myPageUser);
-    } else {
-      console.log("에러방지");
-    }
-    // console.log("파라미터 전달");
-    // console.log(this.$route.params.userId);
-    // this.findLoginUserId();
-    // this.loginUserId = this.loginUser;
-    // console.log(this.loginUserId);
-    // console.log("userId 출력");
-    // console.log(this.userId);
-    // if(this.$route.params.userId === 0){
-    //   this.userId = this.loginUserId.id;
+    // if (this.$route.params.userId === "0") {
+    //   console.log("if문 접속 완료");
+    //   // 마이페이지 유저, 로그인한 유저가 동일할 경우 mypageUser에 로그인 유저정보를 입력
+    //   this.myPageUser = this.loginUser;
+    //   console.log(this.myPageUser);
+    // } else {
+    //   console.log("에러방지");
     // }
   },
 };
