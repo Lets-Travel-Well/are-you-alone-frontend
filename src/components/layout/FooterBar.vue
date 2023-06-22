@@ -1,6 +1,6 @@
 <template>
   <footer class="text-center">
-    <div class="text-center p-3">© 2023 Copyright: chunny & marugy</div>
+    <div class="text-center p-3">© 2023 Copyright: TEAM_RUALONE</div>
     회사소개 이용약관 개인정보처리방침
   </footer>
 </template>
