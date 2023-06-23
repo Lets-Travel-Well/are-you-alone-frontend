@@ -28,7 +28,7 @@
                       팔로잉 {{ followeeCount }}/ 팔로워 {{ followerCount }}
                     </p>
                   </div>
-                  <div v-if="isCurrentUser" class="mb-3">
+                  <div v-if="!isCurrentUser" class="mb-3">
                       <span
                       type="button"
                       v-if="!follow"
