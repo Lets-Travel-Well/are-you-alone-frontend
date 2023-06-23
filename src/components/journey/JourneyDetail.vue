@@ -5,7 +5,7 @@
       <b-col cols="9">
         <attraction-list title="" type="journeyDetail"></attraction-list>
       </b-col>
-      <b-col cols="2"></b-col>
+      <b-col cols="1"></b-col>
     </b-row>
     <hr />
     <br />
@@ -47,34 +47,101 @@
       </b-col>
 
       <b-col cols="2">
+        <div v-if="!journeyDetail.myJourney">
+          <b-button
+            v-if="journeyDetail.status == 'APPLY'"
+            style="width: 100%; font-size: 20px"
+            class="mb-2"
+            >승인 대기 중</b-button
+          >
+          <b-button
+            v-else-if="journeyDetail.status == 'AGREE'"
+            variant="success"
+            style="width: 100%; font-size: 20px"
+            class="mb-2"
+            >동행 승인 완료</b-button
+          >
+          <b-button
+            v-else-if="journeyDetail.status == 'DISAGREE'"
+            variant="danger"
+            style="width: 100%; font-size: 20px"
+            class="mb-2"
+            >동행 승인 거부</b-button
+          >
+          <b-button
+            v-else-if="journeyDetail.status == 'NOT_APPLY'"
+            style="width: 100%; font-size: 20px"
+            variant="outline-primary"
+            class="mb-2"
+            @click="apply"
+            >동행 신청 하기</b-button
+          >
+        </div>
+
         <div>
+          <div style="border: 1px solid black; border-radius: 15px">Leader</div>
+          <hr class="m-1" />
           <member-detail-item
             title="leader"
             type="leader"
             :member="journeyDetail.leader"
+            :journeyId="journeyDetail.id"
           ></member-detail-item>
         </div>
 
-        <hr />
+        <br />
 
-        <div v-for="fuddy in journeyDetail.fuddy" :key="fuddy.nickName">
+        <div
+          v-if="journeyDetail.fuddy.length > 0"
+          style="border: 1px solid black; border-radius: 15px"
+        >
+          FUDDY
+        </div>
+        <div v-for="fud in journeyDetail.fuddy" :key="fud.nickName">
           <member-detail-item
-            v-if="fuddy.id != journeyDetail.leader.id"
+            v-if="fud.nickName != journeyDetail.leader.nickName"
             title="fuddy"
             type="fuddy"
-            :member="fuddy"
+            :member="fud"
+            :journeyId="journeyDetail.id"
           ></member-detail-item>
+        </div>
+
+        <br />
+
+        <div v-if="journeyDetail.myJourney">
+          <div
+            v-if="journeyDetail.applyList.length > 1"
+            style="border: 1px solid black; border-radius: 15px"
+          >
+            APPLY LIST
+          </div>
+          <div v-for="apply in journeyDetail.applyList" :key="apply.id">
+            <member-detail-item
+              v-if="apply.id != journeyDetail.leader.id"
+              title="apply"
+              type="apply"
+              :member="apply"
+              :journeyId="journeyDetail.id"
+            ></member-detail-item>
+          </div>
         </div>
       </b-col>
       <b-col></b-col>
     </b-row>
     <b-row>
       <b-col></b-col>
-      <b-col cols="10"><hr /></b-col>
+      <b-col cols="10"></b-col>
       <b-col></b-col>
     </b-row>
-    AI를 활용한 댓글
-    <chat-gpt-input></chat-gpt-input>
+    <chat-gpt-input
+      v-if="journeyDetail.status == 'AGREE' && journeyDetail.complete == 1"
+    ></chat-gpt-input>
+    <b-row>
+      <b-col></b-col>
+      <b-col></b-col>
+      <b-col></b-col>
+    </b-row>
   </div>
 </template>
 
@@ -93,7 +160,10 @@ export default {
     ...mapState(journeyStore, ["journeyDetail"]),
   },
   methods: {
-    ...mapActions(journeyStore, ["getJourneyDetail"]),
+    ...mapActions(journeyStore, ["getJourneyDetail", "applyJourney"]),
+    apply() {
+      this.applyJourney(this.journeyDetail.id);
+    },
   },
   data() {
     return {
