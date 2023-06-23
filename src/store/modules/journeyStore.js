@@ -1,4 +1,4 @@
-import { createJourney, getJourneyList, getJourney } from '@/api/journey';
+import { createJourney, getJourneyList, getJourney, applyJourney, agree, disagree } from '@/api/journey';
 
 const journeyStore = {
     namespaced: true,
@@ -30,6 +30,22 @@ const journeyStore = {
         },
         CLEAR_JOURNEY_LIST(state) {
             state.myJourneyList = [];
+        },
+        CHANGE_APPLY_STATE(state) {
+            state.journeyDetail.status = "APPLY";
+        },
+        REFRESH_FUDDY_LIST(state, member) {
+            state.journeyDetail.fuddy.push(member);
+        },
+        REFRESH_APPLY_LIST(state, memberId) {
+            let targetIndex = 0;
+            for (let i = 0; i < state.journeyDetail.applyList.length; i++){
+                if (state.journeyDetail.applyList[i].id == memberId) {
+                    targetIndex = i;
+                    break;
+                }
+            }
+            state.journeyDetail.applyList.splice(targetIndex, 1);
         },
         ADD_JOURNEY(state, attraction) {
             attraction.content= "";
@@ -78,6 +94,38 @@ const journeyStore = {
             (error) => {
                 console.log(error);
             })
+        },
+
+        applyJourney: ({ commit }, journeyId) => {
+            applyJourney(journeyId,()=> {
+                commit("CHANGE_APPLY_STATE");
+            }),
+            (error) => {
+                console.log(error);
+            }
+        },
+        agree: ({ commit }, agreeInfo) => {
+            let info = {
+                memberId : agreeInfo.member.id,
+                journeyId : agreeInfo.journeyId
+            };
+            agree(info, () => {
+                commit("REFRESH_APPLY_LIST",agreeInfo.member.id);
+                
+                commit("REFRESH_FUDDY_LIST",agreeInfo.member);
+            }),
+            (error) => {
+                console.log(error);
+            }
+        },
+        disagree: ({ commit }, disagreeInfo) => {
+            disagree(disagreeInfo, () => {
+                commit("REFRESH_APPLY_LIST",disagreeInfo.memberId);
+            }),
+            
+            (error) => {
+                console.log(error);
+            }
         },
         addAttraction: ({ commit }, attraction) => {
             commit("ADD_JOURNEY", attraction);

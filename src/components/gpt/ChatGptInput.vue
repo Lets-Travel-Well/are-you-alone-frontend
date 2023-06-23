@@ -1,5 +1,6 @@
 <template>
   <b-row class="bv-example-row text-center">
+    <div>CHAT GPT를 사용한 여행 후기 만들기</div>
     <b-col></b-col>
     <b-col cols="10">
       <b-row>
